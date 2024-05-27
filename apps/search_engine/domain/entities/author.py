@@ -1,14 +1,12 @@
-from neomodel import StructuredNode, StringProperty, IntegerProperty
+from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationship
 
 
 class Author(StructuredNode):
-    name = StringProperty(unique_index=True)
-    email = StringProperty(unique_index=True)
-    affiliation = StringProperty()
     scopus_id = StringProperty(unique_index=True)
-    scopus_h_index = IntegerProperty()
-    scopus_citations = IntegerProperty()
-    scopus_documents = IntegerProperty()
-    scopus_co_authors = IntegerProperty()
-    scopus_cited_by = IntegerProperty()
-    scopus_cited_by_count = IntegerProperty()
+    first_name = StringProperty()
+    last_name = StringProperty()
+    auth_name = StringProperty()
+    initials = StringProperty()
+    affiliations = RelationshipTo('Affiliation', 'AFFILIATED_WITH')
+    articles = RelationshipTo('Article', 'WROTE')
+    co_authors = Relationship('Author', 'CO_AUTHORED')
