@@ -1,4 +1,4 @@
-from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationship
+from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationship, IntegerProperty
 
 
 class Author(StructuredNode):
@@ -10,3 +10,6 @@ class Author(StructuredNode):
     affiliations = RelationshipTo('Affiliation', 'AFFILIATED_WITH')
     articles = RelationshipTo('Article', 'WROTE')
     co_authors = Relationship('Author', 'CO_AUTHORED')
+
+    def __str__(self):
+        return f'{self.first_name}  {self.last_name}'
