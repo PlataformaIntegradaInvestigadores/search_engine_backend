@@ -9,10 +9,10 @@ class AuthorSerializer(serializers.Serializer):
     last_name = serializers.CharField()
     auth_name = serializers.CharField()
     initials = serializers.CharField()
-    affiliations = serializers.SerializerMethodField
+    affiliations = serializers.SerializerMethodField()
     articles = serializers.SerializerMethodField()
     co_authors = serializers.SerializerMethodField()
-    topics = serializers.ListField()
+    topics = serializers.SerializerMethodField()
 
     def get_affiliations(self, obj):
         return [affiliation.name for affiliation in obj.affiliations.all()]
