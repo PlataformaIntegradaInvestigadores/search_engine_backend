@@ -1,17 +1,23 @@
-from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationship, IntegerProperty
+from django_neomodel import DjangoNode
+from neomodel import StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty
+from apps.search_engine.domain.entities.author import Author
+from apps.search_engine.domain.entities.affiliation import Affiliation
+from apps.search_engine.domain.entities.topic import Topic
 
 
-class Article(StructuredNode):
+class Article(DjangoNode):
     title = StringProperty()
     abstract = StringProperty()
-    doi = StringProperty(unique_index=True)
+    doi = UniqueIdProperty()
     publication_date = StringProperty()
     author_count = IntegerProperty()
     affiliation_count = IntegerProperty()
     corpus = StringProperty()
-    authors = RelationshipTo('Author', 'WROTE')
-    affiliations = RelationshipTo('Affiliation', 'BELONGS_TO')
-    topics = RelationshipTo('Topic', 'USES')
+    affiliations = RelationshipTo(Affiliation, 'BELONGS_TO')
+    topics = RelationshipTo(Topic, 'USES')
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        app_label = 'search_engine'

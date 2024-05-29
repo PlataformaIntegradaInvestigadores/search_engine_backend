@@ -16,3 +16,12 @@ class CustomRequest:
             return response.json()
         except requests.exceptions.RequestException as e:
             raise Exception(f"Error on do get: {e}")
+
+    def do_post(self, endpoint: str, data: dict) -> Any:
+        try:
+            url = self.base_url + endpoint
+            response = requests.post(url, headers=self.headers, json=data)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Error on do post: {e}")

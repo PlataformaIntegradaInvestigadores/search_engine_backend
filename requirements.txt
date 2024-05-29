@@ -3,6 +3,7 @@ certifi==2024.2.2
 charset-normalizer==3.3.2
 Django==5.0.6
 django_neomodel==0.2.0
+djangorestframework==3.15.1
 idna==3.7
 neo4j==5.19.0
 neomodel==5.3.0
