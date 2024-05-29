@@ -37,11 +37,6 @@ neo4j_password = os.environ.get('NEO4J_PASSWORD')
 neo4j_host = os.environ.get('NEO4J_HOST')
 neo4j_port = os.environ.get('NEO4J_PORT')
 
-print(f'neo4j_username: {neo4j_username}')
-print(f'neo4j_password: {neo4j_password}')
-print(f'neo4j_host: {neo4j_host}')
-print(f'neo4j_port: {neo4j_port}')
-
 config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
 
 print(f'config.DATABASE_URL: {config.DATABASE_URL}')
@@ -55,7 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'django_neomodel',
+    'apps',
     'apps.search_engine',
     'apps.scopus_integration',
     'apps.dashboards'
@@ -99,6 +96,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'neo4j': {
+        'ENGINE': 'django_neomodel',
+        'NAME': 'neo4j',
     }
 }
 
