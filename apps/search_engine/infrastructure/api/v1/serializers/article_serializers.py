@@ -9,7 +9,15 @@ class ArticleSerializer(serializers.Serializer):
     author_count = serializers.IntegerField()
     affiliation_count = serializers.IntegerField()
     corpus = serializers.CharField()
-    affiliations = serializers.SerializerMethodCharField()
-    topics = serializers.SerializerMethodCharField()
+    affiliations = serializers.SerializerMethodField()
+    topics = serializers.SerializerMethodField()
+    scopus_id = serializers.IntegerField()
 
+    def get_affiliation_count(self, obj):
+        return len(obj.affiliations.all())
 
+    def get_affiliations(self, obj):
+        return [affiliation.name for affiliation in obj.affiliations.all()]
+
+    def get_topics(self, obj):
+        return [topic.name for topic in obj.topics.all()]
