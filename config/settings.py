@@ -39,8 +39,6 @@ neo4j_port = os.environ.get('NEO4J_PORT')
 
 config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
 
-print(f'config.DATABASE_URL: {config.DATABASE_URL}')
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,11 +50,25 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_neomodel',
+    'drf_spectacular',
     'apps',
     'apps.search_engine',
     'apps.scopus_integration',
     'apps.dashboards'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Search Engine API',
+    'DESCRIPTION': 'This project contains the API for the Search Engine project and Scoopus Integration project.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

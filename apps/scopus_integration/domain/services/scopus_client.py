@@ -16,6 +16,7 @@ class ScopusClient:
     _status_code = 0
 
     def __init__(self):
+        self._status_msg = ""
         self.x_els_api_key = os.environ.get('X_ELS_APIKEY')
         self.x_els_ins_token = os.environ.get('X_ELS_INSTTOKEN')
         self.x_els_auth_token = os.environ.get('X_ELS_AUTHTOKEN')
