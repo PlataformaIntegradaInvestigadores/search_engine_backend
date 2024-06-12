@@ -1,4 +1,4 @@
-from apps.scopus_integration.domain.services.scopus_client import ScopusClient
+from apps.scopus_integration.application.services.scopus_client import ScopusClient
 
 
 class AffilRetrieval:

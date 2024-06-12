@@ -4,3 +4,4 @@ venv
 db.sqlite3
 .env
 neo4j_db
+__pycache__

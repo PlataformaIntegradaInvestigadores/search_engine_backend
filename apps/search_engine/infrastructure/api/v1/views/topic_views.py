@@ -2,7 +2,7 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from apps.search_engine.domain.services.topic_service import TopicService
+from apps.search_engine.application.services.topic_service import TopicService
 from apps.search_engine.infrastructure.api.v1.serializers.topic_serializer import TopicSerializer
 
 
