@@ -10,9 +10,10 @@ from urllib.parse import quote_plus as url_encode
 
 from django.db import transaction
 
-from apps.scopus_integration.application.usecases.services.scopus_client import ScopusClient
-from apps.scopus_integration.application.usecases.article_retrieval_usecase import ArticleRetrieval
+from apps.scopus_integration.application.services.scopus_client import ScopusClient
 from apps.scopus_integration.utils.utils import encodeFacets
+from apps.search_engine.application.services.article_service import ArticleService
+from apps.search_engine.application.usecases.articles_bulk_create_usecase import ArticlesBulkCreateUseCase
 from apps.search_engine.domain.entities.article import Article
 
 
@@ -24,7 +25,8 @@ class Search:
     # statics variables
     _url_base = "https://api.elsevier.com/content/search/"
     article_retrieve = None
-    authors_bulk_create_usecase = AuthorsBulkCreateUsecase()
+    article_service = ArticleService()
+    authors_bulk_create_usecase = ArticlesBulkCreateUseCase(article_service=article_service)
 
     def __init__(self, url=None, query=None, facets=None, view=None, field=None, searchType=None):
         self.num_res = None
@@ -35,7 +37,7 @@ class Search:
             self.url = url
         elif query and not url:
             if not searchType:
-                raise ValueError('No se ha especificado el tipo de búsqueda.')
+                raise ValueError('Type of search is needed.')
             self.url = self._url_base + searchType + '?query=' + url_encode(query)
             if view:
                 self.url = self.url + '&view=' + view
@@ -71,7 +73,7 @@ class Search:
                         articles.append(article_data)
 
                     with transaction.atomic():
-                        articles_created = Article.create_or_update(*articles)
+                        articles_created = self.authors_bulk_create_usecase.execute(articles)
 
                     self.results += api_response['search-results']['entry']
 
