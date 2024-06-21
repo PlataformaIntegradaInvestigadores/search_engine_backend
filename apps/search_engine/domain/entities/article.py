@@ -25,9 +25,9 @@ class Article(DjangoNode):
 
     @classmethod
     @db.transaction
-    def from_json(cls, json) -> 'Article':
+    def from_json(cls, article_data) -> 'Article':
 
-        scopus_id = cls.validate_scopus_id(json.get('dc:identifier', ''))
+        scopus_id = cls.validate_scopus_id(article_data.get('dc:identifier', ''))
         if scopus_id is None:
             raise ValueError("Invalid scopus_id")
 
@@ -35,25 +35,25 @@ class Article(DjangoNode):
             article = cls.nodes.get(scopus_id=scopus_id)
         except cls.DoesNotExist:
             article_data = {
-                'title': json.get('dc:title', ''),
-                'doi': json.get('prism:doi', '') if json.get('prism:doi', '') else None,
-                'publication_date': json.get('prism:coverDate', ''),
-                'abstract': json.get('dc:description', ''),
-                'author_count': len(json.get('author', [])),
-                'affiliation_count': len(json.get('affiliation', [])),
+                'title': article_data.get('dc:title', ''),
+                'doi': article_data.get('prism:doi', '') if article_data.get('prism:doi', '') else None,
+                'publication_date': article_data.get('prism:coverDate', ''),
+                'abstract': article_data.get('dc:description', ''),
+                'author_count': len(article_data.get('author', [])),
+                'affiliation_count': len(article_data.get('affiliation', [])),
                 'scopus_id': scopus_id,
             }
             article = cls(**article_data).save()
 
         # Process topics (keywords)
-        keywords = json.get('authkeywords', '').split(' | ')
+        keywords = article_data.get('authkeywords', '').split(' | ')
         for keyword in keywords:
-            keyword_instance = Topic.from_list(keyword)
+            keyword_instance = Topic.from_json(keyword)
             if not article.topics.is_connected(keyword_instance):
                 article.topics.connect(keyword_instance)
 
         # Process affiliations
-        affiliations = json.get('affiliation', [])
+        affiliations = article_data.get('affiliation', [])
         for affiliation_data in affiliations:
             affiliation_instance = Affiliation.from_dict(affiliation_data)
             if not article.affiliations.is_connected(affiliation_instance):

@@ -22,10 +22,10 @@ class AuthorRetrieval:
             if field:
                 self.url = self.url + '&field=' + field
         elif not url and not author_id:
-            raise ValueError('No se ha especificado ningún URL e ID.')
+            raise ValueError('You must specify either the URL or the ID.')
         else:
             raise ValueError(
-                'Se ha especificado tanto el URL como el ID. Solo se necesita uno.')
+                'You must specify either the URL or the ID, not both.')
 
     def execute(self, client: ScopusClient = None):
         api_response = client.exec_request(self.url)

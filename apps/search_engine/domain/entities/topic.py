@@ -9,7 +9,7 @@ class Topic(DjangoNode):
         app_label = 'search_engine'
 
     @classmethod
-    def from_list(cls, topic):
+    def from_json(cls, topic):
         try:
             topic_instance = cls.nodes.get(name=topic)
         except cls.DoesNotExist:
