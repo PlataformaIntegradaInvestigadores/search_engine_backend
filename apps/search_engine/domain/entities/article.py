@@ -1,5 +1,5 @@
 from django_neomodel import DjangoNode
-from neomodel import StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty
+from neomodel import StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty, db
 from apps.search_engine.domain.entities.author import Author
 from apps.search_engine.domain.entities.affiliation import Affiliation
 from apps.search_engine.domain.entities.topic import Topic
@@ -24,18 +24,42 @@ class Article(DjangoNode):
         app_label = 'search_engine'
 
     @classmethod
-    def from_json(cls, json):
-        article_data = {
-            'title': json.get('dc:title', ''),
-            'doi': json.get('prism:doi', '') if json.get('prism:doi', '') else None,
-            'publication_date': json.get('prism:coverDate', ''),
-            'abstract': json.get('dc:description', ''),
-            'author_count': len(json.get('author', [])),
-            'affiliation_count': len(json.get('affiliation', [])),
-            'scopus_id': cls.validate_scopus_id(json.get('dc:identifier', '')),
-        }
+    @db.transaction
+    def from_json(cls, json) -> 'Article':
 
-        return article_data
+        scopus_id = cls.validate_scopus_id(json.get('dc:identifier', ''))
+        if scopus_id is None:
+            raise ValueError("Invalid scopus_id")
+
+        try:
+            article = cls.nodes.get(scopus_id=scopus_id)
+        except cls.DoesNotExist:
+            article_data = {
+                'title': json.get('dc:title', ''),
+                'doi': json.get('prism:doi', '') if json.get('prism:doi', '') else None,
+                'publication_date': json.get('prism:coverDate', ''),
+                'abstract': json.get('dc:description', ''),
+                'author_count': len(json.get('author', [])),
+                'affiliation_count': len(json.get('affiliation', [])),
+                'scopus_id': scopus_id,
+            }
+            article = cls(**article_data).save()
+
+        # Process topics (keywords)
+        keywords = json.get('authkeywords', '').split(' | ')
+        for keyword in keywords:
+            keyword_instance = Topic.from_list(keyword)
+            if not article.topics.is_connected(keyword_instance):
+                article.topics.connect(keyword_instance)
+
+        # Process affiliations
+        affiliations = json.get('affiliation', [])
+        for affiliation_data in affiliations:
+            affiliation_instance = Affiliation.from_dict(affiliation_data)
+            if not article.affiliations.is_connected(affiliation_instance):
+                article.affiliations.connect(affiliation_instance)
+
+        return article
 
     @staticmethod
     def validate_scopus_id(scopus_id) -> int or None:

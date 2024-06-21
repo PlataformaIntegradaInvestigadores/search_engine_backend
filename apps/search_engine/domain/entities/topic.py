@@ -1,5 +1,5 @@
 from django_neomodel import DjangoNode
-from neomodel import StructuredNode, StringProperty
+from neomodel import StructuredNode, StringProperty, RelationshipFrom
 
 
 class Topic(DjangoNode):
@@ -16,12 +16,3 @@ class Topic(DjangoNode):
             topic_instance = cls(name=topic).save()
         return topic_instance
 
-    @staticmethod
-    def from_list_(topic):
-        try:
-            topic_instance = {
-                'name': topic
-            }
-            return topic_instance
-        except Exception as e:
-            raise Exception('Error creating topic instance: ', e)

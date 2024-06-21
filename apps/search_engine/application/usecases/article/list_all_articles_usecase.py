@@ -6,4 +6,4 @@ class ListAllArticlesUseCase:
         self.article_repository = article_service  # Inject the service
 
     def execute(self, page_number, page_size):
-        return self.article_repository.get_all(page_number, page_size)
+        return self.article_repository.find_all(page_number, page_size)

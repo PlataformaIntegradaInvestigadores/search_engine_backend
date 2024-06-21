@@ -1,12 +1,9 @@
-from builtins import set
-
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.search_engine.application.services.author_service import AuthorService
-from apps.search_engine.application.usecases.list_all_authors import ListAllAuthorsUseCase
-from apps.search_engine.domain.entities.author import Author
+from apps.search_engine.application.usecases.author.list_all_authors import ListAllAuthorsUseCase
 from apps.search_engine.infrastructure.api.v1.serializers.author_serializers import AuthorSerializer
 
 

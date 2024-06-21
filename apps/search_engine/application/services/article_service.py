@@ -8,7 +8,10 @@ from apps.search_engine.domain.repositories.article_repository import ArticleRep
 
 class ArticleService(ArticleRepository):
     def bulk_create(self, articles: List[dict]) -> List[Article]:
-        return Article.get_or_create(*articles)
+        try:
+            return Article.get_or_create(*articles)
+        except Exception as e:
+            raise ValueError(f"Error creating articles: {e}")
 
     def get_total_articles(self) -> int:
         query = "MATCH (a:Article) RETURN count(a) AS total"
@@ -16,18 +19,22 @@ class ArticleService(ArticleRepository):
         total_articles = results[0][0]
         return total_articles
 
-    def get_all(self, page_number=1, page_size=10) -> List[Article]:
+    def find_all(self, page_number=1, page_size=10) -> List[Article]:
         skip = (page_number - 1) * page_size
         query = f"MATCH (a:Article) RETURN a SKIP {skip} LIMIT {page_size}"
         results, meta = db.cypher_query(query)
         articles = [Article.inflate(row[0]) for row in results]
         return articles
 
-    def update(self, article) -> Article:
-        pass
+    def update(self, article: dict) -> Article:
+        article = Article.nodes.create_or_update(article)
+        return article
 
     def save(self, article) -> Article:
-        pass
+        article = Article(**article)
+        article.save()
+        return article
 
-    def find_by_id(self, article_id) -> Article:
-        pass
+    def find_by_id(self, article_id) -> Article | None:
+        article = Article.nodes.get_or_none(article_id=article_id)
+        return article

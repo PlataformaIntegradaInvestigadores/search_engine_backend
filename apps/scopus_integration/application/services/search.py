@@ -8,23 +8,16 @@ updated by: Fernando
 
 from urllib.parse import quote_plus as url_encode
 
-from django.db import transaction
-
 from apps.scopus_integration.application.services.scopus_client import ScopusClient
 from apps.scopus_integration.utils.utils import encodeFacets
 from apps.search_engine.application.services.article_service import ArticleService
-from apps.search_engine.application.usecases.articles_bulk_create_usecase import ArticlesBulkCreateUseCase
+from apps.search_engine.application.usecases.article.articles_bulk_create_usecase import ArticlesBulkCreateUseCase
 from apps.search_engine.domain.entities.article import Article
-
-
-class AuthorsBulkCreateUsecase:
-    pass
 
 
 class Search:
     # statics variables
     _url_base = "https://api.elsevier.com/content/search/"
-    article_retrieve = None
     article_service = ArticleService()
     authors_bulk_create_usecase = ArticlesBulkCreateUseCase(article_service=article_service)
 
@@ -70,13 +63,8 @@ class Search:
                     articles = []
                     for article_ in api_response['search-results']['entry']:
                         article_data = Article.from_json(article_)
-                        articles.append(article_data)
-
-                    with transaction.atomic():
-                        articles_created = self.authors_bulk_create_usecase.execute(articles)
 
                     self.results += api_response['search-results']['entry']
-
                     self.num_res = len(self.results)
                     print('Current results: ', self.num_res)
         except Exception as e:
