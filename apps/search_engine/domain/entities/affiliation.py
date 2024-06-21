@@ -28,3 +28,21 @@ class Affiliation(DjangoNode):
                 country=country
             ).save()
         return affiliation_instance
+
+    @classmethod
+    def from_retrieve_json(cls, affiliation_data):
+        scopus_id = affiliation_data.get('@affiliation-id')
+        name = affiliation_data.get('afdispname')
+        city = affiliation_data.get('address').get('city')
+        country = affiliation_data.get('address').get('country')
+
+        try:
+            affiliation_instance = cls.nodes.get(scopus_id=scopus_id)
+        except cls.DoesNotExist:
+            affiliation_instance = cls(
+                scopus_id=scopus_id,
+                name=name,
+                city=city,
+                country=country
+            ).save()
+        return affiliation_instance

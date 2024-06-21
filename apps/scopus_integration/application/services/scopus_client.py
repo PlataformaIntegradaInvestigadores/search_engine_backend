@@ -7,6 +7,8 @@ from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 import json
 
+# Load environment variables
+
 load_dotenv()
 
 
