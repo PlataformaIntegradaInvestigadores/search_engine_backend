@@ -39,7 +39,7 @@ def recastDfAffiliations(dfAffiliations):
     dfAffiliations['identifier'] = dfAffiliations['identifier'].apply(lambda x: x.split(":")[1])
 
 
-def rewriteArticleAffilList(articleAffilList):
+def rewrite_article_affil_list(articleAffilList):
     '''Reestructura el diccionario de afiliaciones de los artículos para
     que tenga los campos adecuados y una estructura de datos más útil'''
 
@@ -94,7 +94,7 @@ def recastDfArticles(dfArticles):
                  'authkeywords': 'author_keywords'}, inplace=True)
 
     # Modifica el valor de la columna affiliations.
-    dfArticles['affiliations'] = dfArticles['affiliations'].apply(lambda x: rewriteArticleAffilList(x))
+    dfArticles['affiliations'] = dfArticles['affiliations'].apply(lambda x: rewrite_article_affil_list(x))
 
     # Modifica el valor de la columna authors.
     dfArticles['authors'] = dfArticles['authors'].apply(lambda x: rewriteArticleAuthors(x))

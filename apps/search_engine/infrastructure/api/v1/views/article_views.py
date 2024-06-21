@@ -6,9 +6,10 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 
 from apps.search_engine.application.services.article_service import ArticleService
-from apps.search_engine.application.usecases.list_all_articles_usecase import ListAllArticlesUseCase
-from apps.search_engine.application.usecases.total_articles_usecase import TotalArticlesUseCase
+from apps.search_engine.application.usecases.article.list_all_articles_usecase import ListAllArticlesUseCase
+from apps.search_engine.application.usecases.article.total_articles_usecase import TotalArticlesUseCase
 from apps.search_engine.infrastructure.api.v1.serializers.article_serializers import ArticleSerializer
+from apps.search_engine.infrastructure.api.v1.utils.build_paginator import build_pagination_urls
 
 
 class ArticleViewSet(viewsets.ViewSet):
@@ -41,25 +42,12 @@ class ArticleViewSet(viewsets.ViewSet):
 
             serializer = ArticleSerializer(articles, many=True)
 
-            has_more_articles = len(articles) == page_size
-
-            next_page_url = None
-            previous_page_url = None
-
-            if has_more_articles:
-                next_page_url = request.build_absolute_uri(
-                    f"{request.path}?page={page_number + 1}&page_size={page_size}"
-                )
-
-            if page_number > 1:
-                previous_page_url = request.build_absolute_uri(
-                    f"{request.path}?page={page_number - 1}&page_size={page_size}"
-                )
+            pagination_info = build_pagination_urls(request, page_number, page_size, articles)
 
             return Response({
                 'total': total_articles,
-                'next_page': next_page_url,
-                'previous_page': previous_page_url,
+                'next_page': pagination_info.get('next_page'),
+                'previous_page': pagination_info.get('previous_page'),
                 'articles': serializer.data,
             }, status=status.HTTP_200_OK)
 

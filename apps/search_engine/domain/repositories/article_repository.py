@@ -4,7 +4,7 @@ from typing import List
 
 class ArticleRepository(ABC):
     @abstractmethod
-    def find_by_id(self, article_id) -> object:
+    def find_by_id(self, article_id) -> object | None:
         pass
 
     @abstractmethod
@@ -12,11 +12,11 @@ class ArticleRepository(ABC):
         pass
 
     @abstractmethod
-    def update(self, article) -> object:
+    def update(self, article: dict) -> object:
         pass
 
     @abstractmethod
-    def get_all(self, page_number=None, page_size=None) -> List[object]:
+    def find_all(self, page_number=None, page_size=None) -> List[object]:
         pass
 
     @abstractmethod
