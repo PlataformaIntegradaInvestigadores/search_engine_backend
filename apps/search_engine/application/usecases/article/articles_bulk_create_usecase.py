@@ -1,9 +1,9 @@
-from apps.search_engine.application.services.article_service import ArticleService
+from apps.search_engine.domain.repositories.article_repository import ArticleRepository
 
 
 class ArticlesBulkCreateUseCase:
-    def __init__(self, article_service: ArticleService):
-        self.article_service = article_service
+    def __init__(self, article_repository: ArticleRepository):
+        self.article_repository = article_repository
 
     def execute(self, articles: list[dict]):
-        return self.article_service.bulk_create(articles)
+        return self.article_repository.bulk_create(articles)

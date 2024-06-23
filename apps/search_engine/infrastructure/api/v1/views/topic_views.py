@@ -19,7 +19,7 @@ class TopicViewSet(viewsets.ViewSet):
     def list(self, request, *args, **kwargs):
         try:
             # Inject use case
-            list_all_topics = ListAllTopicsUseCase(topic_service=self.topic_service)
+            list_all_topics = ListAllTopicsUseCase(topic_repository=self.topic_service)
             topics = list_all_topics.execute()
             serializer = TopicSerializer(topics, many=True)
             return Response({'topics': serializer.data}, status=status.HTTP_200_OK)
