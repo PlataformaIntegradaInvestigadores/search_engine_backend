@@ -49,64 +49,63 @@ def rewrite_article_affil_list(articleAffilList):
     return articleAffilList
 
 
-def rewriteArticleAuthors(articleAuthorsList):
+def rewrite_article_authors(article_authors_list):
     '''Reestructura el diccionario de autores de los artículos para
     que tenga los campos adecuados y una estructura de datos más útil'''
 
-    for articleAuthorsdict in articleAuthorsList:
-        articleAuthorsdict.pop('@_fa')
-        articleAuthorsdict.pop('author-url')
-        newAfid = []
-        if 'afid' in articleAuthorsdict:
-            for item in articleAuthorsdict['afid']:
-                newAfid.append(item['$'])
-            articleAuthorsdict['afid'] = newAfid
+    for article_authorsdict in article_authors_list:
+        article_authorsdict.pop('@_fa')
+        article_authorsdict.pop('author-url')
+        new_afid = []
+        if 'afid' in article_authorsdict:
+            for item in article_authorsdict['afid']:
+                new_afid.append(item['$'])
+            article_authorsdict['afid'] = new_afid
         else:
-            articleAuthorsdict['afid'] = newAfid
-    return articleAuthorsList
+            article_authorsdict['afid'] = new_afid
+    return article_authors_list
 
 
-def recastDfArticles(dfArticles):
+def recast_df_articles(df_articles):
     '''Reestructura el dataframe de artículos para que tenga
     los campos adecuados y una estructura de datos más útil'''
 
     # Elimina los registros con affiliations igual a NaN
-    dfArticles.dropna(subset=['affiliation'], inplace=True)
+    df_articles.dropna(subset=['affiliation'], inplace=True)
 
     # Reinicia los índices del dataframe
-    dfArticles.reset_index(drop=True, inplace=True)
+    df_articles.reset_index(drop=True, inplace=True)
 
     # Elimina la columna @_fa
-    dfArticles.pop("@_fa")
+    df_articles.pop("@_fa")
 
     # Elimina la columna prism:url
-    dfArticles.pop("prism:url")
+    df_articles.pop("prism:url")
 
     # Renombra las sigueintes columnas
-    dfArticles.rename(
+    df_articles.rename(
         columns={'dc:identifier': 'identifier',
                  'dc:title': 'title',
                  'prism:coverDate': 'publication_date',
                  'dc:description': 'abstract',
-                 'dc:title': 'title',
                  'author': 'authors',
                  'affiliation': 'affiliations',
                  'authkeywords': 'author_keywords'}, inplace=True)
 
     # Modifica el valor de la columna affiliations.
-    dfArticles['affiliations'] = dfArticles['affiliations'].apply(lambda x: rewrite_article_affil_list(x))
+    df_articles['affiliations'] = df_articles['affiliations'].apply(lambda x: rewrite_article_affil_list(x))
 
     # Modifica el valor de la columna authors.
-    dfArticles['authors'] = dfArticles['authors'].apply(lambda x: rewriteArticleAuthors(x))
+    df_articles['authors'] = df_articles['authors'].apply(lambda x: rewrite_article_authors(x))
 
     # Modifica el valor de la columna identifier.
-    dfArticles['identifier'] = dfArticles['identifier'].apply(lambda x: x.split(':')[1])
+    df_articles['identifier'] = df_articles['identifier'].apply(lambda x: x.split(':')[1])
 
     # Agrega la columna author_count que contiene el número de autores de un artículo.
-    dfArticles['author_count'] = dfArticles['authors'].apply(lambda x: len(x))
+    df_articles['author_count'] = df_articles['authors'].apply(lambda x: len(x))
 
     # Agrega la columna affiliation_count que contiene el número de afiliaciones de un artículo.
-    dfArticles['affiliation_count'] = dfArticles['affiliations'].apply(lambda x: len(x))
+    df_articles['affiliation_count'] = df_articles['affiliations'].apply(lambda x: len(x))
 
 
 def chunker(seq, size):
@@ -115,53 +114,53 @@ def chunker(seq, size):
     return (seq[pos:pos + size] for pos in range(0, len(seq), size))
 
 
-def recastDfAuthors(dfAuthors):
+def recast_df_authors(df_authors):
     '''Reestructura el dataframe de autores para que tenga
     los campos adecuados y una estructura de datos más útil'''
 
     # Agrega la columna identifier que contiene el identificador de SCOPUS de un autor.
-    dfAuthors['identifier'] = dfAuthors['coredata'].apply(lambda x: x["dc:identifier"].split(':')[1]
+    df_authors['identifier'] = df_authors['coredata'].apply(lambda x: x["dc:identifier"].split(':')[1]
     if "dc:identifier" in x else np.nan)
 
     # Agrega la columna identifier que contiene el electronic identifier de un autor.
-    dfAuthors['eid'] = dfAuthors['coredata'].apply(lambda x: x["eid"] if "eid" in x else np.nan)
+    df_authors['eid'] = df_authors['coredata'].apply(lambda x: x["eid"] if "eid" in x else np.nan)
 
     # Agrega la columna identifier que contiene el ORCID de un autor.
-    dfAuthors['orcid'] = dfAuthors['coredata'].apply(lambda x: x["orcid"] if "orcid" in x else np.nan)
+    df_authors['orcid'] = df_authors['coredata'].apply(lambda x: x["orcid"] if "orcid" in x else np.nan)
 
     # Agrega la columna identifier que contiene el número de documentos de un autor.
-    dfAuthors['document_count'] = dfAuthors['coredata'].apply(lambda x: x["document-count"]
+    df_authors['document_count'] = df_authors['coredata'].apply(lambda x: x["document-count"]
     if "document-count" in x else np.nan)
 
     # Agrega la columna identifier que contiene el nombre de un autor.
-    dfAuthors['first_name'] = dfAuthors['preferred-name'].apply(
+    df_authors['first_name'] = df_authors['preferred-name'].apply(
         lambda x: x['given-name'] if type(x) is dict else np.nan)
 
     # Agrega la columna identifier que contiene el apellido de un autor.
-    dfAuthors['last_name'] = dfAuthors['preferred-name'].apply(lambda x: x['surname'] if type(x) is dict else np.nan)
+    df_authors['last_name'] = df_authors['preferred-name'].apply(lambda x: x['surname'] if type(x) is dict else np.nan)
 
     # Elimina la columna @status
-    dfAuthors.pop("@status")
+    df_authors.pop("@status")
 
     # Elimina la columna @_fa
-    dfAuthors.pop("@_fa")
+    df_authors.pop("@_fa")
 
     # Elimina la columna coredata
-    dfAuthors.pop("coredata")
+    df_authors.pop("coredata")
 
     # Elimina la columna preferred-name
-    dfAuthors.pop("preferred-name")
+    df_authors.pop("preferred-name")
 
 
-def authorkeywordsToScopusSearch(authorkeywords):
-    newAuthorKeywords = ''
+def authorkeywords_to_scopus_search(authorkeywords):
+    new_author_keywords = ''
     for item in authorkeywords:
         if '$' in item:
-            newAuthorKeywords = newAuthorKeywords + item['$'] + ' | '
-    return newAuthorKeywords[:-3]
+            new_author_keywords = new_author_keywords + item['$'] + ' | '
+    return new_author_keywords[:-3]
 
 
-def affiliationToScopusSearch(affiliation):
+def affiliation_to_scopus_search(affiliation):
     newAffiliation = []
     for item in affiliation:
         newAffiliation.append({
@@ -175,7 +174,7 @@ def affiliationToScopusSearch(affiliation):
     return newAffiliation
 
 
-def authorToScopusSearch(author):
+def author_to_scopus_search(author):
     newAuthor = []
     for item in author:
         newAuthorDict = {}
@@ -198,7 +197,7 @@ def authorToScopusSearch(author):
     return newAuthor
 
 
-def articleRetrievalToScopusSearch(articleRetrieval):
+def article_retrieval_to_scopus_search(articleRetrieval):
     '''Reestructura un artículo obtenido a través de la API abstract
     retrieval a la estructura de la API scopus search'''
 
@@ -242,14 +241,14 @@ def articleRetrievalToScopusSearch(articleRetrieval):
     # affiliation
     if 'affiliation' in articleRetrieval:
         if type(articleRetrieval['affiliation']) == list:
-            scopusSearch['affiliation'] = affiliationToScopusSearch(articleRetrieval['affiliation'])
+            scopusSearch['affiliation'] = affiliation_to_scopus_search(articleRetrieval['affiliation'])
         else:
-            scopusSearch['affiliation'] = affiliationToScopusSearch([articleRetrieval['affiliation']])
+            scopusSearch['affiliation'] = affiliation_to_scopus_search([articleRetrieval['affiliation']])
     else:
         scopusSearch['affiliation'] = np.nan
     # author
     if 'authors' in articleRetrieval:
-        scopusSearch['author'] = authorToScopusSearch(articleRetrieval['authors']['author'])
+        scopusSearch['author'] = author_to_scopus_search(articleRetrieval['authors']['author'])
     else:
         scopusSearch['author'] = np.nan
     """

@@ -37,8 +37,8 @@ neo4j_password = os.environ.get('NEO4J_PASSWORD')
 neo4j_host = os.environ.get('NEO4J_HOST')
 neo4j_port = os.environ.get('NEO4J_PORT')
 
-config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
-
+config.DATABASE_URL = f'bolt+s://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+# bolt+s://<username>:<password>@<host>:<port>
 # Application definition
 
 INSTALLED_APPS = [

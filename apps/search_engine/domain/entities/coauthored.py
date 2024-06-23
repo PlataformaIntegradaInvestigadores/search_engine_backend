@@ -1,5 +1,5 @@
-from neomodel import Relationship, IntegerProperty
+from neomodel import IntegerProperty, StructuredRel
 
 
-class CoAuthored(Relationship):
+class CoAuthored(StructuredRel):
     collab_strength = IntegerProperty()
