@@ -19,7 +19,6 @@ class Search:
     # statics variables
     _url_base = "https://api.elsevier.com/content/search/"
     article_service = ArticleService()
-    authors_bulk_create_usecase = ArticlesBulkCreateUseCase(article_service=article_service)
 
     def __init__(self, url=None, query=None, facets=None, view=None, field=None, searchType=None):
         self.num_res = None
@@ -62,7 +61,19 @@ class Search:
                     # Create new Articles extracted directly from the API response
                     articles = []
                     for article_ in api_response['search-results']['entry']:
-                        article_data = Article.from_json(article_)
+                        try:
+                            scopus_id = Article.validate_scopus_id(article_.get('dc:identifier', ''))
+                            doi = article_.get('prism:doi', '') if article_.get('prism:doi', '') else None
+                        except ValueError as e:
+                            print(f"Invalid Scopus ID: {e}")
+                            continue
+
+                        if not Article.nodes.get_or_none(scopus_id=scopus_id):
+                            print(f"Creating article with Scopus ID {scopus_id}")
+                            print(f"DOI: {doi}")
+                            Article.from_json(article_, client)
+                        else:
+                            print(f"Article with Scopus ID {scopus_id} already exists.")
 
                     self.results += api_response['search-results']['entry']
                     self.num_res = len(self.results)
