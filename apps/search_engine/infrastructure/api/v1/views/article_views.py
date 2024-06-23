@@ -33,8 +33,8 @@ class ArticleViewSet(viewsets.ViewSet):
             page_size = int(request.query_params.get('page_size', 10))
 
             # Inject the use cases
-            list_article_use_case = ListAllArticlesUseCase(article_service=self.article_service)
-            total_articles_use_case = TotalArticlesUseCase(article_service=self.article_service)
+            list_article_use_case = ListAllArticlesUseCase(article_repository=self.article_service)
+            total_articles_use_case = TotalArticlesUseCase(article_repository=self.article_service)
 
             # Execute the use cases
             articles = list_article_use_case.execute(page_number, page_size)

@@ -25,7 +25,7 @@ class AuthorViews(APIView):
         page = int(request.query_params.get('page', 1))
 
         # inject use cases
-        list_author_use_case = ListAllAuthorsUseCase(author_service=self.author_service)
+        list_author_use_case = ListAllAuthorsUseCase(author_repository=self.author_service)
 
         # execute the use cases
         authors = list_author_use_case.execute(page_size=page_size, page=page)
