@@ -74,19 +74,26 @@ class Article(DjangoNode):
                     author_instance.articles.connect(article)
             time_0 = time.time()
             # Build CoAuthored relationships
-            for author_instance in author_instances:
-                for co_author_instance in author_instances:
-                    if author_instance != co_author_instance:
-                        if not author_instance.co_authors.is_connected(co_author_instance):
-                            author_instance.co_authors.connect(co_author_instance, {'collab_strength': 1})
-                        elif author_instance.co_authors.is_connected(co_author_instance):
-                            relationship = author_instance.co_authors.relationship(co_author_instance)
-                            relationship.collab_strength += 1
-                            relationship.save()
+            for i, author_instance in enumerate(author_instances):
+                for j, co_author_instance in enumerate(author_instances):
+                    if i != j:  # Asegura que no estemos conectando un autor consigo mismo
+                        if author_instance.co_authors.is_connected(co_author_instance):
+                            coauth_relationship = author_instance.co_authors.relationship(co_author_instance)
+                            print(
+                                "----------------------------------------------------------------------------------------------------------------------------------------------------------------")
+                            print(f"Existing relationship found: {coauth_relationship.collab_strength}")
+                            coauth_relationship.collab_strength += 1
+                            coauth_relationship.save()
+                            print(f"Updated relationship strength: {coauth_relationship.collab_strength}")
+
+                        else:
+                            coauth_relationship = author_instance.co_authors.connect(co_author_instance,
+                                                                                     {'collab_strength': 1})
 
             author_retrievals = [AuthorRetrieval(author_id=author_instance.scopus_id) for author_instance in
                                  author_instances]
-            print(f"Tiempo de creación de instancias de recuperación de autores {len(author_retrievals)}: ", time.time() - time_0)
+            print(f"Tiempo de creación de instancias de recuperación de autores {len(author_retrievals)}: ",
+                  time.time() - time_0)
 
             time_1 = time.time()
             for retrieval in author_retrievals:
