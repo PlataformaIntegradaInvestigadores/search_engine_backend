@@ -83,7 +83,7 @@ class Author(DjangoNode):
 
             affiliation_instances = [
                 instance for affiliation_data in affiliations
-                if (instance := Affiliation.from_retrieve_json(affiliation_data)) is not None
+                if (instance := Affiliation.retrieve_from_json(affiliation_data)) is not None
             ]
 
             for affiliation_instance in affiliation_instances:
