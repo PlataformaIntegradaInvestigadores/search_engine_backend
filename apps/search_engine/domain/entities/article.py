@@ -74,21 +74,22 @@ class Article(DjangoNode):
                     author_instance.articles.connect(article)
             time_0 = time.time()
             # Build CoAuthored relationships
+            # Utilizamos un solo bucle y evitamos redundancias
             for i, author_instance in enumerate(author_instances):
-                for j, co_author_instance in enumerate(author_instances):
-                    if i != j:  # Asegura que no estemos conectando un autor consigo mismo
-                        if author_instance.co_authors.is_connected(co_author_instance):
-                            coauth_relationship = author_instance.co_authors.relationship(co_author_instance)
-                            print(
-                                "----------------------------------------------------------------------------------------------------------------------------------------------------------------")
-                            print(f"Existing relationship found: {coauth_relationship.collab_strength}")
-                            coauth_relationship.collab_strength += 1
-                            coauth_relationship.save()
-                            print(f"Updated relationship strength: {coauth_relationship.collab_strength}")
+                for j in range(i + 1, len(author_instances)):  # Evita comparar un autor consigo mismo y duplicados
+                    co_author_instance = author_instances[j]
 
-                        else:
-                            coauth_relationship = author_instance.co_authors.connect(co_author_instance,
-                                                                                     {'collab_strength': 1})
+                    if author_instance.co_authors.is_connected(co_author_instance):
+                        coauth_relationship = author_instance.co_authors.relationship(co_author_instance)
+                        print(
+                            "----------------------------------------------------------------------------------------------------------------------------------------------------------------")
+                        print(f"Existing relationship found: {coauth_relationship.collab_strength}")
+                        coauth_relationship.collab_strength += 1
+                        coauth_relationship.save()
+                        print(f"Updated relationship strength: {coauth_relationship.collab_strength}")
+                    else:
+                        coauth_relationship = author_instance.co_authors.connect(co_author_instance,
+                                                                                 {'collab_strength': 1})
 
             author_retrievals = [AuthorRetrieval(author_id=author_instance.scopus_id) for author_instance in
                                  author_instances]

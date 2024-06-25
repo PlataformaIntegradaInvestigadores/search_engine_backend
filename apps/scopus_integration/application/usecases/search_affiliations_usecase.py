@@ -65,7 +65,6 @@ class Search:
                             scopus_id = Article.validate_scopus_id(article_.get('dc:identifier', ''))
                             doi = article_.get('prism:doi', '') if article_.get('prism:doi', '') else None
                         except ValueError as e:
-                            print(f"Invalid Scopus ID: {e}")
                             continue
 
                         if not Article.nodes.get_or_none(scopus_id=scopus_id):

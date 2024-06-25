@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from apps.scopus_integration.application.services.scopus_client import ScopusClient
-from apps.scopus_integration.application.services.search import Search
+from apps.scopus_integration.application.usecases.search_affiliations_usecase import Search
 
 
 class ScopusIntegrationViewSet(viewsets.ModelViewSet):
