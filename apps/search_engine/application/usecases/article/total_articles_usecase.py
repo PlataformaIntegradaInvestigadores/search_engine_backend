@@ -6,4 +6,4 @@ class TotalArticlesUseCase:
         self.article_repository = article_repository
 
     def execute(self) -> int:
-        return self.article_repository.get_total_articles()
+        return self.article_repository.find_total_articles()

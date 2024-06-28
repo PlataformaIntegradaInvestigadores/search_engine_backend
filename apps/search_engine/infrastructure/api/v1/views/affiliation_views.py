@@ -3,13 +3,14 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 
 from apps.search_engine.application.services.affiliation_service import AffiliationService
+from apps.search_engine.application.usecases.affiliation.find_affiliation_by_id import FindAffiliationByScopusIdIUseCase
 from apps.search_engine.application.usecases.affiliation.list_all_affiliation_usecase import ListAllAffiliationsUseCase
 from apps.search_engine.application.usecases.affiliation.total_affiliations_usecase import TotalAffiliationsUseCase
 from apps.search_engine.infrastructure.api.v1.serializers.affiliation_serializers import AffiliationSerializer
 from apps.search_engine.infrastructure.api.v1.utils.build_paginator import build_pagination_urls
 
 
-class AffiliationViewSet(viewsets.ModelViewSet):
+class AffiliationViewSet(viewsets.ViewSet):
     serializer_class = AffiliationSerializer
 
     affiliation_service = AffiliationService()
@@ -45,5 +46,27 @@ class AffiliationViewSet(viewsets.ModelViewSet):
                 'previous_page': pagination_info.get('previous_page'),
                 'results': serializer.data
             })
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @extend_schema(
+        description="Retrieve an affiliation by Scopus ID",
+        responses=AffiliationSerializer,
+        tags=['Affiliations'],
+    )
+    def retrieve(self, request, *args, **kwargs):
+        try:
+            affiliation_id = kwargs.get('pk')
+
+            # Inject the use cases
+            get_affiliation_use_case = FindAffiliationByScopusIdIUseCase(
+                affiliation_repository=self.affiliation_service)
+
+            # Execute the use cases
+            affiliation = get_affiliation_use_case.execute(affiliation_id)
+
+            serializer = AffiliationSerializer(affiliation)
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

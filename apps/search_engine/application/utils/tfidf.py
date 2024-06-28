@@ -26,15 +26,15 @@ class Model:
 
     def load_model(self, model_type: str):
         try:
-            if isinstance(model_type, str):
+            if not isinstance(model_type, str):
                 raise ValueError('Type must be a string')
 
             root = self.base_path
 
             if model_type == 'author':
-                path = root + 'models/model-v10.0.pkl'
+                path = root + 'models/tf-idf/model-v10.0.pkl'
             elif model_type == 'article':
-                path = root + 'models/model-v9.0.pkl'
+                path = root + 'models/tf-idf/model-v9.0.pkl'
             else:
                 path = root + "models/model-v11.0.pkl"
 
@@ -63,6 +63,24 @@ class Model:
             df_result = pd.DataFrame(data=data, index=self.model['indexes'])
             if author_size:
                 return df_result[(df_result != 0).all(1)].sum(axis=1).sort_values(ascending=False).head(author_size)
+            else:
+                return df_result[(df_result != 0).all(1)].sum(axis=1).sort_values(ascending=False)
+        else:
+            return pd.Series()
+
+    def get_most_relevant_docs_by_topic_v2(self, topic, authorSize):
+        preprocessed_topic = self.preprocess_topic(topic)
+
+        if all(token in self.model['vocabulary'] for token in preprocessed_topic):
+            token_ids = [self.model['vocabulary'][token]
+                         for token in preprocessed_topic]
+            data = {}
+            for tokenId in token_ids:
+                data[tokenId] = [item[0] for item in self.model['matrix'].getcol(
+                    tokenId).sorted_indices().toarray()]
+            df_result = pd.DataFrame(data=data, index=self.model['indexes'])
+            if authorSize:
+                return df_result[(df_result != 0).all(1)].sum(axis=1).sort_values(ascending=False).head(authorSize)
             else:
                 return df_result[(df_result != 0).all(1)].sum(axis=1).sort_values(ascending=False)
         else:

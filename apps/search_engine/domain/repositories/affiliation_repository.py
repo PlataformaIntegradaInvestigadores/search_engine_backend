@@ -24,9 +24,13 @@ class AffiliationRepository(ABC):
         pass
 
     @abstractmethod
-    def find_all(self, page_number: int = None, page_size: int = 10) -> List[object]:
+    def find_all(self, page_number: int = 1, page_size: int = 10) -> List[object]:
         pass
 
     @abstractmethod
-    def get_total_affiliations(self) -> int:
+    def find_total_affiliations(self) -> int:
+        pass
+
+    @abstractmethod
+    def find_affiliations_by_authors(self, authors: List[str]) -> List[object]:
         pass

@@ -7,4 +7,4 @@ class ListAllTopicsUseCase:
         self.topic_repository = topic_repository
 
     def execute(self):
-        return self.topic_repository.get_all()
+        return self.topic_repository.find_all()

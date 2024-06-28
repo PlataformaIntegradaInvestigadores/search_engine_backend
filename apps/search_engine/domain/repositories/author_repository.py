@@ -8,7 +8,7 @@ class AuthorRepository(ABC):
         pass
 
     @abstractmethod
-    def get_all(self, page_size=None, page=None) -> List[object]:
+    def find_all(self, page_size=None, page=None) -> (List[object], int):
         pass
 
     @abstractmethod
@@ -19,5 +19,23 @@ class AuthorRepository(ABC):
     def update(self, author: object) -> object:
         pass
 
+    @abstractmethod
     def bulk_create(self, authors: List[object]) -> List[object]:
+        pass
+
+    @abstractmethod
+    def find_authors_by_query(self, name: str, page_size=None, page=None) -> List[object]:
+        pass
+
+    @abstractmethod
+    def find_authors_by_affiliation_filter(self, filter_type: str, affiliations_ids: List[str],
+                                           authors_ids: List[str]) -> List[object]:
+        pass
+
+    @abstractmethod
+    def find_community(self, authors_ids: List[str]) -> (List[object], List[object]):
+        pass
+
+    @abstractmethod
+    def find_most_relevant_authors_by_topic(self, topic: str, authors_number: int):
         pass

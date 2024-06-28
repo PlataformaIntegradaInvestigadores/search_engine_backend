@@ -6,3 +6,7 @@ class AffiliationSerializer(serializers.Serializer):
     name = serializers.CharField()
     city = serializers.CharField()
     country = serializers.CharField()
+
+
+class AffiliationNameSerializer(serializers.Serializer):
+    name = serializers.CharField()

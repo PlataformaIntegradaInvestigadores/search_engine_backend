@@ -25,3 +25,10 @@ class AuthorSerializer(serializers.Serializer):
 
     def get_topics(self, obj):
         return [topic.name for topic in obj.topics.all()]
+
+
+class MostRelevantAuthorsRequestSerializer(serializers.Serializer):
+    topic = serializers.CharField()
+    authors_number = serializers.IntegerField()
+    type = serializers.CharField(required=False)
+    affiliations = serializers.ListField(required=False, child=serializers.CharField())

@@ -6,4 +6,4 @@ class TotalAffiliationsUseCase:
         self.affiliation_repository = affiliation_repository
 
     def execute(self) -> int:
-        return self.affiliation_repository.get_total_affiliations()
+        return self.affiliation_repository.find_total_affiliations()

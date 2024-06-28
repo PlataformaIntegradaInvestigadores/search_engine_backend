@@ -3,11 +3,19 @@ from typing import List
 from neomodel import db
 
 from apps.search_engine.domain.entities.affiliation import Affiliation
+from apps.search_engine.domain.entities.author import Author
 from apps.search_engine.domain.repositories.affiliation_repository import AffiliationRepository
 
 
 class AffiliationService(AffiliationRepository):
-    def get_total_affiliations(self) -> int:
+    def find_affiliations_by_authors(self, authors: List[str]) -> List[object]:
+        try:
+            affiliations = Author.nodes.filter(scopus_id__in=authors).affiliations.all()
+            return affiliations
+        except Exception as e:
+            raise Exception(f"Error finding affiliations by authors: {e}")
+
+    def find_total_affiliations(self) -> int:
         try:
             query = "MATCH (a:Affiliation) RETURN count(a) AS total"
             results, meta = db.cypher_query(query)
