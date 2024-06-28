@@ -23,5 +23,5 @@ class TopicRepository(ABC):
     def update(self, topic) -> object:
         pass
 
-    def get_all(self) -> List[object]:
+    def find_all(self) -> List[object]:
         pass

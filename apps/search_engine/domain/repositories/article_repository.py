@@ -20,9 +20,26 @@ class ArticleRepository(ABC):
         pass
 
     @abstractmethod
-    def get_total_articles(self) -> int:
+    def find_total_articles(self) -> int:
         pass
 
     @abstractmethod
     def bulk_create(self, articles: List[dict]) -> List[object]:
         pass
+
+    @abstractmethod
+    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> List[object]:
+        pass
+
+    @abstractmethod
+    def find_most_relevant_articles_by_topic(self, topic: str):
+        pass
+
+    @abstractmethod
+    def find_articles_by_filter_years(self, filter_type: str, filter_years: List[str], ids: List[str]) -> List[object]:
+        pass
+
+    @abstractmethod
+    def find_years_by_articles(self, ids: List[str]) -> List[object]:
+        pass
+

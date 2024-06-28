@@ -20,5 +20,5 @@ class TopicService(TopicRepository):
     def update(self, topic) -> Topic:
         pass
 
-    def get_all(self) -> list[Topic]:
+    def find_all(self) -> list[Topic]:
         return Topic.nodes.all()
