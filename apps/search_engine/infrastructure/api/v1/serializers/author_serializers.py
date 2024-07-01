@@ -30,5 +30,16 @@ class AuthorSerializer(serializers.Serializer):
 class MostRelevantAuthorsRequestSerializer(serializers.Serializer):
     topic = serializers.CharField()
     authors_number = serializers.IntegerField()
-    type = serializers.CharField(required=False)
-    affiliations = serializers.ListField(required=False, child=serializers.CharField())
+    type = serializers.CharField(required=False, allow_blank=True)
+    affiliations = serializers.ListField(
+        required=False,
+        child=serializers.CharField(),
+        allow_empty=True
+    )
+
+
+class AuthorCoAuthorSerializer(serializers.Serializer):
+    scopus_id = serializers.CharField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
+    initials = serializers.CharField()

@@ -33,7 +33,7 @@ class AuthorRepository(ABC):
         pass
 
     @abstractmethod
-    def find_community(self, authors_ids: List[str]) -> (List[object], List[object]):
+    def find_community(self, authors_ids: List[str]):
         pass
 
     @abstractmethod
