@@ -6,4 +6,5 @@ urlpatterns = [
     path('topics/', include('apps.search_engine.infrastructure.api.v1.urls.topic_urls'), name='topics'),
     path('affiliations/', include('apps.search_engine.infrastructure.api.v1.urls.affiliation_urls'),
          name='affiliations'),
+    path('coauthors/', include('apps.search_engine.infrastructure.api.v1.urls.coauthor_urls'), name='coauthors'),
 ]

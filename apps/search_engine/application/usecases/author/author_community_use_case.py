@@ -8,4 +8,5 @@ class AuthorsCommunityUseCase:
         self.author_repository = author_repository
 
     def execute(self, authors_ids: List[str]):
+        print("Type of authors_ids: ", type(authors_ids))
         return self.author_repository.find_community(authors_ids)

@@ -1,6 +1,6 @@
 from typing import List
 
-from neomodel import db
+from neomodel import db, DoesNotExist
 
 from apps.search_engine.domain.entities.affiliation import Affiliation
 from apps.search_engine.domain.entities.author import Author
@@ -10,8 +10,20 @@ from apps.search_engine.domain.repositories.affiliation_repository import Affili
 class AffiliationService(AffiliationRepository):
     def find_affiliations_by_authors(self, authors: List[str]) -> List[object]:
         try:
-            affiliations = Author.nodes.filter(scopus_id__in=authors).affiliations.all()
+            print("Autores:", authors)
+            author_nodes = Author.nodes.filter(scopus_id__in=authors)
+
+            affiliations = []
+            print("Autores encontrados:", len(author_nodes))
+            for author_node in author_nodes:
+                author_affiliations = author_node.affiliations.all()
+                affiliations.extend(author_affiliations)
+
+            print("Affiliaciones extraidas:", len(affiliations))
             return affiliations
+
+        except DoesNotExist as e:
+            raise e
         except Exception as e:
             raise Exception(f"Error finding affiliations by authors: {e}")
 

@@ -98,22 +98,22 @@ class AuthorViews(viewsets.ViewSet):
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     @extend_schema(
+        summary="Most relevant authors",
         description="Retrieve an author by id",
         request=MostRelevantAuthorsRequestSerializer,
         tags=['Authors'],
-        responses=AuthorSerializer
+        responses=AuthorSerializer,
+        methods=['post']
     )
     @action(detail=False, methods=['post'], url_path='most_relevant_authors')
     def most_relevant_authors(self, request, *args, **kwargs):
         try:
             serializer = MostRelevantAuthorsRequestSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-
             topic = serializer.validated_data.get('topic')
             authors_number = serializer.validated_data.get('authors_number')
             custom_type = serializer.validated_data.get('type', None)
             custom_affiliations = serializer.validated_data.get('affiliations', [])
-
             most_relevant_authors_usecase = MostRelevantAuthorsByTopicUseCase(repository=self.author_service)
             affiliations_by_authors_usecase = AffiliationByAuthorsUsecase(repository=self.affiliation_service)
             authors_by_affiliation_filters_usecase = AuthorsByAffiliationsFiltersUseCase(
@@ -122,7 +122,7 @@ class AuthorViews(viewsets.ViewSet):
             series = most_relevant_authors_usecase.execute(topic, authors_number)
 
             author_ids = series.index.to_list()
-
+            print(author_ids)
             affiliations = affiliations_by_authors_usecase.execute(author_ids)
             serializer = AffiliationSerializer(affiliations, many=True)
             if custom_type is not None:
@@ -130,12 +130,23 @@ class AuthorViews(viewsets.ViewSet):
                 filter_affiliations = custom_affiliations
                 filtered_authors = authors_by_affiliation_filters_usecase.execute(filter_type, filter_affiliations,
                                                                                   author_ids)
-
                 community = author_community_use_case.execute(filtered_authors)
                 return Response({'affiliations': serializer.data, 'community': community}, status=status.HTTP_200_OK)
             else:
-                nodes, links = author_community_use_case.execute(author_ids)
-                return Response({'affiliations': serializer.data, 'nodes': nodes, 'links': links},
+                community = author_community_use_case.execute(author_ids)
+                authors = community.get('nodes')
+                links = community.get('links')
+                size_nodes = community.get('size_nodes')
+                size_links = community.get('size_links')
+                author_serializer = AuthorSerializer(authors, many=True)
+                community_data = {
+                    'nodes': author_serializer.data,
+                    'links': links,
+                    'size_nodes': size_nodes,
+                    'size_links': size_links
+
+                }
+                return Response({'affiliations': serializer.data, 'community': community_data},
                                 status=status.HTTP_200_OK)
 
         except Exception as e:

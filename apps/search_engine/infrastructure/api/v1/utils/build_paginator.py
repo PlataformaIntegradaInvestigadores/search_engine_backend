@@ -1,6 +1,3 @@
-from django.urls import reverse
-
-
 def build_pagination_urls(request, page_number, page_size, total_items):
     has_more_items = len(total_items) == page_size
 
