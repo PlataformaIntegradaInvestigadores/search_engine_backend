@@ -19,7 +19,7 @@ from apps.search_engine.application.usecases.author.most_relevant_authors_by_top
 from apps.search_engine.infrastructure.api.v1.serializers.affiliation_serializers import AffiliationNameSerializer, \
     AffiliationSerializer
 from apps.search_engine.infrastructure.api.v1.serializers.author_serializers import AuthorSerializer, \
-    MostRelevantAuthorsRequestSerializer
+    MostRelevantAuthorsRequestSerializer, RetrieveAuthorSerializer
 from apps.search_engine.infrastructure.api.v1.utils.build_paginator import build_pagination_urls
 
 
@@ -57,7 +57,7 @@ class AuthorViews(viewsets.ViewSet):
 
     @extend_schema(
         description="Find authors by query",
-        responses=AuthorSerializer(many=True),
+        responses=RetrieveAuthorSerializer(many=True),
         tags=['Authors'],
         parameters=[
             OpenApiParameter(name='query', type=str, required=True),
@@ -68,16 +68,18 @@ class AuthorViews(viewsets.ViewSet):
     @action(detail=False, methods=['get'], url_path='find_by_query')
     def find_by_query(self, request, *args, **kwargs):
         try:
-            query = request.query_params.get('name')
+            query = request.query_params.get('query', '')
             page_size = int(request.query_params.get('page_size', 10))
             page = int(request.query_params.get('page', 1))
             author_by_query_use_case = AuthorByQueryUseCase(author_repository=self.author_service)
             authors, total = author_by_query_use_case.execute(name=query, page_size=page_size, page=page)
-            serializer = AuthorSerializer(authors, many=True)
+            serializer = RetrieveAuthorSerializer(authors, many=True)
             pagination_info = build_pagination_urls(request, page, page_size, serializer.data)
             data = serializer.data
             return Response({'total': total, 'next_page': pagination_info.get('next_page'),
                              'previous_page': pagination_info.get('previous_page'), 'data': data})
+        except ValueError as ve:
+            return Response({'error': str(ve)}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -124,7 +126,7 @@ class AuthorViews(viewsets.ViewSet):
             author_ids = series.index.to_list()
             print(author_ids)
             affiliations = affiliations_by_authors_usecase.execute(author_ids)
-            serializer = AffiliationSerializer(affiliations, many=True)
+            serializer = AffiliationNameSerializer(affiliations, many=True)
             if custom_type is not None:
                 filter_type = custom_type
                 filter_affiliations = custom_affiliations
@@ -140,13 +142,14 @@ class AuthorViews(viewsets.ViewSet):
                 size_links = community.get('size_links')
                 author_serializer = AuthorSerializer(authors, many=True)
                 community_data = {
+                    'affiliations': serializer.data,
                     'nodes': author_serializer.data,
                     'links': links,
                     'size_nodes': size_nodes,
                     'size_links': size_links
 
                 }
-                return Response({'affiliations': serializer.data, 'community': community_data},
+                return Response(community_data,
                                 status=status.HTTP_200_OK)
 
         except Exception as e:

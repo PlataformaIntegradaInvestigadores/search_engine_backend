@@ -67,43 +67,41 @@ class Article(DjangoNode):
             # Process authors
             authors = article_data.get('author', [])
 
-            # Crear instancias de autores y conectar artículos en lotes
             author_instances = [Author.from_dict(author) for author in authors]
             for author_instance in author_instances:
                 if not author_instance.articles.is_connected(article):
                     author_instance.articles.connect(article)
             time_0 = time.time()
             # Build CoAuthored relationships
-            # Utilizamos un solo bucle y evitamos redundancias
+
             for i, author_instance in enumerate(author_instances):
-                for j in range(i + 1, len(author_instances)):  # Evita comparar un autor consigo mismo y duplicados
+                for j in range(i + 1, len(author_instances)):
                     co_author_instance = author_instances[j]
 
                     if author_instance.co_authors.is_connected(co_author_instance):
                         coauth_relationship = author_instance.co_authors.relationship(co_author_instance)
-                        print(
-                            "----------------------------------------------------------------------------------------------------------------------------------------------------------------")
-                        print(f"Existing relationship found: {coauth_relationship.collab_strength}")
                         coauth_relationship.collab_strength += 1
                         coauth_relationship.save()
                         print(f"Updated relationship strength: {coauth_relationship.collab_strength}")
                     else:
                         coauth_relationship = author_instance.co_authors.connect(co_author_instance,
                                                                                  {'collab_strength': 1})
+                        coauth_relationship.save()
+                        print(f"Created relationship strength: {coauth_relationship.collab_strength}")
 
-            author_retrievals = [AuthorRetrieval(author_id=author_instance.scopus_id) for author_instance in
-                                 author_instances]
-            print(f"Tiempo de creación de instancias de recuperación de autores {len(author_retrievals)}: ",
-                  time.time() - time_0)
-
-            time_1 = time.time()
-            for retrieval in author_retrievals:
-                retrieval.execute(client)
-            print("Tiempo de ejecución de recuperación de autores: ", time.time() - time_1)
-            # Actualizar en lotes las instancias de autores
-            for author_instance, retrieval in zip(author_instances, author_retrievals):
-                retrieval_info = retrieval.result[0]
-                author_instance.update_from_json(author_data=retrieval_info)
+            # author_retrievals = [AuthorRetrieval(author_id=author_instance.scopus_id) for author_instance in
+            #                      author_instances]
+            # print(f"Tiempo de creación de instancias de recuperación de autores {len(author_retrievals)}: ",
+            #       time.time() - time_0)
+            #
+            # time_1 = time.time()
+            # for retrieval in author_retrievals:
+            #     retrieval.execute(client)
+            # print("Tiempo de ejecución de recuperación de autores: ", time.time() - time_1)
+            # # Actualizar en lotes las instancias de autores
+            # for author_instance, retrieval in zip(author_instances, author_retrievals):
+            #     retrieval_info = retrieval.result[0]
+            #     author_instance.update_from_json(author_data=retrieval_info)
 
         return article
 

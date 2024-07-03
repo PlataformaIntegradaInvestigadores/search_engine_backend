@@ -34,7 +34,6 @@ class AuthorService(AuthorRepository):
                       collabStrength: toFloat(r.collab_strength)}}) as links
                   """
             result = db.cypher_query(query_links)
-            print("Result: ", result)
             # Ensure we only unpack two values
             result_links, meta = result
             links = result_links[0]
@@ -57,32 +56,32 @@ class AuthorService(AuthorRepository):
             raise Exception(f"Error finding authors by affiliation filter: {e}")
 
     def find_authors_by_query(self, name: str, page_size=1, page=10) -> (List[object], int):
-        name = unidecode(name).strip().lower()
+        custom_name = unidecode(name).strip().lower()
         skip = (page - 1) * page_size
         query = f"""
                 MATCH (au:Author) 
-                WHERE  toLower(au.first_name) CONTAINS '{name}' or 
-                toLower(au.last_name) CONTAINS '{name}' or 
-                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{name}' or
-                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{name}' or  
-                toLower(au.auth_name) CONTAINS '{name}' or 
-                toLower(au.initials) CONTAINS '{name}' or 
-                toLower(au.email) CONTAINS '{name}'or 
-                au.scopus_id CONTAINS '{name}'
+                WHERE  toLower(au.first_name) CONTAINS '{custom_name}' or 
+                toLower(au.last_name) CONTAINS '{custom_name}' or 
+                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{custom_name}' or
+                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{custom_name}' or  
+                toLower(au.auth_name) CONTAINS '{custom_name}' or 
+                toLower(au.initials) CONTAINS '{custom_name}' or 
+                toLower(au.email) CONTAINS '{custom_name}'or 
+                au.scopus_id CONTAINS '{custom_name}'
                 RETURN count(au) as total
         """
         results, meta = db.cypher_query(query)
         total = results[0][0]
         query = f"""
                 MATCH (au:Author) 
-                WHERE  toLower(au.first_name) CONTAINS '{name}' or 
-                toLower(au.last_name) CONTAINS '{name}' or 
-                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{name}' or
-                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{name}' or  
-                toLower(au.auth_name) CONTAINS '{name}' or 
-                toLower(au.initials) CONTAINS '{name}' or 
-                toLower(au.email) CONTAINS '{name}' or 
-                au.scopus_id CONTAINS '{name}'
+                WHERE  toLower(au.first_name) CONTAINS '{custom_name}' or 
+                toLower(au.last_name) CONTAINS '{custom_name}' or 
+                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{custom_name}' or
+                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{custom_name}' or  
+                toLower(au.auth_name) CONTAINS '{custom_name}' or 
+                toLower(au.initials) CONTAINS '{custom_name}' or 
+                toLower(au.email) CONTAINS '{custom_name}' or 
+                au.scopus_id CONTAINS '{custom_name}'
                 RETURN au SKIP {skip} LIMIT {page_size}
                                                                                                 """
         results, meta = db.cypher_query(query)

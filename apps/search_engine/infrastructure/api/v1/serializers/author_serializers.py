@@ -27,6 +27,29 @@ class AuthorSerializer(serializers.Serializer):
         return [topic.name for topic in obj.topics.all()]
 
 
+class RetrieveAuthorSerializer(serializers.Serializer):
+    scopus_id = serializers.CharField()
+    name = serializers.SerializerMethodField()
+    affiliations = serializers.SerializerMethodField()
+    articles = serializers.SerializerMethodField()
+    topics = serializers.SerializerMethodField()
+
+    def get_name(self, obj):
+        return obj.first_name + ' ' + obj.last_name
+
+    def get_affiliations(self, obj):
+        affiliations = [affiliation.name for affiliation in obj.affiliations.all()]
+        return len(affiliations)
+
+    def get_articles(self, obj):
+        articles = [article.title for article in obj.articles.all()]
+        return len(articles)
+
+    def get_topics(self, obj):
+        topics = [topic.name for topic in obj.topics.all()]
+        return len(topics)
+
+
 class MostRelevantAuthorsRequestSerializer(serializers.Serializer):
     topic = serializers.CharField()
     authors_number = serializers.IntegerField()
