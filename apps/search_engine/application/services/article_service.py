@@ -1,25 +1,36 @@
-from typing import List
+from typing import List, Tuple
 
 from neomodel import db, Q
 
+from apps.search_engine.application.utils.tfidf import Model
 from apps.search_engine.domain.entities.article import Article
 from apps.search_engine.domain.repositories.article_repository import ArticleRepository
 
 
 class ArticleService(ArticleRepository):
-    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> List[object]:
+    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> Tuple[List[object], int]:
         try:
             skip = (page - 1) * page_size
-            query = f"MATCH (a:Article) WHERE a.article_id IN {ids} RETURN a SKIP {skip} LIMIT {page_size}"
+            # Cast to int the list of ids
+            ids_integer = [int(w) for w in ids]  # Join IDs into a quoted string
+            # Retrieve total articles found on that list
+            query_to_find_articles = f"MATCH (a:Article) WHERE a.scopus_id IN {ids_integer} RETURN count(a) AS total"
+            total_results, meta = db.cypher_query(query_to_find_articles)
+            total_articles = total_results[0][0]
+
+            # Retrieve articles found on that list
+            query = f"MATCH (a:Article) WHERE a.scopus_id IN {ids_integer} RETURN a SKIP {skip} LIMIT {page_size}"
             results, meta = db.cypher_query(query)
             articles = [Article.inflate(row[0]) for row in results]
-            return articles
+
+            return articles, total_articles
         except Exception as e:
             raise Exception(f"Error finding articles by ids: {e}")
 
     def find_most_relevant_articles_by_topic(self, topic: str):
         try:
-            pass
+            m = Model("article")
+            return m.get_most_relevant_docs_by_topic_v2(topic, None)
         except Exception as e:
             raise Exception(f"Error finding most relevant articles by topic: {e}")
 
@@ -37,8 +48,10 @@ class ArticleService(ArticleRepository):
 
     def find_years_by_articles(self, ids: List[str]) -> List[object]:
         try:
-            articles = Article.nodes.filter(article_id__in=ids)
-            years = articles.values_list('publication_date', flat=True)
+            articles = Article.nodes.filter(scopus_id__in=ids)
+            years = []
+            for article in articles:
+                years.append(article.publication_date)
             return years
         except Exception as e:
             raise Exception(f"Error getting years by articles: {e}")

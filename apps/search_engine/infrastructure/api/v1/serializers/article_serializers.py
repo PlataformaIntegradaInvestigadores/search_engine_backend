@@ -21,3 +21,11 @@ class ArticleSerializer(serializers.Serializer):
 
     def get_topics(self, obj):
         return [topic.name for topic in obj.topics.all()]
+
+
+class MostRelevantArticlesRequestSerializer(serializers.Serializer):
+    query = serializers.CharField()
+    page = serializers.IntegerField()
+    size = serializers.IntegerField()
+    type = serializers.CharField(required=False)
+    years = serializers.ListField(child=serializers.CharField(), required=False)

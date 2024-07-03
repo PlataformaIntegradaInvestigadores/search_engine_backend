@@ -29,7 +29,10 @@ SECRET_KEY = 'django-insecure-$d(7)8kcd!j7qk+ifn(0h(#0z!$3$_inr#34x@0+*5_s^-^4-(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", ]
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Connect to Neo4j database
 neo4j_username = os.environ.get('NEO4J_USERNAME')
@@ -37,7 +40,7 @@ neo4j_password = os.environ.get('NEO4J_PASSWORD')
 neo4j_host = os.environ.get('NEO4J_HOST')
 neo4j_port = os.environ.get('NEO4J_PORT')
 
-config.DATABASE_URL = f'bolt+s://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
 # bolt+s://<username>:<password>@<host>:<port>
 
 # Application definition
@@ -50,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_neomodel',
+    'corsheaders',
     'drf_spectacular',
     'apps',
     'apps.search_engine',
@@ -73,6 +77,7 @@ SPECTACULAR_SETTINGS = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
