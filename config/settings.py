@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 
+import mongoengine
 from dotenv import load_dotenv
 from pathlib import Path
 from neomodel import config
@@ -32,13 +33,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Connect to Neo4j database
-neo4j_username = os.environ.get('NEO4J_USERNAME')
-neo4j_password = os.environ.get('NEO4J_PASSWORD')
-neo4j_host = os.environ.get('NEO4J_HOST')
-neo4j_port = os.environ.get('NEO4J_PORT')
+neo4j_username = 'neo4j'
+neo4j_password = 'narias98'
+neo4j_host = 'localhost'
+neo4j_port = '7687'
 
-config.DATABASE_URL = f'bolt+s://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
 # bolt+s://<username>:<password>@<host>:<port>
+mongoengine.connect(db="datalake")
 
 # Application definition
 INSTALLED_APPS = [
@@ -54,7 +56,8 @@ INSTALLED_APPS = [
     'apps',
     'apps.search_engine',
     'apps.scopus_integration',
-    'apps.dashboards'
+    'apps.dashboards',
+    'corsheaders'
 ]
 
 REST_FRAMEWORK = {
@@ -71,6 +74,7 @@ SPECTACULAR_SETTINGS = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -78,6 +82,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",
+    # otros orígenes permitidos
 ]
 
 ROOT_URLCONF = 'config.urls'
