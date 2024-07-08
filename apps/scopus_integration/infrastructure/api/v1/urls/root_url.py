@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from apps.scopus_integration.infrastructure.api.v1.views.corpus_modeling_views import GenerateCorpusView
@@ -12,4 +12,6 @@ urlpatterns = [
     path('scopus-integration/', ScopusIntegrationViewSet.as_view({'get': 'list'}), name='scopus-integration'),
     path('generate-corpus/', GenerateCorpusView.as_view(), name='generate-corpus'),
     path('generate-model/', GenerateModelView.as_view(), name='generate-model'),
+    path('information/', include('apps.scopus_integration.infrastructure.api.v1.urls.update_urls'),
+         name='update-information')
 ]

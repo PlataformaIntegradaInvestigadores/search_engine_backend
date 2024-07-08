@@ -23,5 +23,10 @@ class TopicRepository(ABC):
     def update(self, topic) -> object:
         pass
 
+    @abstractmethod
     def find_all(self) -> List[object]:
+        pass
+
+    @abstractmethod
+    def topics_count(self) -> int:
         pass

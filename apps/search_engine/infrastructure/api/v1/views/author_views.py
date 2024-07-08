@@ -124,9 +124,10 @@ class AuthorViews(viewsets.ViewSet):
             series = most_relevant_authors_usecase.execute(topic, authors_number)
 
             author_ids = series.index.to_list()
-            print(author_ids)
             affiliations = affiliations_by_authors_usecase.execute(author_ids)
+
             serializer = AffiliationNameSerializer(affiliations, many=True)
+
             if custom_type is not None:
                 filter_type = custom_type
                 filter_affiliations = custom_affiliations
@@ -143,12 +144,11 @@ class AuthorViews(viewsets.ViewSet):
                 author_serializer = AuthorSerializer(authors, many=True)
                 community_data = {
                     'affiliations': serializer.data,
-                    'nodes': author_serializer.data,
-                    'links': links,
                     'size_nodes': size_nodes,
-                    'size_links': size_links
-
-                }
+                    'size_links': size_links,
+                    'nodes': author_serializer.data,
+                    'links': links
+               }
                 return Response(community_data,
                                 status=status.HTTP_200_OK)
 

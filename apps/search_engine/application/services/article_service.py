@@ -8,6 +8,15 @@ from apps.search_engine.domain.repositories.article_repository import ArticleRep
 
 
 class ArticleService(ArticleRepository):
+    def articles_count(self) -> int:
+        try:
+            query = "MATCH (a:Article) RETURN count(a) "
+            results, meta = db.cypher_query(query)
+            total_articles = results[0][0]
+            return total_articles
+        except Exception as e:
+            raise ValueError(f"Error finding total articles: {e}")
+
     def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> Tuple[List[object], int]:
         try:
             skip = (page - 1) * page_size
@@ -102,3 +111,16 @@ class ArticleService(ArticleRepository):
             return article
         except Exception as e:
             raise Exception(f"Error finding article by id: {e}")
+
+    def find_authors_by_article(self, article_id: str) -> List[object]:
+        try:
+            query = (
+                f"MATCH (a:Article {{scopus_id: {article_id} }}) "
+                f"OPTIONAL MATCH (a)-[:WROTE]-(au:Author) "
+                f"RETURN collect(DISTINCT {{scopusId: au.scopus_id, name: au.auth_name}})"
+            )
+            results, meta = db.cypher_query(query)
+            authors = [row[0] for row in results]
+            return authors
+        except Exception as e:
+            raise Exception(f"Error finding authors by article: {e}")

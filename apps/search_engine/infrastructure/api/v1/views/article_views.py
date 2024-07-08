@@ -13,7 +13,8 @@ from apps.search_engine.application.usecases.article.most_relevant_articles_by_t
     MostRelevantArticlesUseCase
 from apps.search_engine.application.usecases.article.total_articles_usecase import TotalArticlesUseCase
 from apps.search_engine.infrastructure.api.v1.serializers.article_serializers import ArticleSerializer, \
-    MostRelevantArticlesRequestSerializer
+    MostRelevantArticlesRequestSerializer, MostRelevantArticleResponseSerializer, \
+    MostRelevantArticlesResponseSerializer, YearsSerializer
 from apps.search_engine.infrastructure.api.v1.utils.build_paginator import build_pagination_urls
 
 
@@ -80,8 +81,12 @@ class ArticleViewSet(viewsets.ViewSet):
 
             article = article_by_id_use_case.execute(article_id)
             serializer = ArticleSerializer(article)
+            authors = self.article_service.find_authors_by_article(article_id)
+            data = serializer.data
+            data['authors'] = authors[0]
 
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(data, status=status.HTTP_200_OK)
+
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -113,9 +118,12 @@ class ArticleViewSet(viewsets.ViewSet):
 
             else:
                 articles, total_articles = self.article_service.find_articles_by_ids(df, page, size)
-            article_serializer = ArticleSerializer(articles, many=True)
-            return Response({'data': article_serializer.data, 'years': years, 'total': total_articles},
-                            status=status.HTTP_200_OK)
+            article_serializer = MostRelevantArticleResponseSerializer(articles, many=True)
+
+            years_data = [int(year.split("-")[0]) for year in years]
+            return Response(
+                {'data': article_serializer.data, 'years': set(years_data), 'total': total_articles},
+                status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
