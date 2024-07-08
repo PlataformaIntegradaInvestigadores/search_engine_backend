@@ -23,7 +23,7 @@ class CountryRepository(ABC):
         pass
 
     @abstractmethod
-    def get_top_topics(self, number_top):
+    def get_top_topics(self, year):
         pass
 
     @abstractmethod
@@ -33,3 +33,4 @@ class CountryRepository(ABC):
     @abstractmethod
     def get_top_topics_by_year(self, year):
         pass
+

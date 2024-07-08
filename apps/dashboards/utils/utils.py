@@ -1,6 +1,120 @@
 from collections import defaultdict
 
 from neomodel import db
+import json
+
+with open('apps/dashboards/utils/archive/provincias.json', 'r', encoding='utf-8') as json_file:
+    location_data = json.load(json_file)
+
+
+def process_city(city_column):
+    cities = []
+    for city_name in city_column:
+        if ',' in city_name:
+            # Separar en partes por coma y quitar espacios en blanco
+            parts = [part.strip() for part in city_name.rsplit(',', 1)]
+            city = parts[-1], parts[0]
+            cities.append(city)
+        else:
+            cities.append(city_name)
+    provinces = []
+    for processed_city in cities:
+        provinces = find_province(processed_city)
+    return provinces
+
+
+def find_province(city_name):
+    if city_name is None:
+        return -1, 'Pendiente'
+
+    city_name = city_name.upper()
+    for province_id, province_info in location_data.items():
+        if "provincia" in province_info:
+            provincia = province_info["provincia"].upper()
+            if city_name == provincia:
+                return province_id, provincia
+            if "cantones" in province_info:
+                for canton_id, canton_info in province_info["cantones"].items():
+                    if "canton" in canton_info:
+                        if city_name == canton_info["canton"].upper():
+                            return province_id, provincia
+                    if "parroquias" in canton_info:
+                        for parroquia_id, parroquia_name in canton_info["parroquias"].items():
+                            if city_name == parroquia_name.upper():
+                                return province_id, provincia
+    return -1, 'Pendiente'
+
+
+def process_affiliation_name(af_cities, ar_scopus_ids, ar_publication_dates, topics):
+    processed_data = []
+
+    for af_city, ar_scopus_id, year, topic in zip(af_cities, ar_scopus_ids, ar_publication_dates, topics):
+        if af_city is None:
+            continue
+        province_id, province_name = find_province(af_city)
+        processed_data.append({
+            "province_id": province_id,
+            "province_name": province_name,
+            "article_id": ar_scopus_id,
+            "year": year,
+            "topic": topic
+        })
+
+    return processed_data
+
+
+def count_province(processed_data):
+    province_data = defaultdict(lambda: {
+        "years": defaultdict(int),  # Usamos int para contar los artículos por año
+        "topics": defaultdict(lambda: defaultdict(int))  # Usamos int para contar artículos por topic y año
+    })
+
+    seen_combinations = set()
+
+    for data in processed_data:
+        province_id = data["province_id"]
+        province_name = data["province_name"]
+        article_id = data["article_id"]
+        year = data["year"]
+        topic = data["topic"]
+
+        if province_id is None:
+            continue
+
+        combination = (province_id, article_id)
+        if combination in seen_combinations:
+            continue
+
+        seen_combinations.add(combination)
+
+        province_data[province_id]["years"][year] += 1
+        province_data[province_id]["province_name"] = province_name
+        province_data[province_id]["topics"][topic][year] += 1
+
+    final_list = []
+    for province_id, data in province_data.items():
+        total_articles = sum(articles for articles in data["years"].values())
+        year_data = [{"year": year, "numArticles": articles} for year, articles in data["years"].items()]
+
+        topic_data = []
+        for topic, years in data["topics"].items():
+            total_topic_articles = sum(years.values())
+            topic_years_data = [{"year": year, "numArticles": articles} for year, articles in years.items()]
+            topic_data.append({
+                "topic": topic,
+                "topic_years": topic_years_data,
+                "totalTopicArticles": total_topic_articles
+            })
+
+        final_list.append({
+            "id_provincia": province_id,
+            "provincia": province_data[province_id]["province_name"],
+            "num_articles": total_articles,
+            "years": year_data,
+            "topics": topic_data
+        })
+
+    return final_list
 
 
 def extract_year(years_column):
@@ -113,7 +227,8 @@ def get_articles_topics_info(countries):
 
     # Invertir las listas para el orden descendente de los años
     articles_per_year_list = [{"name": str(year), "value": articles_per_year[year]} for year in sorted_article_years]
-    articles_acumulative_list = [{"name": str(year), "value": articles_acumulative[year]} for year in sorted_article_years]
+    articles_acumulative_list = [{"name": str(year), "value": articles_acumulative[year]} for year in
+                                 sorted_article_years]
     articles_per_year_list.reverse()
     articles_acumulative_list.reverse()
     topics_per_year_list.reverse()

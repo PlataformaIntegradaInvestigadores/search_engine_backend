@@ -22,8 +22,9 @@ class CountryService(CountryRepository):
     def get_topics(self):
         return CountryTopics.objects()
 
-    def get_top_topics(self, number_top):
-        top_topics = CountryTopics.objects.filter(topic_name__ne=" ").order_by('-total_articles')[:int(number_top)]
+    def get_top_topics(self, year):
+        top_topics = CountryTopicsAcumulated.objects(year=year).filter(topic_name__ne=" ").order_by('-total_articles')[
+                     :10]
         return top_topics
 
     def get_last_years(self):

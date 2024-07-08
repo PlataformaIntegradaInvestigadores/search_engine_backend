@@ -61,9 +61,9 @@ class CountryViews(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'])
     def get_top_topics(self, request):
-        number_top = (request.query_params.get('number'))
+        year = (request.query_params.get('year'))
         top_topics_use_case = TopTopicsUseCase(country_service=self.country_service)
-        top_topics = top_topics_use_case.execute(number_top=number_top)
+        top_topics = top_topics_use_case.execute(year=year)
         serializer = CountryTopicsSerializer(top_topics, many=True)
         data = serializer.data
         response_data = [
@@ -129,6 +129,20 @@ class CountryViews(viewsets.ModelViewSet):
                 'article': cy['total_articles'],
                 'affiliation': cy['total_affiliations'],
                 'topic': cy['total_topics']
+            }
+            for cy in data
+        ]
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
+    def get_years(self, request):
+        years_use_case = LastYearsUseCase(country_service=self.country_service)
+        last_years = years_use_case.execute()
+        serializer = CountryYearSerializer(last_years, many=True)
+        data = serializer.data
+        response_data = [
+            {
+                'year': cy['year'],
             }
             for cy in data
         ]

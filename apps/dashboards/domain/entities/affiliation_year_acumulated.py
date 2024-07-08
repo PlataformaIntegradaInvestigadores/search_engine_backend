@@ -1,8 +1,8 @@
 from mongoengine import Document, fields
 
 
-class AuthorTopicsYearContribution(Document):
+class AffiliationAcumulated(Document):
     scopus_id = fields.IntField()
-    topic_name = fields.StringField()
+    name = fields.StringField()
     year = fields.IntField()
     total_articles = fields.IntField()
