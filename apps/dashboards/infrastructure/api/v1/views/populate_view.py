@@ -11,4 +11,4 @@ class PopulateView(APIView):
     def post(self, request):
         populate_use_case = PopulateUseCase(populate_service=self.populate_service)
         populate_use_case.execute()
-        return Response({'message': 'author populated'})
+        return Response({'message': 'datalake populated'})

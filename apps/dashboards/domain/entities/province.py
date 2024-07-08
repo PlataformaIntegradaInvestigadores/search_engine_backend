@@ -1,6 +1,6 @@
 from mongoengine import Document, fields
 
 
-class Author(Document):
-    scopus_id = fields.IntField()
+class Province(Document):
+    province_name = fields.StringField()
     total_articles = fields.IntField()
