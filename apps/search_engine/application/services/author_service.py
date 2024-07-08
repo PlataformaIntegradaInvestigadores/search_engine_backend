@@ -10,6 +10,15 @@ from apps.search_engine.application.utils.tfidf import Model
 
 class AuthorService(AuthorRepository):
 
+    def authors_count(self) -> int:
+        try:
+            query = "MATCH (a:Author) RETURN count(a) "
+            results, meta = db.cypher_query(query)
+            total_authors = results[0][0]
+            return total_authors
+        except Exception as e:
+            raise ValueError(f"Error finding total authors: {e}")
+
     def find_most_relevant_authors_by_topic(self, topic: str, authors_number: int):
         try:
             m = Model("author")
@@ -20,12 +29,11 @@ class AuthorService(AuthorRepository):
 
     def find_community(self, authors_ids: List[str]):
         try:
-            print("Type of authors_ids on service: ", type(authors_ids))
             query = Q(scopus_id__in=authors_ids)
             nodes = Author.nodes.filter(query)
             auth_list_str = ', '.join([f'"{w}"' for w in authors_ids])
             # Consulta para obtener enlaces
-            print("auth_list_str: ", auth_list_str)
+
             query_links = f"""
                   WITH [{auth_list_str}] as authList
                   MATCH (au1:Author)-[r:CO_AUTHORED]-(au2:Author)
@@ -36,7 +44,7 @@ class AuthorService(AuthorRepository):
             result = db.cypher_query(query_links)
             # Ensure we only unpack two values
             result_links, meta = result
-            links = result_links[0]
+            links = result_links[0][0]
 
             return {"nodes": nodes, "links": links, "size_nodes": len(nodes), "size_links": len(links)}
         except Exception as e:

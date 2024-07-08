@@ -89,20 +89,6 @@ class Article(DjangoNode):
                         coauth_relationship.save()
                         print(f"Created relationship strength: {coauth_relationship.collab_strength}")
 
-            # author_retrievals = [AuthorRetrieval(author_id=author_instance.scopus_id) for author_instance in
-            #                      author_instances]
-            # print(f"Tiempo de creación de instancias de recuperación de autores {len(author_retrievals)}: ",
-            #       time.time() - time_0)
-            #
-            # time_1 = time.time()
-            # for retrieval in author_retrievals:
-            #     retrieval.execute(client)
-            # print("Tiempo de ejecución de recuperación de autores: ", time.time() - time_1)
-            # # Actualizar en lotes las instancias de autores
-            # for author_instance, retrieval in zip(author_instances, author_retrievals):
-            #     retrieval_info = retrieval.result[0]
-            #     author_instance.update_from_json(author_data=retrieval_info)
-
         return article
 
     @staticmethod

@@ -1,7 +1,8 @@
 import time
 
 from django_neomodel import DjangoNode
-from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty, db
+from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty, \
+    BooleanProperty, db
 
 from apps.search_engine.domain.entities.affiliation import Affiliation
 from apps.search_engine.domain.entities.coauthored import CoAuthored
@@ -15,10 +16,12 @@ class Author(DjangoNode):
     auth_name = StringProperty()
     initials = StringProperty()
     citation_count = IntegerProperty(default=0)
+    current_affiliation = StringProperty()
     affiliations = RelationshipTo('apps.search_engine.domain.entities.affiliation.Affiliation', 'AFFILIATED_WITH')
     articles = RelationshipTo('apps.search_engine.domain.entities.article.Article', 'WROTE')
     co_authors = Relationship('Author', 'CO_AUTHORED', model=CoAuthored)
     topics = RelationshipTo('apps.search_engine.domain.entities.topic.Topic', 'EXPERT_IN')
+    updated = BooleanProperty(default=False)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -59,6 +62,7 @@ class Author(DjangoNode):
             return None
 
     @classmethod
+    @db.transaction
     def update_from_json(cls, author_data):
         time_0 = time.time()
         coredata = author_data.get('coredata', {})
@@ -73,6 +77,15 @@ class Author(DjangoNode):
             author = cls.nodes.get(scopus_id=scopus_id)
 
             author_profile = author_data.get('author-profile', {})
+            current_affiliation_dict = author_profile.get('current-affiliation', {})
+            current_affiliation = current_affiliation_dict.get('affiliation', {})
+            ip_doc = current_affiliation.get('ip-doc', {})
+            parent_preferred_name = ip_doc.get('parent-preferred-name', {})
+
+            if isinstance(parent_preferred_name, dict):
+                current_aff = parent_preferred_name.get('$', '')
+            else:
+                current_aff = ''
 
             preferred_name = author_profile.get('preferred-name', {})
 
@@ -81,6 +94,8 @@ class Author(DjangoNode):
             author.auth_name = preferred_name.get('indexed-name', '')
             author.initials = preferred_name.get('initials', '')
             author.citation_count = citation_count
+            author.updated = True
+            author.current_affiliation = current_aff
             author.save()
 
             subject_areas = author_data.get('subject-areas', {})

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from datetime import datetime
 
 
 class ArticleSerializer(serializers.Serializer):
@@ -29,3 +30,33 @@ class MostRelevantArticlesRequestSerializer(serializers.Serializer):
     size = serializers.IntegerField()
     type = serializers.CharField(required=False)
     years = serializers.ListField(child=serializers.CharField(), required=False)
+
+
+class MostRelevantArticleResponseSerializer(serializers.Serializer):
+    title = serializers.CharField()
+    author_count = serializers.IntegerField()
+    affiliation_count = serializers.IntegerField()
+    publication_date = serializers.CharField()
+    scopus_id = serializers.IntegerField()
+
+    def get_affiliation_count(self, obj):
+        return len(obj.affiliations.all())
+
+
+class YearsSerializer(serializers.Serializer):
+    year = serializers.CharField()
+
+    def get_year(self, obj):
+        return obj.year.split('-')[0]
+
+    def to_representation(self, instance):
+        date_str = self.validated_data['year']
+        year = date_str.split('-')[0]
+
+        return {'year': year}
+
+
+class MostRelevantArticlesResponseSerializer(serializers.Serializer):
+    data = MostRelevantArticleResponseSerializer(many=True)
+    years = YearsSerializer(many=True)
+    total = serializers.IntegerField()

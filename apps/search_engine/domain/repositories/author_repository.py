@@ -39,3 +39,7 @@ class AuthorRepository(ABC):
     @abstractmethod
     def find_most_relevant_authors_by_topic(self, topic: str, authors_number: int):
         pass
+
+    @abstractmethod
+    def authors_count(self) -> int:
+        pass

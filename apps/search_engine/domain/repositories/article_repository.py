@@ -43,3 +43,9 @@ class ArticleRepository(ABC):
     def find_years_by_articles(self, ids: List[str]) -> List[object]:
         pass
 
+    @abstractmethod
+    def articles_count(self) -> int:
+        pass
+
+    def find_authors_by_article(self, article_id: str) -> List[object]:
+        pass
