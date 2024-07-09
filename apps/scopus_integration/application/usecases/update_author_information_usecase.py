@@ -4,16 +4,17 @@ from apps.scopus_integration.application.services.scopus_client import ScopusCli
 from apps.scopus_integration.application.usecases.author_retrieval_usecase import AuthorRetrieval
 from apps.scopus_integration.domain.repositories.AuthorRepositoryPort import AuthorRepositoryPort
 from apps.search_engine.domain.entities.author import Author
+from apps.search_engine.domain.repositories.author_repository import AuthorRepository
 
 
 class UpdateAuthorInformationUseCase:
-    def __init__(self, author_repository: AuthorRepositoryPort, client: ScopusClient):
+    def __init__(self, author_repository: AuthorRepository, client: ScopusClient):
         self.author_repository = author_repository
         self.client = client
 
     def execute(self):
         try:
-            authors = self.author_repository.find_no_updated()
+            authors = self.author_repository.authors_no_updated()
             batch_size = 25
             total_authors = len(authors)
 

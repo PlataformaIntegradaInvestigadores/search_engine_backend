@@ -15,4 +15,3 @@ class Topic(DjangoNode):
         except cls.DoesNotExist:
             topic_instance = cls(name=topic).save()
         return topic_instance
-
