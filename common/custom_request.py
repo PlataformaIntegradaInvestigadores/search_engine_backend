@@ -8,10 +8,10 @@ class CustomRequest:
         self.base_url = base_url
         self.headers = headers
 
-    def do_get(self, endpoint: str) -> Any:
+    def do_get(self, endpoint: str, params:dict ) -> Any:
         try:
             url = self.base_url + endpoint
-            response = requests.get(url, headers=self.headers)
+            response = requests.get(url, headers=self.headers, params=params)
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
