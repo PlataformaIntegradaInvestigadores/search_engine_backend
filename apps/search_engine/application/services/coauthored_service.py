@@ -21,8 +21,8 @@ class CoAuthoredService(CoAuthoredRepository):
                 rel = author.co_authors.relationship(co_author)
                 collab_strength = rel.collab_strength
                 link = {
-                    'source': author.scopus_id,
-                    'target': co_author.scopus_id,
+                    'source': int(author.scopus_id),
+                    'target': int(co_author.scopus_id),
                     'collabStrength': float(collab_strength)
                 }
                 links.append(link)

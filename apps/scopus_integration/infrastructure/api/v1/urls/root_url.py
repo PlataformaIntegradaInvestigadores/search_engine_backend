@@ -13,5 +13,7 @@ urlpatterns = [
     path('generate-corpus/', GenerateCorpusView.as_view(), name='generate-corpus'),
     path('generate-model/', GenerateModelView.as_view(), name='generate-model'),
     path('information/', include('apps.scopus_integration.infrastructure.api.v1.urls.update_urls'),
-         name='update-information')
+         name='update-information'),
+    path('dashboard/', include(
+        'apps.scopus_integration.infrastructure.api.v1.urls.dashboard_information_urls'), name='dashboard'),
 ]

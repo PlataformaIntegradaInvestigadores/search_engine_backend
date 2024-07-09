@@ -114,10 +114,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'neo4j': {
-        'ENGINE': 'django_neomodel',
-        'NAME': 'neo4j',
-    }
 }
 
 # Password validation

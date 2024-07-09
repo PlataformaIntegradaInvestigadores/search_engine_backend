@@ -20,7 +20,7 @@ class CoAuthorsViewSet(viewsets.ViewSet):
         tags=['Coauthors'],
         responses={'data': 'data'},
     )
-    @action(detail=True, methods=['get'], url_path='coauthors_by_id')
+    @action(detail=True, methods=['get'], url_path='')
     def coauthors_by_id(self, request, *args, **kwargs):
         try:
             author_id = kwargs.get('pk')

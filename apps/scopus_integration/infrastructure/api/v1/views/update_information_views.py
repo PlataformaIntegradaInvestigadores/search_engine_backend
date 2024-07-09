@@ -2,15 +2,15 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from apps.scopus_integration.application.services.AuthorServicePort import AuthorServicePort
 from apps.scopus_integration.application.services.scopus_client import ScopusClient
 from apps.scopus_integration.application.usecases.update_author_information_usecase import \
     UpdateAuthorInformationUseCase
+from apps.search_engine.application.services.author_service import AuthorService
 
 
 class UpdateInformationViewSet(viewsets.ViewSet):
     client = ScopusClient()
-    author_repository = AuthorServicePort()
+    author_repository = AuthorService()
 
     @action(detail=False, methods=['post'], url_path='author-information', url_name='update-author-information')
     def update_author_information(self, request, *args, **kwargs):

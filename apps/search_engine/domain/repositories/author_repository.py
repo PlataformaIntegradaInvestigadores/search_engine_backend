@@ -43,3 +43,11 @@ class AuthorRepository(ABC):
     @abstractmethod
     def authors_count(self) -> int:
         pass
+
+    @abstractmethod
+    def get_authors_no_updated_count(self) -> int:
+        pass
+
+    @abstractmethod
+    def authors_no_updated(self) -> List[object]:
+        pass

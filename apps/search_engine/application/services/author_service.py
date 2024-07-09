@@ -10,6 +10,24 @@ from apps.search_engine.application.utils.tfidf import Model
 
 class AuthorService(AuthorRepository):
 
+    def authors_no_updated(self) -> List[object]:
+        try:
+            query = "MATCH (a:Author) WHERE a.updated = false RETURN a"
+            results, meta = db.cypher_query(query)
+            authors = [Author.inflate(row[0]) for row in results]
+            return authors
+        except Exception as e:
+            raise ValueError(f"Error finding authors no updated: {e}")
+
+    def get_authors_no_updated_count(self) -> int:
+        try:
+            query = "MATCH (a:Author) WHERE a.updated = false RETURN count(a) "
+            results, meta = db.cypher_query(query)
+            authors_no_updated = results[0][0]
+            return authors_no_updated
+        except Exception as e:
+            raise ValueError(f"Error finding authors no updated count: {e}")
+
     def authors_count(self) -> int:
         try:
             query = "MATCH (a:Author) RETURN count(a) "
