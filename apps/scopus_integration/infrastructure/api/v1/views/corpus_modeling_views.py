@@ -46,7 +46,7 @@ class GenerateCorpusView(APIView):
 
             total = len(df_corpus)
 
-            return Response({'status': 'success', 'total': total},
+            return Response({'success': True, 'total': total},
                             status=status.HTTP_200_OK)
         except Exception as e:
-            return Response({'status': 'error', 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'success': False, 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
