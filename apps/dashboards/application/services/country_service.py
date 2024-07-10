@@ -7,8 +7,14 @@ from apps.dashboards.domain.repositories.country_repository import CountryReposi
 
 
 class CountryService(CountryRepository):
+    def get_year_info(self, year):
+        return CountryYear.objects.get(year=year)
+
+    def get_range_info(self, year):
+        return CountryYear.objects.filter(year__gt=1999, year__lte=year).order_by('year')
+
     def get_year(self, year):
-        return CountryYear.objects(year=year)
+        return CountryYear.objects.get(year=year)
 
     def get_acumulated_by_year(self, year):
         return CountryAcumulated.objects.get(year=year)
@@ -19,8 +25,8 @@ class CountryService(CountryRepository):
     def get_topics_acumulated_by_year(self, topic, year):
         return CountryTopicsAcumulated.objects(topic=topic, year=year)
 
-    def get_topics(self):
-        return CountryTopics.objects()
+    def get_topics(self, number_top):
+        return CountryTopics.objects().filter(topic_name__ne=" ").order_by('-total_articles')[:int(number_top)]
 
     def get_top_topics(self, year):
         top_topics = CountryTopicsAcumulated.objects(year=year).filter(topic_name__ne=" ").order_by('-total_articles')[

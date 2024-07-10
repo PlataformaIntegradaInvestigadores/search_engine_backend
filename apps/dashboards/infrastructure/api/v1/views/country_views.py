@@ -7,9 +7,12 @@ from apps.dashboards.application.use_cases.country_acumulated_use_case import Co
 from apps.dashboards.application.use_cases.country_topics_acumulated_use_case import CountryTopicsAcumulatedUseCase
 from apps.dashboards.application.use_cases.country_topics_use_case import CountryTopicsUseCase
 from apps.dashboards.application.use_cases.country_topics_year_use_case import CountryTopicsYearUseCase
+from apps.dashboards.application.use_cases.country_year_use_case import CountryYearUseCase
+from apps.dashboards.application.use_cases.get_range_use_case import RangeUseCase
 from apps.dashboards.application.use_cases.last_years_use_case import LastYearsUseCase
 from apps.dashboards.application.use_cases.top_topics_by_year import TopTopicsByYearUseCase
 from apps.dashboards.application.use_cases.top_topics_use_case import TopTopicsUseCase
+from apps.dashboards.application.use_cases.year_info_use_case import YearInfoUseCase
 from apps.dashboards.infrastructure.api.v1.serializers.country_acumulated_serializer import CountryAcumulatedSerializer
 from apps.dashboards.infrastructure.api.v1.serializers.country_topics_serializer import CountryTopicsSerializer
 from apps.dashboards.infrastructure.api.v1.serializers.country_topics_year_serializer import CountryTopicsYearSerializer
@@ -21,10 +24,19 @@ class CountryViews(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'])
     def get_topics(self, request):
+        number_top = (request.query_params.get('number_top'))
         country_topics = CountryTopicsUseCase(country_service=self.country_service)
-        data_topics = country_topics.execute()
+        data_topics = country_topics.execute(number_top=number_top)
         topics = CountryTopicsSerializer(data_topics, many=True)
-        return topics
+        data = topics.data
+        response_data = [
+            {
+                "text": topic['topic_name'],
+                "size": topic['total_articles']
+            }
+            for topic in data
+        ]
+        return Response(response_data)
 
     @action(detail=False, methods=['get'])
     def get_topics_year(self, request):
@@ -60,6 +72,23 @@ class CountryViews(viewsets.ModelViewSet):
         return Response(response_data)
 
     @action(detail=False, methods=['get'])
+    def get_year(self, request):
+        year = (request.query_params.get('year'))
+        year_use_case = CountryYearUseCase(country_service=self.country_service)
+        year_response = year_use_case.execute(year)
+        serializer = CountryYearSerializer(year_response)
+        data = serializer.data
+        print(data)
+        response_data = {
+            "author": data['total_authors'],
+            "article": data['total_articles'],
+            "affiliation": data['total_affiliations'],
+            "topic": data['total_topics']
+        }
+        
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
     def get_top_topics(self, request):
         year = (request.query_params.get('year'))
         top_topics_use_case = TopTopicsUseCase(country_service=self.country_service)
@@ -91,30 +120,6 @@ class CountryViews(viewsets.ModelViewSet):
             for topic in data
         ]
         return Response(response_data)
-        # top_topics_use_case = TopTopicsUseCase(country_service=self.country_service)
-        # top_topics = top_topics_use_case.execute(number_top=30)
-        # serializer = CountryTopicsSerializer(top_topics, many=True)
-        # data = serializer.data
-        # topics_year_use = CountryTopicsYearUseCase(country_service=self.country_service)
-        #
-        # # Estructura para almacenar los resultados
-        # results = {}
-        #
-        # for year in range(2000, 2023):
-        #     results[year] = []
-        #     for topic in data:
-        #         topic_info = topics_year_use.execute(topic=topic['topic_name'], year=year)
-        #         serializer1 = CountryTopicsYearSerializer(topic_info)
-        #         data = serializer1.data
-        #         print(data)
-        #         result_entry = {
-        #             'name': data['topic_name'],
-        #             'value': data['total_articles']
-        #             # Asume que `num_articles` es el campo con el número de artículos
-        #         }
-        #         results[year].append(result_entry)
-        #
-        # return Response(results)
 
     @action(detail=False, methods=['get'])
     def get_last_years(self, request):
@@ -143,6 +148,43 @@ class CountryViews(viewsets.ModelViewSet):
         response_data = [
             {
                 'year': cy['year'],
+            }
+            for cy in data
+        ]
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
+    def get_year_info(self, request):
+        year = (request.query_params.get('year'))
+        year_info_use_case = YearInfoUseCase(country_service=self.country_service)
+        year_info = year_info_use_case.execute(year=year)
+        serializer = CountryYearSerializer(year_info)
+        cy = serializer.data
+        response_data = [
+            {
+                'year': cy['year'],
+                'author': cy['total_authors'],
+                'article': cy['total_articles'],
+                'affiliation': cy['total_affiliations'],
+                'topic': cy['total_topics']
+            }
+        ]
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
+    def get_range_info(self, request):
+        year = (request.query_params.get('year'))
+        range_use_case = RangeUseCase(country_service=self.country_service)
+        year_info = range_use_case.execute(year=year)
+        serializer = CountryYearSerializer(year_info, many=True)
+        data = serializer.data
+        response_data = [
+            {
+                'year': cy['year'],
+                'author': cy['total_authors'],
+                'article': cy['total_articles'],
+                'affiliation': cy['total_affiliations'],
+                'topic': cy['total_topics']
             }
             for cy in data
         ]

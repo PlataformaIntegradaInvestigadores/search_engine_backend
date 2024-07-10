@@ -8,7 +8,7 @@ from apps.dashboards.domain.repositories.affiliation_repository import Affiliati
 
 class AffiliationService(AffiliationRepository):
     def get_affiliations_by_year(self, year):
-        return AffiliationYear.objects(year=year).order_by('-total_articles')[:20]
+        return AffiliationYear.objects(year=year).order_by('-total_articles')[:50]
 
     def get_affiliation_year(self, scopus_id, year):
         return AffiliationYear.objects.get(scopus_id=scopus_id, year=year)
@@ -25,5 +25,8 @@ class AffiliationService(AffiliationRepository):
     def get_affiliation(self, scopus_id):
         return Affiliation.objects.get(scopus_id=scopus_id)
 
-    def get_top_affiliations(self, year):
-        return AffiliationAcumulated.objects(year=year).order_by('-total_articles')[:30]
+    def get_top_affiliations_acumulated(self, year):
+        return AffiliationAcumulated.objects(year=year).order_by('-total_articles')[:50]
+
+    def get_top_affiliations(self):
+        return Affiliation.objects.order_by('-total_articles')[:50]
