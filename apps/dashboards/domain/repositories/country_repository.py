@@ -19,7 +19,15 @@ class CountryRepository(ABC):
         pass
 
     @abstractmethod
-    def get_topics(self):
+    def get_topics(self, number_top):
+        pass
+
+    @abstractmethod
+    def get_year_info(self, year):
+        pass
+
+    @abstractmethod
+    def get_range_info(self, year):
         pass
 
     @abstractmethod
@@ -33,4 +41,3 @@ class CountryRepository(ABC):
     @abstractmethod
     def get_top_topics_by_year(self, year):
         pass
-

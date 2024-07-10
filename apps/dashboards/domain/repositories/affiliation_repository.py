@@ -3,11 +3,15 @@ from abc import ABC, abstractmethod
 
 class AffiliationRepository(ABC):
     @abstractmethod
+    def get_top_affiliations(self):
+        pass
+
+    @abstractmethod
     def get_affiliation(self, scopus_id):
         pass
 
     @abstractmethod
-    def get_top_affiliations(self, year):
+    def get_top_affiliations_acumulated(self, year):
         pass
 
     @abstractmethod

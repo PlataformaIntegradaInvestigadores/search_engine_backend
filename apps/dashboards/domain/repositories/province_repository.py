@@ -23,5 +23,9 @@ class ProvinceRepository(ABC):
         pass
 
     @abstractmethod
+    def get_provinces_acumulated(self, year):
+        pass
+
+    @abstractmethod
     def get_province_topic_acumulated(self, year):
         pass
