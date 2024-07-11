@@ -113,7 +113,7 @@ class ArticleViewSet(viewsets.ViewSet):
             if custom_type:
                 filtered_articles = self.article_service.find_articles_by_filter_years(custom_type, custom_years,
                                                                                        df)
-                filtered_ids = [article.scopus_id for article in filtered_articles]
+                filtered_ids = [f"{article.scopus_id}" for article in filtered_articles]
                 articles, total_articles = self.article_service.find_articles_by_ids(filtered_ids, page, size)
 
             else:

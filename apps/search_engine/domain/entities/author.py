@@ -77,7 +77,7 @@ class Author(DjangoNode):
             author = cls.nodes.get(scopus_id=scopus_id)
 
             author_profile = author_data.get('author-profile', {})
-            current_affiliation_dict = author_profile.get('current-affiliation', {})
+            current_affiliation_dict = author_profile.get('affiliation-current', {})
             current_affiliation = current_affiliation_dict.get('affiliation', {})
             ip_doc = current_affiliation.get('ip-doc', {})
             parent_preferred_name = ip_doc.get('parent-preferred-name', {})
@@ -85,7 +85,7 @@ class Author(DjangoNode):
             if isinstance(parent_preferred_name, dict):
                 current_aff = parent_preferred_name.get('$', '')
             else:
-                current_aff = ''
+                current_aff = ip_doc.get('afdispname', '')
 
             preferred_name = author_profile.get('preferred-name', {})
 
@@ -97,6 +97,8 @@ class Author(DjangoNode):
             author.updated = True
             author.current_affiliation = current_aff
             author.save()
+
+            print(author.current_affiliation)
 
             subject_areas = author_data.get('subject-areas', {})
             if not isinstance(subject_areas, dict):

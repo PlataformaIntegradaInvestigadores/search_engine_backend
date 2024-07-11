@@ -35,6 +35,9 @@ class RetrieveAuthorSerializer(serializers.Serializer):
     affiliations = serializers.SerializerMethodField()
     articles = serializers.SerializerMethodField()
     topics = serializers.SerializerMethodField()
+    current_affiliation = serializers.CharField()
+    citation_count = serializers.IntegerField()
+    updated = serializers.BooleanField()
 
     def get_name(self, obj):
         return obj.first_name + ' ' + obj.last_name
