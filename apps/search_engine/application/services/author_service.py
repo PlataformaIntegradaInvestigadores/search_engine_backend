@@ -71,13 +71,36 @@ class AuthorService(AuthorRepository):
     def find_authors_by_affiliation_filter(self, filter_type: str, affiliations_ids: List[str],
                                            authors_ids: List[str]) -> List[object]:
         try:
-            # filter_type = '' if filter_type == 'include' else 'not'
-            query = Q(scopus_id__in=authors_ids)
+            print('Filter type: ', filter_type)
+            print('Affiliations IDs: ', affiliations_ids)
+            print('Authors IDs: ', authors_ids)
+            authors_str = [f'"{w}"' for w in authors_ids]
+            affiliations_str = [f'"{w}"' for w in affiliations_ids]
+
+            authors_ids_str = ', '.join(map(str, authors_str))
+            affiliations_ids_str = ', '.join(map(str, affiliations_str))
+
             if filter_type == 'include':
-                authors = Author.nodes.filter(query, affiliations__scopus_id__in=affiliations_ids)
+                query = f"""
+                   MATCH (a:Author)-[:AFFILIATED_WITH]->(aff:Affiliation)
+                   WHERE a.scopus_id IN [{authors_ids_str}] AND aff.scopus_id IN [{affiliations_ids_str}]
+                   RETURN a
+                   """
+                print('Into of include')
             else:
-                authors = Author.nodes.filter(query, ~Q(affiliations__scopus_id__in=affiliations_ids))
-                return authors
+                query = f"""
+                   MATCH (a:Author)-[:AFFILIATED_WITH]->(aff:Affiliation)
+                   WHERE a.scopus_id IN [{authors_ids_str}] AND NOT aff.scopus_id IN [{affiliations_ids_str}]
+                   RETURN a
+                   """
+            print("Current query", query)
+            results, _ = db.cypher_query(query)
+            authors = [Author.inflate(row[0]) for row in results]
+
+            print("Len of authors extracted: ", len(authors))
+
+            return authors
+
         except Exception as e:
             raise Exception(f"Error finding authors by affiliation filter: {e}")
 
