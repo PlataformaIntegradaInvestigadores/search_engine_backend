@@ -28,7 +28,8 @@ class ArticleService(ArticleRepository):
             total_articles = total_results[0][0]
 
             # Retrieve articles found on that list
-            query = f"MATCH (a:Article) WHERE a.scopus_id IN {ids_integer} RETURN a SKIP {skip} LIMIT {page_size}"
+            query = (f"MATCH (a:Article) WHERE a.scopus_id IN {ids_integer} RETURN a ORDER BY a.publication_date DESC "
+                     f"SKIP {skip} LIMIT {page_size}")
             results, meta = db.cypher_query(query)
             articles = [Article.inflate(row[0]) for row in results]
 
