@@ -31,6 +31,7 @@ class CoAuthorsViewSet(viewsets.ViewSet):
                 'nodes': serializer.data,
                 'links': links
             }
+            print(data)
             return Response({'data': data})
         except DoesNotExist as e:
             return Response({'error': 'Author not found.'})
