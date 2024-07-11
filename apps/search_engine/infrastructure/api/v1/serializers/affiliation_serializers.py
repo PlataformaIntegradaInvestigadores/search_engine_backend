@@ -9,4 +9,5 @@ class AffiliationSerializer(serializers.Serializer):
 
 
 class AffiliationNameSerializer(serializers.Serializer):
+    scopus_id = serializers.CharField()
     name = serializers.CharField()

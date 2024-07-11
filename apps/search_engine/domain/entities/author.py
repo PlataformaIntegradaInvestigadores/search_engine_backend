@@ -1,7 +1,8 @@
 import time
 
 from django_neomodel import DjangoNode
-from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty, db
+from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty, \
+    BooleanProperty, db
 
 from apps.search_engine.domain.entities.affiliation import Affiliation
 from apps.search_engine.domain.entities.coauthored import CoAuthored
@@ -14,10 +15,13 @@ class Author(DjangoNode):
     last_name = StringProperty()
     auth_name = StringProperty()
     initials = StringProperty()
+    citation_count = IntegerProperty(default=0)
+    current_affiliation = StringProperty()
     affiliations = RelationshipTo('apps.search_engine.domain.entities.affiliation.Affiliation', 'AFFILIATED_WITH')
     articles = RelationshipTo('apps.search_engine.domain.entities.article.Article', 'WROTE')
     co_authors = Relationship('Author', 'CO_AUTHORED', model=CoAuthored)
     topics = RelationshipTo('apps.search_engine.domain.entities.topic.Topic', 'EXPERT_IN')
+    updated = BooleanProperty(default=False)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -36,10 +40,14 @@ class Author(DjangoNode):
             author = cls.nodes.get(scopus_id=scopus_id)
             return author
         except cls.DoesNotExist:
-            author_data = {
+            current_author_data = {
                 "scopus_id": scopus_id,
+                "first_name": author_data.get("given-name", ""),
+                "last_name": author_data.get("surname", ""),
+                "initials": author_data.get("initials", ""),
+                "auth_name": author_data.get("authname", ""),
             }
-            author = cls(**author_data).save()
+            author = cls(**current_author_data).save()
         return author
 
     @staticmethod
@@ -54,10 +62,12 @@ class Author(DjangoNode):
             return None
 
     @classmethod
+    @db.transaction
     def update_from_json(cls, author_data):
         time_0 = time.time()
         coredata = author_data.get('coredata', {})
         scopus_id = cls.validate_scopus_id(coredata.get('dc:identifier', ''))
+        citation_count = coredata.get('citation-count', 0)
 
         if scopus_id is None:
             raise ValueError("Invalid scopus_id on author update")
@@ -67,6 +77,15 @@ class Author(DjangoNode):
             author = cls.nodes.get(scopus_id=scopus_id)
 
             author_profile = author_data.get('author-profile', {})
+            current_affiliation_dict = author_profile.get('current-affiliation', {})
+            current_affiliation = current_affiliation_dict.get('affiliation', {})
+            ip_doc = current_affiliation.get('ip-doc', {})
+            parent_preferred_name = ip_doc.get('parent-preferred-name', {})
+
+            if isinstance(parent_preferred_name, dict):
+                current_aff = parent_preferred_name.get('$', '')
+            else:
+                current_aff = ''
 
             preferred_name = author_profile.get('preferred-name', {})
 
@@ -74,6 +93,9 @@ class Author(DjangoNode):
             author.last_name = preferred_name.get('surname', '')
             author.auth_name = preferred_name.get('indexed-name', '')
             author.initials = preferred_name.get('initials', '')
+            author.citation_count = citation_count
+            author.updated = True
+            author.current_affiliation = current_aff
             author.save()
 
             subject_areas = author_data.get('subject-areas', {})
@@ -106,48 +128,3 @@ class Author(DjangoNode):
             raise ValueError("Author not found")
         except Exception as e:
             raise ValueError("Error updating author from json: " + str(e))
-
-    # @classmethod
-    # def update_from_json(cls, author_data):
-    #     time_0 = time.time()
-    #     scopus_id = cls.validate_scopus_id(author_data.get('coredata', {}).get('dc:identifier', ''))
-    #     if scopus_id is None:
-    #         raise ValueError("Invalid scopus_id on author update")
-    #
-    #     try:
-    #         print("Updating author: ", scopus_id)
-    #         author = cls.nodes.get(scopus_id=scopus_id)
-    #         preferred_name = author_data.get('author-profile', {}).get('preferred-name', {})
-    #
-    #         author.first_name = preferred_name.get('given-name', '')
-    #         author.last_name = preferred_name.get('surname', '')
-    #         author.auth_name = preferred_name.get('indexed-name', '')
-    #         author.initials = preferred_name.get('initials', '')
-    #         author.save()
-    #
-    #         keywords = author_data.get('subject-areas', {}).get("subject-area", [])
-    #         keyword_instances = [Topic.from_json(keyword.get('$', '')) for keyword in keywords]
-    #         for keyword_instance in keyword_instances:
-    #             if not author.topics.is_connected(keyword_instance):
-    #                 author.topics.connect(keyword_instance)
-    #
-    #         affiliations = author_data.get('author-profile', {}).get('affiliation-history', {}).get('affiliation', [])
-    #         if isinstance(affiliations, dict):
-    #             affiliations = [affiliations]
-    #
-    #         affiliation_instances = [
-    #             instance for affiliation_data in affiliations
-    #             if (instance := Affiliation.retrieve_from_json(affiliation_data)) is not None
-    #         ]
-    #
-    #         for affiliation_instance in affiliation_instances:
-    #             if not author.affiliations.is_connected(affiliation_instance):
-    #                 author.affiliations.connect(affiliation_instance)
-    #
-    #         print("Time spent updating author: ", time.time() - time_0)
-    #
-    #         return author
-    #     except cls.DoesNotExist:
-    #         raise ValueError("Author not found")
-    #     except Exception as e:
-    #         raise ValueError("Error updating author from json: " + str(e))

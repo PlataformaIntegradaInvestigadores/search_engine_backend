@@ -10,6 +10,7 @@ services:
       - NEO4J_PASSWORD=${NEO4J_PASSWORD}
     links:
       - "neo4j:neo4j"
+      - "mongo:mongo"
 
   neo4j:
     container_name: neo4j
@@ -28,3 +29,14 @@ services:
       - ./neo4j_db/logs:/logs
       - ./neo4j_db/import:/var/lib/neo4j/import
       - ./neo4j_db/plugins:/plugins
+
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=centinela
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ./mongo_db/data:/data/db

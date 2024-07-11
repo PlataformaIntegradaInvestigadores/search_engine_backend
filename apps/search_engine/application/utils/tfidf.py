@@ -34,7 +34,7 @@ class Model:
             if model_type == 'author':
                 path = root + 'models/tf-idf/model-v10.0.pkl'
             elif model_type == 'article':
-                path = root + 'models/tf-idf/model-v9.0.pkl'
+                path = root + 'models/tf-idf/model-v10.0.pkl'
             else:
                 path = root + "models/model-v11.0.pkl"
 

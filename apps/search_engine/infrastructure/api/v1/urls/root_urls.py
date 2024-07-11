@@ -1,5 +1,7 @@
 from django.urls import path, include
 
+from apps.search_engine.infrastructure.api.v1.views.summary_views import SummaryView
+
 urlpatterns = [
     path('authors/', include('apps.search_engine.infrastructure.api.v1.urls.author_urls'), name='authors'),
     path('articles/', include('apps.search_engine.infrastructure.api.v1.urls.article_urls'), name='articles'),
@@ -7,4 +9,5 @@ urlpatterns = [
     path('affiliations/', include('apps.search_engine.infrastructure.api.v1.urls.affiliation_urls'),
          name='affiliations'),
     path('coauthors/', include('apps.search_engine.infrastructure.api.v1.urls.coauthor_urls'), name='coauthors'),
+    path('summary/', SummaryView.as_view(), name='summary'),
 ]

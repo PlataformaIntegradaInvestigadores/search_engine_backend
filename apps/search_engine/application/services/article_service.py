@@ -1,25 +1,46 @@
-from typing import List
+from typing import List, Tuple
 
 from neomodel import db, Q
 
+from apps.search_engine.application.utils.tfidf import Model
 from apps.search_engine.domain.entities.article import Article
 from apps.search_engine.domain.repositories.article_repository import ArticleRepository
 
 
 class ArticleService(ArticleRepository):
-    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> List[object]:
+    def articles_count(self) -> int:
+        try:
+            query = "MATCH (a:Article) RETURN count(a) "
+            results, meta = db.cypher_query(query)
+            total_articles = results[0][0]
+            return total_articles
+        except Exception as e:
+            raise ValueError(f"Error finding total articles: {e}")
+
+    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> Tuple[List[object], int]:
         try:
             skip = (page - 1) * page_size
-            query = f"MATCH (a:Article) WHERE a.article_id IN {ids} RETURN a SKIP {skip} LIMIT {page_size}"
+            # Cast to int the list of ids
+            # ids_integer = [int(w) for w in ids]  # Join IDs into a quoted string
+            # Retrieve total articles found on that list
+            ids_integer = [w for w in ids]
+            query_to_find_articles = f"MATCH (a:Article) WHERE a.scopus_id IN {ids_integer} RETURN count(a) AS total"
+            total_results, meta = db.cypher_query(query_to_find_articles)
+            total_articles = total_results[0][0]
+
+            # Retrieve articles found on that list
+            query = f"MATCH (a:Article) WHERE a.scopus_id IN {ids_integer} RETURN a SKIP {skip} LIMIT {page_size}"
             results, meta = db.cypher_query(query)
             articles = [Article.inflate(row[0]) for row in results]
-            return articles
+
+            return articles, total_articles
         except Exception as e:
             raise Exception(f"Error finding articles by ids: {e}")
 
     def find_most_relevant_articles_by_topic(self, topic: str):
         try:
-            pass
+            m = Model("article")
+            return m.get_most_relevant_docs_by_topic_v2(topic, None)
         except Exception as e:
             raise Exception(f"Error finding most relevant articles by topic: {e}")
 
@@ -37,8 +58,14 @@ class ArticleService(ArticleRepository):
 
     def find_years_by_articles(self, ids: List[str]) -> List[object]:
         try:
-            articles = Article.nodes.filter(article_id__in=ids)
-            years = articles.values_list('publication_date', flat=True)
+            # Comment
+            query = f"MATCH (a:Article) WHERE a.scopus_id IN {ids} RETURN a"
+            results, meta = db.cypher_query(query)
+            articles = [Article.inflate(row[0]) for row in results]
+            years = []
+            for article in articles:
+                print(article.publication_date)
+                years.append(article.publication_date)
             return years
         except Exception as e:
             raise Exception(f"Error getting years by articles: {e}")
@@ -89,3 +116,16 @@ class ArticleService(ArticleRepository):
             return article
         except Exception as e:
             raise Exception(f"Error finding article by id: {e}")
+
+    def find_authors_by_article(self, article_id: str) -> List[object]:
+        try:
+            query = (
+                f"MATCH (a:Article {{scopus_id: {article_id} }}) "
+                f"OPTIONAL MATCH (a)-[:WROTE]-(au:Author) "
+                f"RETURN collect(DISTINCT {{scopusId: au.scopus_id, name: au.auth_name}})"
+            )
+            results, meta = db.cypher_query(query)
+            authors = [row[0] for row in results]
+            return authors
+        except Exception as e:
+            raise Exception(f"Error finding authors by article: {e}")
