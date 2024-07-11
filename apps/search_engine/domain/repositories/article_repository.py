@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Tuple
 
 
 class ArticleRepository(ABC):
@@ -28,7 +28,7 @@ class ArticleRepository(ABC):
         pass
 
     @abstractmethod
-    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> List[object]:
+    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> Tuple[List[object], int]:
         pass
 
     @abstractmethod
@@ -43,3 +43,9 @@ class ArticleRepository(ABC):
     def find_years_by_articles(self, ids: List[str]) -> List[object]:
         pass
 
+    @abstractmethod
+    def articles_count(self) -> int:
+        pass
+
+    def find_authors_by_article(self, article_id: str) -> List[object]:
+        pass

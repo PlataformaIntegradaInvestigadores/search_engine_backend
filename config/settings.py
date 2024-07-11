@@ -42,6 +42,7 @@ neo4j_host = os.environ.get('NEO4J_HOST')
 neo4j_port = os.environ.get('NEO4J_PORT')
 
 config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+print(config.DATABASE_URL)
 mongoengine.connect(db="datalake")
 # bolt+s://<username>:<password>@<host>:<port>
 

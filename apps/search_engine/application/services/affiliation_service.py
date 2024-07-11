@@ -10,16 +10,19 @@ from apps.search_engine.domain.repositories.affiliation_repository import Affili
 class AffiliationService(AffiliationRepository):
     def find_affiliations_by_authors(self, authors: List[str]) -> List[object]:
         try:
-            print("Autores:", authors)
             author_nodes = Author.nodes.filter(scopus_id__in=authors)
-
             affiliations = []
             print("Autores encontrados:", len(author_nodes))
             for author_node in author_nodes:
+                print("Scopus del author", author_node.scopus_id)
                 author_affiliations = author_node.affiliations.all()
-                affiliations.extend(author_affiliations)
+                print("Affiliaciones encontradas:", len(author_affiliations))
+                for affiliation in author_affiliations:
+                    print("Affiliacion encontrada:", affiliation.name)
+                    affiliations.append(affiliation)
 
-            print("Affiliaciones extraidas:", len(affiliations))
+            print("Affiliaciones extraidas actualmente:", len(affiliations))
+            print("Funciona porfaaa")
             return affiliations
 
         except DoesNotExist as e:

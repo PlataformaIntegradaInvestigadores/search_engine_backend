@@ -10,6 +10,33 @@ from apps.search_engine.application.utils.tfidf import Model
 
 class AuthorService(AuthorRepository):
 
+    def authors_no_updated(self) -> List[object]:
+        try:
+            query = "MATCH (a:Author) WHERE a.updated = false RETURN a"
+            results, meta = db.cypher_query(query)
+            authors = [Author.inflate(row[0]) for row in results]
+            return authors
+        except Exception as e:
+            raise ValueError(f"Error finding authors no updated: {e}")
+
+    def get_authors_no_updated_count(self) -> int:
+        try:
+            query = "MATCH (a:Author) WHERE a.updated = false RETURN count(a) "
+            results, meta = db.cypher_query(query)
+            authors_no_updated = results[0][0]
+            return authors_no_updated
+        except Exception as e:
+            raise ValueError(f"Error finding authors no updated count: {e}")
+
+    def authors_count(self) -> int:
+        try:
+            query = "MATCH (a:Author) RETURN count(a) "
+            results, meta = db.cypher_query(query)
+            total_authors = results[0][0]
+            return total_authors
+        except Exception as e:
+            raise ValueError(f"Error finding total authors: {e}")
+
     def find_most_relevant_authors_by_topic(self, topic: str, authors_number: int):
         try:
             m = Model("author")
@@ -20,12 +47,11 @@ class AuthorService(AuthorRepository):
 
     def find_community(self, authors_ids: List[str]):
         try:
-            print("Type of authors_ids on service: ", type(authors_ids))
             query = Q(scopus_id__in=authors_ids)
             nodes = Author.nodes.filter(query)
             auth_list_str = ', '.join([f'"{w}"' for w in authors_ids])
             # Consulta para obtener enlaces
-            print("auth_list_str: ", auth_list_str)
+
             query_links = f"""
                   WITH [{auth_list_str}] as authList
                   MATCH (au1:Author)-[r:CO_AUTHORED]-(au2:Author)
@@ -34,10 +60,9 @@ class AuthorService(AuthorRepository):
                       collabStrength: toFloat(r.collab_strength)}}) as links
                   """
             result = db.cypher_query(query_links)
-            print("Result: ", result)
             # Ensure we only unpack two values
             result_links, meta = result
-            links = result_links[0]
+            links = result_links[0][0]
 
             return {"nodes": nodes, "links": links, "size_nodes": len(nodes), "size_links": len(links)}
         except Exception as e:
@@ -57,32 +82,32 @@ class AuthorService(AuthorRepository):
             raise Exception(f"Error finding authors by affiliation filter: {e}")
 
     def find_authors_by_query(self, name: str, page_size=1, page=10) -> (List[object], int):
-        name = unidecode(name).strip().lower()
+        custom_name = unidecode(name).strip().lower()
         skip = (page - 1) * page_size
         query = f"""
                 MATCH (au:Author) 
-                WHERE  toLower(au.first_name) CONTAINS '{name}' or 
-                toLower(au.last_name) CONTAINS '{name}' or 
-                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{name}' or
-                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{name}' or  
-                toLower(au.auth_name) CONTAINS '{name}' or 
-                toLower(au.initials) CONTAINS '{name}' or 
-                toLower(au.email) CONTAINS '{name}'or 
-                au.scopus_id CONTAINS '{name}'
+                WHERE  toLower(au.first_name) CONTAINS '{custom_name}' or 
+                toLower(au.last_name) CONTAINS '{custom_name}' or 
+                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{custom_name}' or
+                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{custom_name}' or  
+                toLower(au.auth_name) CONTAINS '{custom_name}' or 
+                toLower(au.initials) CONTAINS '{custom_name}' or 
+                toLower(au.email) CONTAINS '{custom_name}'or 
+                au.scopus_id CONTAINS '{custom_name}'
                 RETURN count(au) as total
         """
         results, meta = db.cypher_query(query)
         total = results[0][0]
         query = f"""
                 MATCH (au:Author) 
-                WHERE  toLower(au.first_name) CONTAINS '{name}' or 
-                toLower(au.last_name) CONTAINS '{name}' or 
-                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{name}' or
-                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{name}' or  
-                toLower(au.auth_name) CONTAINS '{name}' or 
-                toLower(au.initials) CONTAINS '{name}' or 
-                toLower(au.email) CONTAINS '{name}' or 
-                au.scopus_id CONTAINS '{name}'
+                WHERE  toLower(au.first_name) CONTAINS '{custom_name}' or 
+                toLower(au.last_name) CONTAINS '{custom_name}' or 
+                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{custom_name}' or
+                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{custom_name}' or  
+                toLower(au.auth_name) CONTAINS '{custom_name}' or 
+                toLower(au.initials) CONTAINS '{custom_name}' or 
+                toLower(au.email) CONTAINS '{custom_name}' or 
+                au.scopus_id CONTAINS '{custom_name}'
                 RETURN au SKIP {skip} LIMIT {page_size}
                                                                                                 """
         results, meta = db.cypher_query(query)
