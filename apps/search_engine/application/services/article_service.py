@@ -46,12 +46,27 @@ class ArticleService(ArticleRepository):
 
     def find_articles_by_filter_years(self, filter_type: str, filter_years: List[str], ids: List[str]) -> List[object]:
         try:
-            # filter_type = '' if filter_type == 'include' else 'not'
-            query = Q(article_id__in=ids)
+            ids = [int(w) for w in ids]
+
+            ids_str = ', '.join(map(str, ids))
+
+            filter_years_str = ' OR '.join([f'a.publication_date CONTAINS "{year}"' for year in filter_years])
+
             if filter_type == 'include':
-                articles = Article.nodes.filter(query, publication_date__in=filter_years)
+                query = f"""
+                MATCH (a:Article)
+                WHERE a.scopus_id IN [{ids_str}] AND ({filter_years_str})
+                RETURN a
+                """
             else:
-                articles = Article.nodes.filter(query, ~Q(publication_date__in=filter_years))
+                query = f"""
+                MATCH (a:Article)
+                WHERE a.scopus_id IN [{ids_str}] AND NOT ({filter_years_str})
+                RETURN a
+                """
+
+            results, _ = db.cypher_query(query)
+            articles = [Article.inflate(row[0]) for row in results]
             return articles
         except Exception as e:
             raise Exception(f"Error finding articles by filter years: {e}")
