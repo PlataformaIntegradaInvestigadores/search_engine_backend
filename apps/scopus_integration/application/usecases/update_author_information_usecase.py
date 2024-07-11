@@ -35,7 +35,7 @@ class UpdateAuthorInformationUseCase:
                         retrieval_info = retrieval.result[0]
                         Author.update_from_json(author_data=retrieval_info)
                     except Exception as e:
-                        print(f"Error updating author {author_instance.id}: {e}")
+                        print(f"Error updating author {author_instance.scopus_id}: {e}")
                         continue
 
             return total_authors

@@ -108,8 +108,10 @@ class AuthorService(AuthorRepository):
                 toLower(au.initials) CONTAINS '{custom_name}' or 
                 toLower(au.email) CONTAINS '{custom_name}' or 
                 au.scopus_id CONTAINS '{custom_name}'
-                RETURN au SKIP {skip} LIMIT {page_size}
-                                                                                                """
+                RETURN au
+                ORDER BY au.citation_count DESC
+                SKIP {skip} LIMIT {page_size}
+                """
         results, meta = db.cypher_query(query)
         authors = [Author.inflate(row[0]) for row in results]
         return authors, total
