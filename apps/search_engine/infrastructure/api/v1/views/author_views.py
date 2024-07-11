@@ -133,8 +133,21 @@ class AuthorViews(viewsets.ViewSet):
                 filter_affiliations = custom_affiliations
                 filtered_authors = authors_by_affiliation_filters_usecase.execute(filter_type, filter_affiliations,
                                                                                   author_ids)
-                community = author_community_use_case.execute(filtered_authors)
-                return Response({'affiliations': serializer.data, 'community': community}, status=status.HTTP_200_OK)
+                filtered_ids = [author.scopus_id for author in filtered_authors]
+                community = author_community_use_case.execute(filtered_ids)
+                authors = community.get('nodes')
+                links = community.get('links')
+                size_nodes = community.get('size_nodes')
+                size_links = community.get('size_links')
+                author_serializer = AuthorSerializer(authors, many=True)
+                community_data = {
+                    'affiliations': serializer.data,
+                    'size_nodes': size_nodes,
+                    'size_links': size_links,
+                    'nodes': author_serializer.data,
+                    'links': links
+                }
+                return Response(community_data, status=status.HTTP_200_OK)
             else:
                 community = author_community_use_case.execute(author_ids)
                 authors = community.get('nodes')
@@ -148,7 +161,7 @@ class AuthorViews(viewsets.ViewSet):
                     'size_links': size_links,
                     'nodes': author_serializer.data,
                     'links': links
-               }
+                }
                 return Response(community_data,
                                 status=status.HTTP_200_OK)
 
