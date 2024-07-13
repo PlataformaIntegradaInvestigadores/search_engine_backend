@@ -8,6 +8,7 @@ from apps.dashboards.domain.entities.affiliation_topics_year import AffiliationT
 from apps.dashboards.domain.entities.affiliation_year import AffiliationYear
 from apps.dashboards.domain.entities.affiliation_year_acumulated import AffiliationAcumulated
 from apps.dashboards.domain.entities.author import Author
+from apps.dashboards.domain.entities.author_topics import AuthorTopics
 from apps.dashboards.domain.entities.author_topics_acumulated import AuthorTopicsAcumulated
 from apps.dashboards.domain.entities.author_topics_year import AuthorTopicsYear
 from apps.dashboards.domain.entities.author_year import AuthorYear
@@ -163,8 +164,8 @@ class PopulateService(PopulateRepository):
 
     def populate(self):
         # self.populate_country()
-        self.populate_affiliation()
-        # self.populate_author()
+        # self.populate_affiliation()
+        self.populate_author()
         # self.populate_province()
 
     def get_authors_dict(self):
@@ -172,6 +173,7 @@ class PopulateService(PopulateRepository):
                     MATCH (au:Author)-[w:WROTE]->(ar:Article)
                     OPTIONAL MATCH (ar)-[u:USES]->(t:Topic)
                     RETURN au.scopus_id, ar.scopus_id, ar.publication_date, t.name
+                    Limit 1000
                     """
         results, meta = db.cypher_query(query)
 
@@ -256,6 +258,7 @@ class PopulateService(PopulateRepository):
                 author_acumulated.save()
 
             # Mapear AuthorTopicsYear y AuthorTopicsAcumulated
+            topic_totals = {}
             for topic_data in author_data["topics"]:
                 topic_name = topic_data["topic_name"]
                 counted_topics = set()
@@ -271,6 +274,12 @@ class PopulateService(PopulateRepository):
                         total_articles=year_data["num_articles"]
                     )
                     author_topics_year.save()
+
+                    # Acumular el total de artículos por tópico
+                    if topic_name in topic_totals:
+                        topic_totals[topic_name] += year_data["num_articles"]
+                    else:
+                        topic_totals[topic_name] = year_data["num_articles"]
 
                     # AuthorTopicsAcumulated
                     if topic_name not in counted_topics:
@@ -299,6 +308,93 @@ class PopulateService(PopulateRepository):
                             total_articles=new_total
                         )
                         author_topics_acumulated.save()
+
+            # Mapear AuthorTopics
+            for topic_name, total_articles in topic_totals.items():
+                author_topic = AuthorTopics(
+                    scopus_id=scopus_id,
+                    topic_name=topic_name,
+                    total_articles=total_articles
+                )
+                author_topic.save()
+    # @transaction.atomic
+    # def populate_author(self):
+    #     authors_list = self.get_authors_dict()
+    #     for author_data in authors_list:
+    #         scopus_id = author_data["scopus_id"]
+    #         total_articles = author_data["total_articles"]
+    #
+    #         # Mapear Author
+    #         author = Author(
+    #             scopus_id=scopus_id,
+    #             total_articles=total_articles
+    #         )
+    #         author.save()
+    #
+    #         # Mapear AuthorYear
+    #         for year_data in author_data["years"]:
+    #             author_year = AuthorYear(
+    #                 scopus_id=scopus_id,
+    #                 year=year_data["year"],
+    #                 total_articles=year_data["num_articles"]
+    #             )
+    #             author_year.save()
+    #
+    #         # Mapear AuthorAcumulated
+    #         acumulated_articles = 0
+    #         for year_data in sorted(author_data["years"], key=lambda x: x["year"]):
+    #             acumulated_articles += year_data["num_articles"]
+    #             author_acumulated = AuthorAcumulated(
+    #                 scopus_id=scopus_id,
+    #                 year=year_data["year"],
+    #                 total_articles=acumulated_articles
+    #             )
+    #             author_acumulated.save()
+    #
+    #         # Mapear AuthorTopicsYear y AuthorTopicsAcumulated
+    #         for topic_data in author_data["topics"]:
+    #             topic_name = topic_data["topic_name"]
+    #             counted_topics = set()
+    #
+    #             for year_data in topic_data["num_articles_per_year"]:
+    #                 year = year_data["year"]
+    #
+    #                 # AuthorTopicsYear
+    #                 author_topics_year = AuthorTopicsYear(
+    #                     scopus_id=scopus_id,
+    #                     topic_name=topic_name,
+    #                     year=year,
+    #                     total_articles=year_data["num_articles"]
+    #                 )
+    #                 author_topics_year.save()
+    #
+    #                 # AuthorTopicsAcumulated
+    #                 if topic_name not in counted_topics:
+    #                     counted_topics.add(topic_name)
+    #                     author_topics_acumulated = AuthorTopicsAcumulated(
+    #                         scopus_id=scopus_id,
+    #                         topic_name=topic_name,
+    #                         year=year,
+    #                         total_articles=year_data["num_articles"]
+    #                     )
+    #                     author_topics_acumulated.save()
+    #                 else:
+    #                     previous_acumulated = AuthorTopicsAcumulated.objects.filter(scopus_id=scopus_id,
+    #                                                                                 topic_name=topic_name,
+    #                                                                                 year__lt=year).order_by(
+    #                         '-year').first()
+    #                     if previous_acumulated:
+    #                         new_total = previous_acumulated.total_articles
+    #                     else:
+    #                         new_total = 0
+    #
+    #                     author_topics_acumulated = AuthorTopicsAcumulated(
+    #                         scopus_id=scopus_id,
+    #                         topic_name=topic_name,
+    #                         year=year,
+    #                         total_articles=new_total
+    #                     )
+    #                     author_topics_acumulated.save()
 
     def get_country_articles_topics_dict(self):
         query = """

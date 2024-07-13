@@ -8,13 +8,16 @@ from apps.dashboards.application.use_cases.get_affiliations_acumulated_use_case 
 from apps.dashboards.application.use_cases.get_affiliations_use_case import AffiliationsUseCase
 from apps.dashboards.application.use_cases.get_affiliations_year_acumulated import AffiliationsYearUseCase
 from apps.dashboards.domain.entities.affiliation import Affiliation
+from apps.dashboards.domain.entities.affiliation_topics import AffiliationTopics
 from apps.dashboards.domain.entities.affiliation_topics_acumulated import AffiliationTopicsAcumulated
 from apps.dashboards.domain.entities.affiliation_year import AffiliationYear
 from apps.dashboards.infrastructure.api.v1.serializers.affiliation_acumulated_serializer import \
     AffiliationAcumulatedSerializer
 from apps.dashboards.infrastructure.api.v1.serializers.affiliation_serializer import AffiliationSerializer
+from apps.dashboards.infrastructure.api.v1.serializers.affiliation_topic_serializer import AffiliationTopicSerializer
 from apps.dashboards.infrastructure.api.v1.serializers.affiliation_topics_acumulated_serializer import \
     AffiliationTopicAcumulatedSerializer
+from apps.dashboards.infrastructure.api.v1.serializers.affiliation_topics_serializer import AffiliationTopicsSerializer
 from apps.dashboards.infrastructure.api.v1.serializers.affiliation_year_serializer import AffiliationYearSerializer
 
 
@@ -94,10 +97,10 @@ class AffiliationViewSet(viewsets.ModelViewSet):
     def get_affiliation_topics(self, request):
         scopus_id = (request.query_params.get('scopus_id'))
         # year = (request.query_params.get('year'))
-        affiliation_topics = AffiliationTopicsAcumulated.objects(scopus_id=scopus_id).filter(topic_name__ne=" ", year=2022).order_by('-total_articles')[:30]
-        serializer = AffiliationTopicAcumulatedSerializer(affiliation_topics, many=True)
+        affiliation_topics = AffiliationTopics.objects(scopus_id=scopus_id).filter(topic_name__ne=" ").order_by(
+            '-total_articles')[:20]
+        serializer = AffiliationTopicsSerializer(affiliation_topics, many=True)
         data = serializer.data
-        print(data)
         response_data = [
             {
                 "text": topic['topic_name'],
@@ -108,3 +111,16 @@ class AffiliationViewSet(viewsets.ModelViewSet):
 
         return Response(response_data)
 
+    @action(detail=False, methods=['get'])
+    def get_years(self, request):
+        years_use_case = LastYearsUseCase(country_service=self.country_service)
+        last_years = years_use_case.execute()
+        serializer = CountryYearSerializer(last_years, many=True)
+        data = serializer.data
+        response_data = [
+            {
+                'year': cy['year'],
+            }
+            for cy in data
+        ]
+        return Response(response_data)
