@@ -163,17 +163,16 @@ class PopulateService(PopulateRepository):
                         province_topics_acumulated.save()
 
     def populate(self):
-        # self.populate_country()
-        # self.populate_affiliation()
+        #self.populate_country()
+        #self.populate_affiliation()
         self.populate_author()
-        # self.populate_province()
+        #self.populate_province()
 
     def get_authors_dict(self):
         query = """
                     MATCH (au:Author)-[w:WROTE]->(ar:Article)
                     OPTIONAL MATCH (ar)-[u:USES]->(t:Topic)
                     RETURN au.scopus_id, ar.scopus_id, ar.publication_date, t.name
-                    Limit 1000
                     """
         results, meta = db.cypher_query(query)
 
@@ -642,23 +641,31 @@ class PopulateService(PopulateRepository):
 
             # Mapear AffiliationYear
             for year_data in affiliation_data["years"]:
+                total_topics_year = len({t["topic_name"] for t in affiliation_data["topics"] if
+                                         any(y["year"] == year_data["year"] for y in t["num_articles_per_year"])})
                 affiliation_year = AffiliationYear(
                     scopus_id=scopus_id,
                     name=name,
                     year=year_data["year"],
-                    total_articles=year_data["num_articles"]
+                    total_articles=year_data["num_articles"],
+                    total_topics=total_topics_year
                 )
                 affiliation_year.save()
 
             # Mapear AffiliationAcumulated
             acumulated_articles = 0
+            acumulated_topics = set()
             for year_data in sorted(affiliation_data["years"], key=lambda x: x["year"]):
                 acumulated_articles += year_data["num_articles"]
+                topics_this_year = {t["topic_name"] for t in affiliation_data["topics"] if
+                                    any(y["year"] == year_data["year"] for y in t["num_articles_per_year"])}
+                acumulated_topics.update(topics_this_year)
                 affiliation_acumulated = AffiliationAcumulated(
                     scopus_id=scopus_id,
                     name=name,
                     year=year_data["year"],
-                    total_articles=acumulated_articles
+                    total_articles=acumulated_articles,
+                    total_topics=len(acumulated_topics)
                 )
                 affiliation_acumulated.save()
 

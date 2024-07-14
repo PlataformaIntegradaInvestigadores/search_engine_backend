@@ -30,3 +30,6 @@ class AffiliationService(AffiliationRepository):
 
     def get_top_affiliations(self):
         return Affiliation.objects.order_by('-total_articles')[:50]
+
+    def get_last_years(self, scopus_id):
+        return AffiliationAcumulated.objects(scopus_id=scopus_id).filter(year__gt=1999).order_by('year')
