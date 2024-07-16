@@ -26,10 +26,12 @@ class CountryService(CountryRepository):
         return CountryTopicsAcumulated.objects(topic=topic, year=year)
 
     def get_topics(self, number_top):
-        return CountryTopics.objects().filter(topic_name__ne=" ").order_by('-total_articles')[:int(number_top)]
+        return CountryTopics.objects().filter(topic_name__ne=" ").filter(topic_name__ne='').order_by('-total_articles')[
+               :int(number_top)]
 
     def get_top_topics(self, year):
-        top_topics = CountryTopicsAcumulated.objects(year=year).filter(topic_name__ne=" ").order_by('-total_articles')[
+        top_topics = CountryTopicsAcumulated.objects(year=year).filter(topic_name__ne=" ").filter(
+            topic_name__ne='').order_by('-total_articles')[
                      :10]
         return top_topics
 
@@ -38,5 +40,6 @@ class CountryService(CountryRepository):
         return country_years
 
     def get_top_topics_by_year(self, year):
-        topics_year = CountryTopicsYear.objects(year=year).filter(topic_name__ne=" ").order_by('-total_articles')[:30]
+        topics_year = CountryTopicsYear.objects(year=year).filter(topic_name__ne=" ").filter(
+            topic_name__ne='').order_by('-total_articles')[:30]
         return topics_year

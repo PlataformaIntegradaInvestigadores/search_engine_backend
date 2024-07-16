@@ -215,6 +215,5 @@ class AffiliationViewSet(viewsets.ModelViewSet):
         year = (request.query_params.get('year'))
         year_s = AffiliationYear.objects(scopus_id=scopus_id).filter(year__gt=1999, year__lte=year).order_by('year')
         serializer = AffiliationYearSerializer(year_s, many=True)
-        print(serializer.data)
         topics = serializer.data
         return Response(topics)
