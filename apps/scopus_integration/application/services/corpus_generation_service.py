@@ -52,18 +52,30 @@ class CorpusService(CorpusRepository):
             authors_data = self.get_corpus_by_author()
             articles_data = self.get_corpus_by_article()
 
+            # Helper function to handle None values
+            def safe_str(value):
+                return value if value is not None else ""
+
             # Combine authors+articles data
             combined_data = []
             for item in articles_data:
-                article = {'doc_id': item['scopus_id'],
-                           'doc': (item['title'] + ' ' + item['abstract'] + ' '.join(item['topics'])).strip()}
+                article = {
+                    'doc_id': safe_str(item['scopus_id']),
+                    'doc': (safe_str(item['title']) + ' ' + safe_str(item['abstract']) + ' ' + ' '.join(
+                        safe_str(topic) for topic in item['topics'])).strip()
+                }
                 combined_data.append(article)
+
             for item in authors_data:
-                author = {'doc_id': item['scopus_id'],
-                          'doc': (' '.join([' '.join(article) for article in item['articles']]) + " " + ' '.join(
-                              item['topics'])).rstrip()}
+                articles = [' '.join(safe_str(article_part) for article_part in article) for article in
+                            item['articles']]
+                author = {
+                    'doc_id': safe_str(item['scopus_id']),
+                    'doc': (' '.join(articles) + ' ' + ' '.join(safe_str(topic) for topic in item['topics'])).strip()
+                }
                 combined_data.append(author)
 
             return combined_data
         except Exception as e:
             raise Exception("Error while generating corpus ", str(e))
+

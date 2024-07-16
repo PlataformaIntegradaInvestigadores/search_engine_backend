@@ -8,6 +8,15 @@ from apps.search_engine.domain.repositories.article_repository import ArticleRep
 
 
 class ArticleService(ArticleRepository):
+    def find_articles_by_author(self, author_id: str) -> List[object]:
+        try:
+            query = "MATCH (a:Article)-[:WROTE]-(au:Author) WHERE au.scopus_id = $author_id RETURN a"
+            results, meta = db.cypher_query(query, {"author_id": author_id})
+            articles = [Article.inflate(row[0]) for row in results]
+            return articles
+        except Exception as e:
+            raise Exception(f"Error finding articles by author: {e}")
+
     def articles_count(self) -> int:
         try:
             query = "MATCH (a:Article) RETURN count(a) "
@@ -21,8 +30,9 @@ class ArticleService(ArticleRepository):
         try:
             skip = (page - 1) * page_size
             # Cast to int the list of ids
-            ids_integer = [int(w) for w in ids]  # Join IDs into a quoted string
+            # ids_integer = [int(w) for w in ids]  # Join IDs into a quoted string
             # Retrieve total articles found on that list
+            ids_integer = [w for w in ids]
             query_to_find_articles = f"MATCH (a:Article) WHERE a.scopus_id IN {ids_integer} RETURN count(a) AS total"
             total_results, meta = db.cypher_query(query_to_find_articles)
             total_articles = total_results[0][0]
@@ -46,10 +56,11 @@ class ArticleService(ArticleRepository):
 
     def find_articles_by_filter_years(self, filter_type: str, filter_years: List[str], ids: List[str]) -> List[object]:
         try:
-            ids = [int(w) for w in ids]
+            # Cambiar este cmportamiento dependiendo de la bd
 
+            ids = [f'"{str(w)}"' for w in ids]
             ids_str = ', '.join(map(str, ids))
-
+            print(ids_str)
             filter_years_str = ' OR '.join([f'a.publication_date CONTAINS "{year}"' for year in filter_years])
 
             if filter_type == 'include':
@@ -64,7 +75,7 @@ class ArticleService(ArticleRepository):
                 WHERE a.scopus_id IN [{ids_str}] AND NOT ({filter_years_str})
                 RETURN a
                 """
-
+            print(query)
             results, _ = db.cypher_query(query)
             articles = [Article.inflate(row[0]) for row in results]
             return articles
@@ -73,7 +84,10 @@ class ArticleService(ArticleRepository):
 
     def find_years_by_articles(self, ids: List[str]) -> List[object]:
         try:
-            articles = Article.nodes.filter(scopus_id__in=ids)
+            # Comment
+            query = f"MATCH (a:Article) WHERE a.scopus_id IN {ids} RETURN a"
+            results, meta = db.cypher_query(query)
+            articles = [Article.inflate(row[0]) for row in results]
             years = []
             for article in articles:
                 years.append(article.publication_date)

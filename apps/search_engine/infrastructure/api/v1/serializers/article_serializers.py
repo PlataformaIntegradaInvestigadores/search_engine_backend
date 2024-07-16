@@ -12,7 +12,7 @@ class ArticleSerializer(serializers.Serializer):
     corpus = serializers.CharField()
     affiliations = serializers.SerializerMethodField()
     topics = serializers.SerializerMethodField()
-    scopus_id = serializers.IntegerField()
+    scopus_id = serializers.CharField()
 
     def get_affiliation_count(self, obj):
         return len(obj.affiliations.all())
@@ -22,6 +22,12 @@ class ArticleSerializer(serializers.Serializer):
 
     def get_topics(self, obj):
         return [topic.name for topic in obj.topics.all()]
+
+
+class ArticlesByAuthorSerializer(serializers.Serializer):
+    title = serializers.CharField()
+    publication_date = serializers.CharField()
+    scopus_id = serializers.CharField()
 
 
 class MostRelevantArticlesRequestSerializer(serializers.Serializer):

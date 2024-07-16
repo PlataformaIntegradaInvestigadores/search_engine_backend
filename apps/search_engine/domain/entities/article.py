@@ -89,7 +89,7 @@ class Article(DjangoNode):
                         print(f"Updated relationship strength: {coauth_relationship.collab_strength}")
                     else:
                         coauth_relationship = author_instance.co_authors.connect(co_author_instance,
-                                                                                 {'collab_strength': 1,
+                                                                                 {'collab_strength': 1.0,
                                                                                   'shared_pubs': 1})
                         coauth_relationship.save()
                         print(f"Created relationship strength: {coauth_relationship.collab_strength}")

@@ -20,6 +20,7 @@ class CoAuthoredService(CoAuthoredRepository):
             for co_author in author.co_authors:
                 rel = author.co_authors.relationship(co_author)
                 collab_strength = rel.collab_strength
+
                 link = {
                     'source': int(author.scopus_id),
                     'target': int(co_author.scopus_id),
