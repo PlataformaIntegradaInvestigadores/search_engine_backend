@@ -41,6 +41,8 @@ neo4j_password = os.environ.get('NEO4J_PASSWORD')
 neo4j_host = os.environ.get('NEO4J_HOST')
 neo4j_port = os.environ.get('NEO4J_PORT')
 
+config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+print(config.DATABASE_URL)
 if DEBUG:
     config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
 else:
@@ -55,7 +57,8 @@ mongo_port = os.environ.get("MONGO_DB_PORT")
 
 mongo_uri = f'mongodb://{mongo_db_username}:{mongo_db_password}@{mongo_host}:{mongo_port}/{mongo_db_name}?authSource=admin'
 mongoengine.connect(host=mongo_uri)
-
+# print(mongo_uri)
+# mongoengine.connect(host=mongo_uri)
 # bolt+s://<username>:<password>@<host>:<port>
 # Application definition
 INSTALLED_APPS = [
