@@ -6,3 +6,5 @@ class AffiliationAcumulated(Document):
     name = fields.StringField()
     year = fields.IntField()
     total_articles = fields.IntField()
+    total_topics = fields.IntField()
+
