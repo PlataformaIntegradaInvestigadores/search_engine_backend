@@ -13,8 +13,11 @@ import threading
 class UpdateInformationViewSet(viewsets.ViewSet):
     client = ScopusClient()
     author_repository = AuthorService()
-    model_corpus_observer = ModelCorpusObserverService()
     lock = threading.Lock()
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.model_corpus_observer = ModelCorpusObserverService()
 
     @action(detail=False, methods=['post'], url_path='author-information', url_name='update-author-information')
     def update_author_information(self, request, *args, **kwargs):
@@ -25,7 +28,7 @@ class UpdateInformationViewSet(viewsets.ViewSet):
             update_author_information_usecase = UpdateAuthorInformationUseCase(author_repository=self.author_repository,
                                                                                client=self.client)
             total = update_author_information_usecase.execute()
-            return Response({'success': True, 'message': total + " Authors was update successfully"},
+            return Response({'success': True, 'message': f"{total} Authors were updated successfully"},
                             status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'success': False, 'message': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
