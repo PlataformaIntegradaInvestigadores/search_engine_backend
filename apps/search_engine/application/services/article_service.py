@@ -8,6 +8,15 @@ from apps.search_engine.domain.repositories.article_repository import ArticleRep
 
 
 class ArticleService(ArticleRepository):
+    def find_articles_by_author(self, author_id: str) -> List[object]:
+        try:
+            query = "MATCH (a:Article)-[:WROTE]-(au:Author) WHERE au.scopus_id = $author_id RETURN a"
+            results, meta = db.cypher_query(query, {"author_id": author_id})
+            articles = [Article.inflate(row[0]) for row in results]
+            return articles
+        except Exception as e:
+            raise Exception(f"Error finding articles by author: {e}")
+
     def articles_count(self) -> int:
         try:
             query = "MATCH (a:Article) RETURN count(a) "

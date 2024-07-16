@@ -22,7 +22,7 @@ class AuthorViews(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def get_topics(self, request):
         scopus_id = (request.query_params.get('scopus_id'))
-        author_topics = AuthorTopics.objects(scopus_id=scopus_id).filter(topic_name__ne=" ").order_by('-total_articles')
+        author_topics = AuthorTopics.objects(scopus_id=scopus_id).filter(topic_name__ne=" ").filter(topic_name__ne='').order_by('-total_articles')
         response_data = [
             {
                 "text": topic['topic_name'],

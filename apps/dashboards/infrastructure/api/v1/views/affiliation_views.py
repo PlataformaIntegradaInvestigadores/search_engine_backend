@@ -29,6 +29,17 @@ class AffiliationViewSet(viewsets.ModelViewSet):
     affiliation_service = AffiliationService()
 
     @action(detail=False, methods=['get'])
+    def get_by_name(self, request):
+        name = (request.query_params.get('name'))
+        aff = Affiliation.objects.get(name=name)
+        serializer = AffiliationSerializer(aff)
+        data = serializer.data
+        response_data = {
+                "scopus_id": data['scopus_id'],
+            }
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
     def get_top_affiliations(self, request):
         year = (request.query_params.get('year'))
         affiliations_use_case = AffiliationsAcumulatedUseCase(affiliations_service=self.affiliation_service)
@@ -99,7 +110,8 @@ class AffiliationViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def get_affiliation_topics(self, request):
         scopus_id = (request.query_params.get('scopus_id'))
-        affiliation_topics = AffiliationTopics.objects(scopus_id=scopus_id).filter(topic_name__ne=" ").order_by(
+        affiliation_topics = AffiliationTopics.objects(scopus_id=scopus_id).filter(topic_name__ne=" ").filter(
+            topic_name__ne='').order_by(
             '-total_articles')[:20]
         serializer = AffiliationTopicsSerializer(affiliation_topics, many=True)
         data = serializer.data
@@ -133,7 +145,8 @@ class AffiliationViewSet(viewsets.ModelViewSet):
         scopus_id = (request.query_params.get('scopus_id'))
         num_articles_s = Affiliation.objects.get(scopus_id=scopus_id)
         num_articles = AffiliationSerializer(num_articles_s)
-        num_topics_s = AffiliationTopics.objects(scopus_id=scopus_id).filter(topic_name__ne=" ").count()
+        num_topics_s = AffiliationTopics.objects(scopus_id=scopus_id).filter(topic_name__ne=" ").filter(
+            topic_name__ne='').count()
         response_data = {
             'articles': num_articles.data['total_articles'],
             'topics': num_topics_s
@@ -146,7 +159,9 @@ class AffiliationViewSet(viewsets.ModelViewSet):
         year = (request.query_params.get('year'))
         num_articles_s = AffiliationYear.objects.get(scopus_id=scopus_id, year=year)
         num_articles = AffiliationYearSerializer(num_articles_s)
-        num_topics_s = AffiliationTopicsYear.objects(scopus_id=scopus_id, year=year).filter(topic_name__ne=" ").count()
+
+        num_topics_s = AffiliationTopicsYear.objects(scopus_id=scopus_id, year=year).filter(topic_name__ne=" ").filter(
+            topic_name__ne='').count()
         response_data = {
             'articles': num_articles.data['total_articles'],
             'topics': num_topics_s
@@ -170,7 +185,7 @@ class AffiliationViewSet(viewsets.ModelViewSet):
         scopus_id = (request.query_params.get('scopus_id'))
         year = (request.query_params.get('year'))
         topics_s = AffiliationTopicsAcumulated.objects(scopus_id=scopus_id, year=year).filter(
-            topic_name__ne=" ").order_by(
+            topic_name__ne=" ").filter(topic_name__ne='').order_by(
             "-total_articles")[:30]
         serializer = AffiliationTopicAcumulatedSerializer(topics_s, many=True)
         topics = serializer.data
@@ -187,7 +202,8 @@ class AffiliationViewSet(viewsets.ModelViewSet):
     def get_topics_year(self, request):
         scopus_id = (request.query_params.get('scopus_id'))
         year = (request.query_params.get('year'))
-        topics_s = AffiliationTopicsYear.objects(scopus_id=scopus_id, year=year).filter(topic_name__ne=" ").order_by(
+        topics_s = AffiliationTopicsYear.objects(scopus_id=scopus_id, year=year).filter(topic_name__ne=" ").filter(
+            topic_name__ne='').order_by(
             "-total_articles")[:30]
         serializer = AffiliationTopicYearSerializer(topics_s, many=True)
         topics = serializer.data

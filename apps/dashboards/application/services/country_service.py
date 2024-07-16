@@ -30,7 +30,7 @@ class CountryService(CountryRepository):
                :int(number_top)]
 
     def get_top_topics(self, year):
-        top_topics = CountryTopicsAcumulated.objects(year=year).filter(topic_name__ne=" ").filter(
+        top_topics = CountryTopicsAcumulated.objects(year=year).filter(topic_name__ne=" ").filter(topic_name__ne='').filter(
             topic_name__ne='').order_by('-total_articles')[
                      :10]
         return top_topics
