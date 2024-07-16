@@ -1,16 +1,15 @@
 import time
 
 from django_neomodel import DjangoNode
-from neomodel import StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty, db
+from neomodel import StringProperty, RelationshipTo, IntegerProperty, UniqueIdProperty, db
 
-from apps.scopus_integration.application.usecases.author_retrieval_usecase import AuthorRetrieval
 from apps.search_engine.domain.entities.author import Author
 from apps.search_engine.domain.entities.affiliation import Affiliation
 from apps.search_engine.domain.entities.topic import Topic
 
 
 class Article(DjangoNode):
-    scopus_id = IntegerProperty(unique_index=True)
+    scopus_id = UniqueIdProperty()
     title = StringProperty()
     abstract = StringProperty()
     doi = StringProperty()
@@ -80,24 +79,34 @@ class Article(DjangoNode):
 
                     if author_instance.co_authors.is_connected(co_author_instance):
                         coauth_relationship = author_instance.co_authors.relationship(co_author_instance)
-                        coauth_relationship.collab_strength += 1
+                        coauth_relationship.collab_strength = cls.calculate_collab_strength(
+                            coauth_relationship.shared_pubs + 1,
+                            len(author_instance.articles.all()),
+                            len(co_author_instance.articles.all())
+                        )
+                        coauth_relationship.shared_pubs += 1
                         coauth_relationship.save()
                         print(f"Updated relationship strength: {coauth_relationship.collab_strength}")
                     else:
                         coauth_relationship = author_instance.co_authors.connect(co_author_instance,
-                                                                                 {'collab_strength': 1})
+                                                                                 {'collab_strength': 1.0,
+                                                                                  'shared_pubs': 1})
                         coauth_relationship.save()
                         print(f"Created relationship strength: {coauth_relationship.collab_strength}")
 
         return article
 
     @staticmethod
-    def validate_scopus_id(scopus_id) -> int or None:
+    def validate_scopus_id(scopus_id) -> str or None:
         if scopus_id:
             try:
-                scopus_id = int(scopus_id.split(":")[1])
+                scopus_id = scopus_id.split(":")[1]
                 return scopus_id
             except ValueError:
                 return None
         else:
             return None
+
+    @staticmethod
+    def calculate_collab_strength(shared_pubs, total_pubs_a, total_pubs_b):
+        return shared_pubs / (total_pubs_a * total_pubs_b) ** 0.5

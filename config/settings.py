@@ -28,7 +28,7 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-$d(7)8kcd!j7qk+ifn(0h(#0z!$3$_inr#34x@0+*5_s^-^4-('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -43,10 +43,25 @@ neo4j_port = os.environ.get('NEO4J_PORT')
 
 config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
 print(config.DATABASE_URL)
-mongoengine.connect(host="mongodb://centinela:password@mongo:27017/datalake?authSource=admin")
-# mongoengine.connect(db='dtl')
-# bolt+s://<username>:<password>@<host>:<port>
+if DEBUG:
+    config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+else:
+    config.DATABASE_URL = f'bolt+s://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
 
+mongo_db_name = os.environ.get('MONGO_DB_NAME')
+mongo_db_username = os.environ.get('MONGO_DB_USERNAME')
+mongo_db_password = os.environ.get('MONGO_DB_PASSWORD')
+mongo_host = os.environ.get("MONGO_DB_HOST")
+mongo_port = os.environ.get("MONGO_DB_PORT")
+
+# mongo_uri = f'mongodb://{mongo_db_username}:{mongo_db_password}@{mongo_host}:{mongo_port}/{mongo_db_name}?authSource=admin'
+# print(mongo_uri)
+# mongoengine.connect(host=mongo_uri)
+mongoengine.connect(
+    db='datalake'
+)
+
+# bolt+s://<username>:<password>@<host>:<port>
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
