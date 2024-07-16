@@ -1,3 +1,4 @@
+from mongoengine import Q
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -13,6 +14,18 @@ from apps.dashboards.application.use_cases.last_years_use_case import LastYearsU
 from apps.dashboards.application.use_cases.top_topics_by_year import TopTopicsByYearUseCase
 from apps.dashboards.application.use_cases.top_topics_use_case import TopTopicsUseCase
 from apps.dashboards.application.use_cases.year_info_use_case import YearInfoUseCase
+from apps.dashboards.domain.entities.affiliation_topics import AffiliationTopics
+from apps.dashboards.domain.entities.affiliation_topics_acumulated import AffiliationTopicsAcumulated
+from apps.dashboards.domain.entities.affiliation_topics_year import AffiliationTopicsYear
+from apps.dashboards.domain.entities.country_topics import CountryTopics
+from apps.dashboards.domain.entities.country_topics_acumulated import CountryTopicsAcumulated
+from apps.dashboards.domain.entities.country_topics_year import CountryTopicsYear
+from apps.dashboards.domain.entities.country_year import CountryYear
+from apps.dashboards.infrastructure.api.v1.serializers.affiliation_topic_serializer import \
+    AffiliationTopicYearSerializer
+from apps.dashboards.infrastructure.api.v1.serializers.affiliation_topics_acumulated_serializer import \
+    AffiliationTopicAcumulatedSerializer
+from apps.dashboards.infrastructure.api.v1.serializers.affiliation_topics_serializer import AffiliationTopicsSerializer
 from apps.dashboards.infrastructure.api.v1.serializers.country_acumulated_serializer import CountryAcumulatedSerializer
 from apps.dashboards.infrastructure.api.v1.serializers.country_topics_serializer import CountryTopicsSerializer
 from apps.dashboards.infrastructure.api.v1.serializers.country_topics_year_serializer import CountryTopicsYearSerializer
@@ -85,7 +98,7 @@ class CountryViews(viewsets.ModelViewSet):
             "affiliation": data['total_affiliations'],
             "topic": data['total_topics']
         }
-        
+
         return Response(response_data)
 
     @action(detail=False, methods=['get'])
@@ -188,4 +201,148 @@ class CountryViews(viewsets.ModelViewSet):
             }
             for cy in data
         ]
+        return Response(response_data)
+
+    ##########Topics dashboard functions#############
+
+    @action(detail=False, methods=['get'])
+    def search(self, request):
+        query = request.GET.get('query', '')
+        topics = CountryTopics.objects.filter(Q(topic_name__icontains=query)).order_by('-total_articles')[:20]
+        result = [
+            {
+                'name': topic.topic_name,
+                'total_articles': topic.total_articles
+            } for topic in topics
+        ]
+        return Response(result)
+
+    @action(detail=False, methods=['get'])
+    def get_topics_years(self, request):
+        name = (request.query_params.get('topic'))
+        topic_info = CountryTopicsYear.objects(topic_name=name).filter(year__gt=1999).order_by('year')
+        serializer = CountryTopicsYearSerializer(topic_info, many=True)
+        data = serializer.data
+        response_data = [
+            {
+                'year': topic['year'],
+            }
+            for topic in data
+        ]
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
+    def get_topics_affiliations(self, request):
+        name = (request.query_params.get('topic'))
+        topic_info = AffiliationTopics.objects(topic_name=name).order_by("-total_articles")[:30]
+        serializer = AffiliationTopicsSerializer(topic_info, many=True)
+        data = serializer.data
+        response_data = [
+            {
+                "text": affiliation['name'],
+                "size": affiliation['total_articles']
+            }
+            for affiliation in data
+        ]
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
+    def get_topics_affiliations_year(self, request):
+        name = (request.query_params.get('topic'))
+        year = (request.query_params.get('year'))
+        topic_info = AffiliationTopicsYear.objects(topic_name=name).filter(year=year).order_by("-total_articles")[:30]
+        serializer = AffiliationTopicYearSerializer(topic_info, many=True)
+        data = serializer.data
+        response_data = [
+            {
+                "text": affiliation['name'],
+                "size": affiliation['total_articles']
+            }
+            for affiliation in data
+        ]
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
+    def get_topics_affiliations_acumulated(self, request):
+        name = (request.query_params.get('topic'))
+        year = (request.query_params.get('year'))
+        topic_info = AffiliationTopicsAcumulated.objects(topic_name=name).filter(year=year).order_by("-total_articles")[:30]
+        serializer = AffiliationTopicAcumulatedSerializer(topic_info, many=True)
+        data = serializer.data
+        response_data = [
+            {
+                "text": affiliation['name'],
+                "size": affiliation['total_articles']
+            }
+            for affiliation in data
+        ]
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
+    def get_topics_year_info(self, request):
+        topic = (request.query_params.get('topic'))
+        years = CountryTopicsYear.objects(topic_name=topic).filter(year__gt=1999).order_by('year')
+        serializer = CountryTopicsYearSerializer(years, many=True)
+        data = serializer.data
+        return Response(data)
+
+    @action(detail=False, methods=['get'])
+    def get_topics_year(self, request):
+        topic = (request.query_params.get('topic'))
+        year = (request.query_params.get('year'))
+        years = CountryTopicsYear.objects.get(topic_name=topic, year=year)
+        serializer = CountryTopicsYearSerializer(years)
+        data = serializer.data
+        return Response([data])
+
+    @action(detail=False, methods=['get'])
+    def get_topics_range_year(self, request):
+        topic = (request.query_params.get('topic'))
+        year = (request.query_params.get('year'))
+        years = CountryTopicsYear.objects(topic_name=topic).filter(year__gt=1999,
+                                                                   year__lte=year).order_by('year')
+        serializer = CountryTopicsYearSerializer(years, many=True)
+        data = serializer.data
+        return Response(data)
+
+    @action(detail=False, methods=['get'])
+    def get_topics_summary(self, request):
+        topic = (request.query_params.get('topic'))
+        years = CountryTopics.objects.get(topic_name=topic)
+        serializer = CountryTopicsSerializer(years)
+        data = serializer.data
+        affiliations = AffiliationTopics.objects(topic_name=topic).count()
+        response_data = {
+            'articles': data['total_articles'],
+            'affiliations': affiliations
+        }
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
+    def get_topics_summary_year(self, request):
+        topic = (request.query_params.get('topic'))
+        year = (request.query_params.get('year'))
+        years = CountryTopicsYear.objects.get(topic_name=topic, year=year)
+        serializer = CountryTopicsYearSerializer(years)
+        data = serializer.data
+        affiliations = AffiliationTopicsYear.objects(topic_name=topic, year=year).count()
+        response_data = {
+            'articles': data['total_articles'],
+            'affiliations': affiliations
+        }
+        return Response(response_data)
+
+    @action(detail=False, methods=['get'])
+    def get_topics_summary_acumulated(self, request):
+        topic = (request.query_params.get('topic'))
+        year = (request.query_params.get('year'))
+        years = CountryTopicsAcumulated.objects.get(topic_name=topic, year=year)
+        serializer = CountryTopicsYearSerializer(years)
+        data = serializer.data
+        aff = AffiliationTopicsAcumulated.objects(topic_name=topic).filter(year__lte=year)
+        unique_scopus_ids = len(aff.distinct('scopus_id'))
+        response_data = {
+            'articles': data['total_articles'],
+            'affiliations': unique_scopus_ids
+        }
         return Response(response_data)

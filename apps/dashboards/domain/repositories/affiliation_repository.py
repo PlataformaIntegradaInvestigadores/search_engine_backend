@@ -33,3 +33,7 @@ class AffiliationRepository(ABC):
     @abstractmethod
     def get_affiliation_topics_acumulated(self, scopus_id, year):
         pass
+
+    @abstractmethod
+    def get_last_years(self, scopus_id):
+        pass
