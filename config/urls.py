@@ -28,5 +28,6 @@ urlpatterns = [
     # Urls for each app
     path('api/v1/', include('apps.search_engine.infrastructure.api.v1.urls.root_urls'), name='author'),
     path('api/v1/', include('apps.scopus_integration.infrastructure.api.v1.urls.root_url'), name='scopus'),
+    path('api/v1/dashboard/', include('apps.dashboards.infrastructure.api.v1.urls.root_urls'), name='dashboard'),
 
 ]

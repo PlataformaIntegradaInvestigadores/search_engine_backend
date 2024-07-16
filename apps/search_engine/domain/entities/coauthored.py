@@ -1,6 +1,6 @@
-from neomodel import IntegerProperty, StructuredRel
+from neomodel import IntegerProperty, StructuredRel, FloatProperty
 
 
 class CoAuthored(StructuredRel):
-    collab_strength = IntegerProperty()
     shared_pubs = IntegerProperty()
+    collab_strength = FloatProperty()

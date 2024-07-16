@@ -5,3 +5,4 @@ db.sqlite3
 .env
 neo4j_db
 __pycache__
+mongo_db

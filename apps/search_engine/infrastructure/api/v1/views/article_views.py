@@ -14,7 +14,7 @@ from apps.search_engine.application.usecases.article.most_relevant_articles_by_t
 from apps.search_engine.application.usecases.article.total_articles_usecase import TotalArticlesUseCase
 from apps.search_engine.infrastructure.api.v1.serializers.article_serializers import ArticleSerializer, \
     MostRelevantArticlesRequestSerializer, MostRelevantArticleResponseSerializer, \
-    MostRelevantArticlesResponseSerializer, YearsSerializer
+    MostRelevantArticlesResponseSerializer, YearsSerializer, ArticlesByAuthorSerializer
 from apps.search_engine.infrastructure.api.v1.utils.build_paginator import build_pagination_urls
 
 
@@ -113,7 +113,7 @@ class ArticleViewSet(viewsets.ViewSet):
             if custom_type:
                 filtered_articles = self.article_service.find_articles_by_filter_years(custom_type, custom_years,
                                                                                        df)
-                filtered_ids = [article.scopus_id for article in filtered_articles]
+                filtered_ids = [f"{article.scopus_id}" for article in filtered_articles]
                 articles, total_articles = self.article_service.find_articles_by_ids(filtered_ids, page, size)
 
             else:
@@ -124,6 +124,24 @@ class ArticleViewSet(viewsets.ViewSet):
             return Response(
                 {'data': article_serializer.data, 'years': set(years_data), 'total': total_articles},
                 status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @extend_schema(
+        description="Get articles by author id",
+        tags=['Articles'],
+        request=ArticleSerializer,
+        summary="Find all articles given an author id",
+        parameters=[
+            OpenApiParameter(name='author_id', type=int, location=OpenApiParameter.QUERY, description='Author ID')]
+    )
+    @action(detail=False, methods=['get'], url_path='find-articles-by-author-id')
+    def find_articles_by_author_id(self, request, *args, **kwargs):
+        try:
+            author_id = request.query_params.get('author_id')
+            articles = self.article_service.find_articles_by_author(author_id)
+            serializer = ArticlesByAuthorSerializer(articles, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
