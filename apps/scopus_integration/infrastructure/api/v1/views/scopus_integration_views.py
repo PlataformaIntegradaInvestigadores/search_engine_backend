@@ -1,5 +1,6 @@
 from urllib.parse import quote_plus as url_encode
 
+import requests
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
@@ -10,8 +11,11 @@ import threading
 
 
 class ScopusIntegrationViewSet(viewsets.ModelViewSet):
-    model_corpus_observer = ModelCorpusObserverService()
     lock = threading.Lock()
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.model_corpus_observer = ModelCorpusObserverService()
 
     def list(self, request, *args, **kwargs):
         if not self.lock.acquire(blocking=False):
@@ -25,13 +29,22 @@ class ScopusIntegrationViewSet(viewsets.ModelViewSet):
             count = "25"
             cursor = '*'
             query = url_encode("AFFIL(AFFILCOUNTRY(Ecuador))")
-            url = "https://api.elsevier.com/content/search/" + search_type + "?query=" + query + "&count=" + count + "&view=" + view + "&field=" + field + "&cursor=" + cursor
+            url = f"https://api.elsevier.com/content/search/{search_type}?query={query}&count={count}&view={view}&field={field}&cursor={cursor}"
             client = ScopusClient()
             article_search = Search(url=url)
             print("Iniciando la ejecucion de la busqueda .....")
             article_search.execute(client, True)
             results = article_search.results
             return Response({"success": True}, status=status.HTTP_200_OK)
+        except requests.HTTPError as e:
+            error_content = e.response.json()
+            error_message = error_content.get('error-response', {}).get('error-message', '')
+            return Response({
+                "success": False,
+                "message": error_message,
+                "code": e.response.status_code,
+                "error": error_content
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         finally:

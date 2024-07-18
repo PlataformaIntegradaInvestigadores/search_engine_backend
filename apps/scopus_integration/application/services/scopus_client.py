@@ -55,9 +55,12 @@ class ScopusClient:
                 self._status_msg = 'Data fetched successfully.'
                 return json.loads(r.text)
             else:
-                self._status_msg = "HTTP " + str(r.status_code) + " Error from: " + \
-                                   url + " and using the headers: " + str(headers) + ": " + r.text
-                raise requests.HTTPError("HTTP " + str(r.status_code) + " Error from: " +
-                                         url + "\n and using the headers: " + str(headers) + ":\n" + r.text)
+                error_message = f"HTTP {r.status_code}: {r.text}"
+                self._status_msg = error_message
+                # load error message to json
+                json_error = json.loads(r.text)
+                raise requests.HTTPError(json_error, response=r)
+        except requests.HTTPError as e:
+            raise e
         except Exception as e:
             raise Exception(f'Error executing request: {e}')
