@@ -60,7 +60,6 @@ class ArticleService(ArticleRepository):
 
             ids = [f'"{str(w)}"' for w in ids]
             ids_str = ', '.join(map(str, ids))
-            print(ids_str)
             filter_years_str = ' OR '.join([f'a.publication_date CONTAINS "{year}"' for year in filter_years])
 
             if filter_type == 'include':
@@ -75,7 +74,6 @@ class ArticleService(ArticleRepository):
                 WHERE a.scopus_id IN [{ids_str}] AND NOT ({filter_years_str})
                 RETURN a
                 """
-            print(query)
             results, _ = db.cypher_query(query)
             articles = [Article.inflate(row[0]) for row in results]
             return articles
