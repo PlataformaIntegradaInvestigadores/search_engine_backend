@@ -7,3 +7,4 @@ neo4j_db
 __pycache__/
 mongo_db
 *.pyc
+__pycache__
