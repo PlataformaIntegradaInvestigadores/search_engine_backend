@@ -41,6 +41,8 @@ class ModelCorpusObserverService:
 
     def delete_corpus(self) -> bool:
         try:
+            if not self.verify_corpus_path_exists():
+                return True
             os.remove(self.corpus_path)
             return True
         except Exception as e:
@@ -48,6 +50,8 @@ class ModelCorpusObserverService:
 
     def delete_model(self) -> bool:
         try:
+            if not self.verify_model_path_exists():
+                return True
             os.remove(self.model_path)
             return True
         except Exception as e:

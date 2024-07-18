@@ -1,3 +1,6 @@
+import json
+
+import requests
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -30,8 +33,19 @@ class UpdateInformationViewSet(viewsets.ViewSet):
             total = update_author_information_usecase.execute()
             return Response({'success': True, 'message': f"{total} Authors were updated successfully"},
                             status=status.HTTP_200_OK)
+        except requests.HTTPError as e:
+            error_content = json.loads(e.response.text)
+            error_message = error_content.get('error-response', {}).get('error-message', '')
+            return Response({
+                'success': False,
+                'message': error_message,
+                'code': e.response.status_code,
+                'error': error_content
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
         except Exception as e:
             return Response({'success': False, 'message': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
         finally:
             self.model_corpus_observer.delete_corpus()
             self.model_corpus_observer.delete_model()
