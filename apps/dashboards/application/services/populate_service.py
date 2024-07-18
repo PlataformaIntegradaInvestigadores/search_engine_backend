@@ -36,8 +36,8 @@ class PopulateService(PopulateRepository):
         self.drop_database()
         self.populate_country()
         self.populate_affiliation()
-        self.populate_author()
         self.populate_province()
+        self.populate_author()
 
     def drop_database(self):
         try:
