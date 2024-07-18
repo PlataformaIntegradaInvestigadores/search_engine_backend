@@ -23,6 +23,10 @@ class PopulateRepository(ABC):
         pass
 
     @abstractmethod
+    def drop_database(self):
+        pass
+
+    @abstractmethod
     def populate_affiliation(self):
         pass
 

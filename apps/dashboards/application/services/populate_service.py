@@ -1,4 +1,6 @@
+import mongoengine
 from django.db import transaction
+from mongoengine.connection import get_db
 from neomodel import db
 
 from apps.dashboards.domain.entities.affiliation import Affiliation
@@ -30,6 +32,23 @@ from apps.dashboards.utils.utils import extract_year, count_articles_per_year_au
 
 
 class PopulateService(PopulateRepository):
+    def populate(self):
+        self.drop_database()
+        self.populate_country()
+        self.populate_affiliation()
+        self.populate_author()
+        self.populate_province()
+
+    def drop_database(self):
+        try:
+            dl = get_db()
+            db_name = dl.name
+            # mongoengine.connection.disconnect()
+            # mongoengine.connect(db='dtl')
+            mongoengine.connection.get_connection().drop_database(db_name)
+            print(f"Database '{db_name}' dropped successfully.")
+        except Exception as e:
+            print(f"Error dropping database: {e}")
 
     def get_provinces_dict(self):
         query = """
@@ -161,12 +180,6 @@ class PopulateService(PopulateRepository):
                             total_articles=new_total
                         )
                         province_topics_acumulated.save()
-
-    def populate(self):
-        self.populate_country()
-        self.populate_affiliation()
-        self.populate_author()
-        self.populate_province()
 
     def get_authors_dict(self):
         query = """
