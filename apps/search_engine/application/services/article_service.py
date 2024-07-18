@@ -145,11 +145,11 @@ class ArticleService(ArticleRepository):
     def find_authors_by_article(self, article_id: str) -> List[object]:
         try:
             query = (
-                f"MATCH (a:Article {{scopus_id: {article_id} }}) "
-                f"OPTIONAL MATCH (a)-[:WROTE]-(au:Author) "
-                f"RETURN collect(DISTINCT {{scopusId: au.scopus_id, name: au.auth_name}})"
+                "MATCH (a:Article {scopus_id: $article_id}) "
+                "OPTIONAL MATCH (a)-[:WROTE]-(au:Author) "
+                "RETURN collect(DISTINCT {scopusId: au.scopus_id, name: au.auth_name})"
             )
-            results, meta = db.cypher_query(query)
+            results, meta = db.cypher_query(query, {'article_id': article_id})
             authors = [row[0] for row in results]
             return authors
         except Exception as e:

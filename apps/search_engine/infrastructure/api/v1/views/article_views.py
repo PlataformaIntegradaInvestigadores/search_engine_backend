@@ -84,7 +84,6 @@ class ArticleViewSet(viewsets.ViewSet):
             authors = self.article_service.find_authors_by_article(article_id)
             data = serializer.data
             data['authors'] = authors[0]
-
             return Response(data, status=status.HTTP_200_OK)
 
         except Exception as e:
