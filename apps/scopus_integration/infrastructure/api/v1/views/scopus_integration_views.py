@@ -1,5 +1,6 @@
 from urllib.parse import quote_plus as url_encode
 
+import requests
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
@@ -35,6 +36,15 @@ class ScopusIntegrationViewSet(viewsets.ModelViewSet):
             article_search.execute(client, True)
             results = article_search.results
             return Response({"success": True}, status=status.HTTP_200_OK)
+        except requests.HTTPError as e:
+            error_content = e.response.json()
+            error_message = error_content.get('error-response', {}).get('error-message', '')
+            return Response({
+                "success": False,
+                "message": error_message,
+                "code": e.response.status_code,
+                "error": error_content
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         finally:
