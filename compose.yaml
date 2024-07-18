@@ -4,6 +4,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8001
     volumes:
       - .:/app
+    restart: always
     ports:
       - "8001:8001"
     environment:
@@ -20,6 +21,7 @@ services:
   neo4j:
     container_name: neo4j
     image: neo4j:latest
+    restart: always
     ports:
       - "7474:7474"
       - "7687:7687"
@@ -38,6 +40,7 @@ services:
   mongo:
     container_name: mongo
     image: mongo:latest
+    restart: always
     ports:
       - "27017:27017"
     environment:
