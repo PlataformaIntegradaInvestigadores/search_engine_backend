@@ -54,6 +54,8 @@ class Search:
             self.results = api_response['search-results']['entry']
             self.num_res = len(self.results)
             print('Current results: ', self.num_res)
+            existing_articles = {article.scopus_id for article in
+                                 Article.nodes.all()}
             if get_all is True:
                 while self.num_res < self.tot_num_res:
                     for e in api_response['search-results']['link']:
@@ -70,12 +72,14 @@ class Search:
                             print("Error on article validation: ", e)
                             continue
 
-                        if not Article.nodes.get_or_none(scopus_id=scopus_id):
+                            # Check if the article already exists in the database
+                        if scopus_id in existing_articles:
+                            print(f"Article with Scopus ID {scopus_id} already exists.")
+                        else:
                             print(f"Creating article with Scopus ID {scopus_id}")
                             print(f"DOI: {doi}")
                             Article.from_json(article_, client)
-                        else:
-                            print(f"Article with Scopus ID {scopus_id} already exists.")
+                        existing_articles.add(scopus_id)  # Update the set with the new article's Scopus I
 
                     self.results += api_response['search-results']['entry']
                     self.num_res = len(self.results)
