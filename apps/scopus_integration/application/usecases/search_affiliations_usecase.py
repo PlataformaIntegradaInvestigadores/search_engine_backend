@@ -8,6 +8,8 @@ updated by: Fernando
 
 from urllib.parse import quote_plus as url_encode
 
+import requests
+
 from apps.scopus_integration.application.services.scopus_client import ScopusClient
 from apps.scopus_integration.utils.utils import encodeFacets
 from apps.search_engine.application.services.article_service import ArticleService
@@ -52,6 +54,8 @@ class Search:
             self.results = api_response['search-results']['entry']
             self.num_res = len(self.results)
             print('Current results: ', self.num_res)
+            existing_articles = {article.scopus_id for article in
+                                 Article.nodes.all()}
             if get_all is True:
                 while self.num_res < self.tot_num_res:
                     for e in api_response['search-results']['link']:
@@ -65,17 +69,22 @@ class Search:
                             scopus_id = Article.validate_scopus_id(article_.get('dc:identifier', ''))
                             doi = article_.get('prism:doi', '') if article_.get('prism:doi', '') else None
                         except ValueError as e:
+                            print("Error on article validation: ", e)
                             continue
 
-                        if not Article.nodes.get_or_none(scopus_id=scopus_id):
+                            # Check if the article already exists in the database
+                        if scopus_id in existing_articles:
+                            print(f"Article with Scopus ID {scopus_id} already exists.")
+                        else:
                             print(f"Creating article with Scopus ID {scopus_id}")
                             print(f"DOI: {doi}")
                             Article.from_json(article_, client)
-                        else:
-                            print(f"Article with Scopus ID {scopus_id} already exists.")
+                        existing_articles.add(scopus_id)  # Update the set with the new article's Scopus I
 
                     self.results += api_response['search-results']['entry']
                     self.num_res = len(self.results)
                     print('Current results: ', self.num_res)
+        except requests.HTTPError as e:
+            raise e
         except Exception as e:
             raise Exception('Error on search ' + str(e))

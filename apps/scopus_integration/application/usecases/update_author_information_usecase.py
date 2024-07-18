@@ -1,3 +1,4 @@
+import requests
 from neomodel import db
 
 from apps.scopus_integration.application.services.scopus_client import ScopusClient
@@ -26,9 +27,10 @@ class UpdateAuthorInformationUseCase:
                 for retrieval in author_retrievals:
                     try:
                         retrieval.execute(self.client)
+                    except requests.HTTPError as e:
+                        raise e
                     except Exception as e:
-                        print(f"Error executing retrieval for retrieval: {e}")
-                        continue
+                        raise e
 
                 for author_instance, retrieval in zip(batch_authors, author_retrievals):
                     try:
@@ -36,8 +38,10 @@ class UpdateAuthorInformationUseCase:
                         Author.update_from_json(author_data=retrieval_info)
                     except Exception as e:
                         print(f"Error updating author {author_instance.scopus_id}: {e}")
-                        continue
+                        raise Exception(f"Error updating author {author_instance.scopus_id}: {e}")
 
             return total_authors
+        except requests.HTTPError as e:
+            raise e
         except Exception as e:
             raise Exception("Error during execution: " + str(e))
