@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import status
 from rest_framework.decorators import action
@@ -127,7 +129,15 @@ class AuthorViews(viewsets.ViewSet):
             affiliations = affiliations_by_authors_usecase.execute(author_ids)
 
             serializer = AffiliationNameSerializer(affiliations, many=True)
+            serialized_data = serializer.data
+            print(serialized_data)
+            seen = OrderedDict()
+            for affiliation in serialized_data:
+                if affiliation['scopusId'] not in seen:
+                    seen[affiliation['scopusId']] = affiliation
 
+            # Convertir de nuevo a una lista
+            unique_serialized_data = list(seen.values())
             if custom_type is not None:
                 filter_type = custom_type
                 filter_affiliations = custom_affiliations
@@ -140,8 +150,9 @@ class AuthorViews(viewsets.ViewSet):
                 size_nodes = community.get('size_nodes')
                 size_links = community.get('size_links')
                 author_serializer = AuthorSerializer(authors, many=True)
+
                 community_data = {
-                    'affiliations': serializer.data,
+                    'affiliations': unique_serialized_data,
                     'size_nodes': size_nodes,
                     'size_links': size_links,
                     'nodes': author_serializer.data,
@@ -156,7 +167,7 @@ class AuthorViews(viewsets.ViewSet):
                 size_links = community.get('size_links')
                 author_serializer = AuthorSerializer(authors, many=True)
                 community_data = {
-                    'affiliations': serializer.data,
+                    'affiliations': unique_serialized_data,
                     'size_nodes': size_nodes,
                     'size_links': size_links,
                     'nodes': author_serializer.data,
