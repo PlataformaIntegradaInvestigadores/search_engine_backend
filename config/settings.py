@@ -54,12 +54,12 @@ mongo_db_password = os.environ.get('MONGO_DB_PASSWORD')
 mongo_host = os.environ.get("MONGO_DB_HOST")
 mongo_port = os.environ.get("MONGO_DB_PORT")
 
-# mongo_uri = f'mongodb://{mongo_db_username}:{mongo_db_password}@{mongo_host}:{mongo_port}/{mongo_db_name}?authSource=admin'
+mongo_uri = f'mongodb://{mongo_db_username}:{mongo_db_password}@{mongo_host}:{mongo_port}/{mongo_db_name}?authSource=admin'
 # print(mongo_uri)
-# mongoengine.connect(host=mongo_uri)
-mongoengine.connect(
-    db='datalake'
-)
+mongoengine.connect(host=mongo_uri)
+# mongoengine.connect(
+#     db='dtl'
+# )
 
 # bolt+s://<username>:<password>@<host>:<port>
 # Application definition
