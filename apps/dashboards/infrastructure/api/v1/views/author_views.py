@@ -54,27 +54,3 @@ class AuthorViews(viewsets.ModelViewSet):
             return Response(response_data)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-# class AuthorViews(viewsets.ModelViewSet):
-#
-#     @action(detail=False, methods=['get'])
-#     def get_author_years(self, request):
-#         scopus_id = (request.query_params.get('scopus_id'))
-#         author = AuthorYear.objects(scopus_id=scopus_id).filter(year__gt=1999).order_by('year')
-#         serializer = AuthorYearSerializer(author, many=True)
-#         data = serializer.data
-#         return Response(data)
-#
-#     @action(detail=False, methods=['get'])
-#     def get_topics(self, request):
-#         scopus_id = (request.query_params.get('scopus_id'))
-#         author_topics = AuthorTopics.objects(scopus_id=scopus_id).filter(topic_name__ne=" ").filter(topic_name__ne='').order_by('-total_articles')
-#         response_data = [
-#             {
-#                 "text": topic['topic_name'],
-#                 "size": topic['total_articles']
-#             }
-#             for topic in author_topics
-#         ]
-#
-#         return Response(response_data)

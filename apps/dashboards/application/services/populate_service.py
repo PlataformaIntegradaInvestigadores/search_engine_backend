@@ -46,7 +46,7 @@ class PopulateService(PopulateRepository):
             # mongoengine.connection.disconnect()
             # mongoengine.connect(db='dtl')
             mongoengine.connection.get_connection().drop_database(db_name)
-            print(f"Database '{db_name}' dropped successfully.")
+            # print(f"Database '{db_name}' dropped successfully.")
         except Exception as e:
             print(f"Error dropping database: {e}")
 
