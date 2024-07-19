@@ -56,6 +56,8 @@ class LoggerViewSet(viewsets.ViewSet):
                             continue
                         filtered_logs.append(line)
 
+            filtered_logs.reverse()
+
             total_lines = len(filtered_logs)
             start = (page - 1) * lines_per_page
             end = page * lines_per_page
