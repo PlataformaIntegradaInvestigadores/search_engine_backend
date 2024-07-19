@@ -14,6 +14,7 @@ class AuthorSerializer(serializers.Serializer):
     co_authors = serializers.SerializerMethodField()
     topics = serializers.SerializerMethodField()
     citation_count = serializers.IntegerField()
+    current_affiliation = serializers.CharField()
 
     def get_affiliations(self, obj):
         return [affiliation.name for affiliation in obj.affiliations.all()]
