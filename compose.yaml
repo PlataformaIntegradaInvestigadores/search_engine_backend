@@ -3,6 +3,7 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8001
     volumes:
+      - ./centinela_logs:/centinela_logs
       - .:/app
     restart: always
     ports:

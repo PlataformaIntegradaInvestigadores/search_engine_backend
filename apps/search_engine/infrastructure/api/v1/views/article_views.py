@@ -1,3 +1,5 @@
+import logging
+
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from neomodel import clear_neo4j_database, db
 from rest_framework import status
@@ -16,6 +18,8 @@ from apps.search_engine.infrastructure.api.v1.serializers.article_serializers im
     MostRelevantArticlesRequestSerializer, MostRelevantArticleResponseSerializer, \
     MostRelevantArticlesResponseSerializer, YearsSerializer, ArticlesByAuthorSerializer
 from apps.search_engine.infrastructure.api.v1.utils.build_paginator import build_pagination_urls
+
+logger = logging.getLogger('django')
 
 
 class ArticleViewSet(viewsets.ViewSet):
