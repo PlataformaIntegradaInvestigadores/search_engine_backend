@@ -91,6 +91,7 @@ class Search:
 
                     self.results += api_response['search-results']['entry']
                     self.num_res = len(self.results)
+                    logger.log(logging.INFO, f"Current updates {self.num_res}")
                     print('Current results: ', self.num_res)
         except requests.HTTPError as e:
             raise e
