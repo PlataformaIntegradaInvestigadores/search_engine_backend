@@ -16,4 +16,5 @@ urlpatterns = [
          name='update-information'),
     path('dashboard/', include(
         'apps.scopus_integration.infrastructure.api.v1.urls.dashboard_information_urls'), name='dashboard'),
+    path('admin/', include('apps.scopus_integration.infrastructure.api.v1.urls.logs_url'), name='admin'),
 ]
