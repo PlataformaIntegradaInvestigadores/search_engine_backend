@@ -88,6 +88,9 @@ class ArticleViewSet(viewsets.ViewSet):
             authors = self.article_service.find_authors_by_article(article_id)
             data = serializer.data
             data['authors'] = authors[0]
+            logging.log(logging.INFO, f"Article {article_id} was retrieved successfully")
+            logging.log(logging.INFO, f"Authors {authors} were retrieved successfully")
+            logging.log(logging.INFO, f"Data {data} was retrieved successfully")
             return Response(data, status=status.HTTP_200_OK)
 
         except Exception as e:

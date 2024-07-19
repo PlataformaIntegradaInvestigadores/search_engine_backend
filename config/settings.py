@@ -90,9 +90,9 @@ LOGGING = {
     "disable_existing_loggers": False,
     "handlers": {
         "file": {
-            "level": "DEBUG",
+            "level": "INFO",
             "class": "logging.handlers.TimedRotatingFileHandler",
-            "filename": "/centinela_logs/debug.log",
+            "filename": "/centinela_logs/info.log",
             "when": "midnight",
             "backupCount": 30,
             "formatter": "verbose",
@@ -113,7 +113,6 @@ LOGGING = {
         },
     },
 }
-
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Search Engine API',

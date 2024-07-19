@@ -8,3 +8,4 @@ __pycache__/
 mongo_db
 *.pyc
 __pycache__
+centinela_logs/debug.log
