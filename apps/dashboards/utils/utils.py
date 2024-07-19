@@ -309,7 +309,7 @@ def get_affiliations_info(affiliations):
         "Per_year": per_year_list,
         "Acumulative": acumulated_list
     }
-    print(response_data)
+    # print(response_data)
     return response_data
 
 
