@@ -1,46 +1,40 @@
-from urllib.parse import quote_plus as url_encode
-
 import requests
+from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
 from apps.scopus_integration.application.services.model_corpus_observer_service import ModelCorpusObserverService
-from apps.scopus_integration.application.services.scopus_client import ScopusClient
-from apps.scopus_integration.application.usecases.search_affiliations_usecase import Search
 import threading
 import logging
+
+from apps.scopus_integration.application.services.scopus_client import ScopusClient
+from apps.scopus_integration.application.usecases.scopus_integration_usecase import ScopusIntegrationUseCase
+from apps.scopus_integration.domain.repositories.search_affiliations_repository import SearchAffiliationRepository
 
 logger = logging.getLogger('django')
 
 
 class ScopusIntegrationViewSet(viewsets.ModelViewSet):
     lock = threading.Lock()
+    scopus_client = ScopusClient()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.model_corpus_observer = ModelCorpusObserverService()
 
+    @extend_schema(
+        summary='Integrate Scopus data',
+        description='This endpoint integrates Scopus data.',
+        tags=['Scopus Integration'],
+    )
     def list(self, request, *args, **kwargs):
         if not self.lock.acquire(blocking=False):
             return Response({"success": False, "message": "Another instance is already running."},
                             status=status.HTTP_429_TOO_MANY_REQUESTS)
         try:
-            search_type = "scopus"
-            view = "COMPLETE"
-            field = ("dc:identifier,doi,dc:title,coverDate,dc:description,authkeywords,afid,affilname,"
-                     "affiliation-city,affiliation-country,authid,authname,given-name,surname,initials")
-            count = "25"
-            cursor = '*'
-            query = url_encode("AFFIL(AFFILCOUNTRY(Ecuador))")
-            url = f"https://api.elsevier.com/content/search/{search_type}?query={query}&count={count}&view={view}&field={field}&cursor={cursor}"
-            client = ScopusClient()
-            article_search = Search(url=url)
-            print("Iniciando la ejecucion de la busqueda .....")
-            logger.log(logging.INFO, "Iniciando la ejecucion de la busqueda .....")
-
-            article_search.execute(client, True)
-            results = article_search.results
-            logger.log(logging.INFO, f"Se encontraron {len(results)} resultados")
+            logger.log(logging.INFO, "Starting the Scopus integration .....")
+            scopus_integration = ScopusIntegrationUseCase(scopus_client=self.scopus_client)
+            scopus_integration.execute()
             return Response({"success": True}, status=status.HTTP_200_OK)
         except requests.HTTPError as e:
             error_content = e.response.json()

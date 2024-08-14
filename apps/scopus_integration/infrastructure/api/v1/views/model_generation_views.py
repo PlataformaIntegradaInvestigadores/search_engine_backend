@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -6,6 +7,10 @@ from apps.scopus_integration.application.services.model_generation_service impor
 
 
 class GenerateModelView(APIView):
+    @extend_schema(
+        summary='Generate model',
+        tags=['TF-IDF'],
+    )
     def post(self, request):
         try:
             model_generator = ModelGenerationService()

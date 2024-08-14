@@ -27,7 +27,7 @@ class AuthorRetrieval:
             raise ValueError(
                 'You must specify either the URL or the ID, not both.')
 
-    def execute(self, client: ScopusClient = None):
+    def retrieve(self, client: ScopusClient = None):
         api_response = client.exec_request(self.url)
         if self.response_list:
             self.result = api_response['author-retrieval-response-list']['author-retrieval-response']

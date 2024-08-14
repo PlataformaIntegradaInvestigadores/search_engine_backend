@@ -22,7 +22,8 @@ class AffiliationViewSet(viewsets.ViewSet):
         parameters=[
             OpenApiParameter(name='page', type=int, location=OpenApiParameter.QUERY, description='Page number'),
             OpenApiParameter(name='page_size', type=int, location=OpenApiParameter.QUERY, description='Page size'),
-        ]
+        ],
+        summary="List all affiliations"
     )
     def list(self, request, *args, **kwargs):
         try:
@@ -53,6 +54,7 @@ class AffiliationViewSet(viewsets.ViewSet):
         description="Retrieve an affiliation by Scopus ID",
         responses=AffiliationSerializer,
         tags=['Affiliations'],
+        summary="Retrieve an affiliation by Scopus ID"
     )
     def retrieve(self, request, *args, **kwargs):
         try:

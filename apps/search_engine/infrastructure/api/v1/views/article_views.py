@@ -35,7 +35,8 @@ class ArticleViewSet(viewsets.ViewSet):
         parameters=[
             OpenApiParameter(name='page', type=int, location=OpenApiParameter.QUERY, description='Page number'),
             OpenApiParameter(name='page_size', type=int, location=OpenApiParameter.QUERY, description='Page size'),
-        ]
+        ],
+        summary="List all articles"
     )
     def list(self, request, *args, **kwargs):
         try:
@@ -75,6 +76,7 @@ class ArticleViewSet(viewsets.ViewSet):
         description="Retrieve an article by ID",
         responses=ArticleSerializer,
         tags=['Articles'],
+        summary="Retrieve an article by Scopus ID"
     )
     def retrieve(self, request, *args, **kwargs):
         try:
@@ -160,6 +162,7 @@ class ArticleCount(APIView):
         description="Get total number of articles",
         responses={'total_articles': int},
         tags=['Articles'],
+        summary="Get total number of articles"
     )
     def get(self, request, *args, **kwargs):
         try:

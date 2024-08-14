@@ -77,14 +77,16 @@ INSTALLED_APPS = [
     'apps',
     'apps.search_engine',
     'apps.scopus_integration',
-    'apps.dashboards'
+    'apps.dashboards',
+    'apps.authentication'
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
 }
+log_dir = BASE_DIR / 'centinela_logs/'
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -92,7 +94,7 @@ LOGGING = {
         "file": {
             "level": "INFO",
             "class": "logging.handlers.TimedRotatingFileHandler",
-            "filename": "/centinela_logs/info.log",
+            "filename": os.path.join(log_dir, "info.log"),  # Use os.path.join for cross-platform compatibility
             "when": "midnight",
             "backupCount": 30,
             "formatter": "verbose",
