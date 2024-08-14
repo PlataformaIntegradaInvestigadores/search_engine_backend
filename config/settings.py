@@ -86,7 +86,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
-log_dir = BASE_DIR / 'centinela_logs/'
+log_dir = Path(BASE_DIR) / 'centinela_logs'
+if not log_dir.exists():
+    log_dir.mkdir(parents=True)
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -94,9 +97,9 @@ LOGGING = {
         "file": {
             "level": "INFO",
             "class": "logging.handlers.TimedRotatingFileHandler",
-            "filename": os.path.join(log_dir, "info.log"),  # Use os.path.join for cross-platform compatibility
+            "filename": os.path.join(log_dir, "info.log"),
             "when": "midnight",
-            "backupCount": 30,
+            "backupCount": 7,
             "formatter": "verbose",
             "encoding": "utf-8",
         },

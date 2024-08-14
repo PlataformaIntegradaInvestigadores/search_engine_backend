@@ -126,6 +126,7 @@ class Author(DjangoNode):
             affiliation_history = author_profile.get('affiliation-history', {})
             affiliations = affiliation_history.get('affiliation', [])
             logger.log(logging.INFO, f"Affiliations: {affiliations}")
+
             if isinstance(affiliations, dict):
                 affiliations = [affiliations]
             if isinstance(affiliations, list):
