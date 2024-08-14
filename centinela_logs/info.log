@@ -1,0 +1,353 @@
+2024-08-14 00:00:26,499 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:00:26,515 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:01:12,093 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:01:12,095 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:02:02,768 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:02:02,770 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:02:53,258 INFO "POST /api/v1/auth/login/ HTTP/1.1" 200 30
+2024-08-14 00:02:53,351 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:02:53,361 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:02:53,469 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:02:53,472 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:02:53,684 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:02:55,694 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:03:12,646 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:03:12,652 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:03:12,662 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:03:12,740 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:03:12,742 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:03:14,085 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:03:20,046 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:03:20,048 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:03:20,098 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:03:20,123 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:03:20,558 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:03:25,507 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:03:25,507 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:03:25,539 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:03:25,555 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:03:25,556 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:03:27,006 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:03:30,279 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:03:30,282 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:03:30,291 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:03:30,297 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:03:30,473 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:03:40,255 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:03:40,318 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:03:40,326 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:03:40,326 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:03:40,828 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:03:52,176 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:03:52,176 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:03:52,178 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:03:52,184 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:03:52,540 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:04:42,836 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:04:42,837 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:04:42,906 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:04:42,907 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:04:43,062 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:04:44,491 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:05:21,649 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:05:21,649 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:05:21,662 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:05:21,714 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:05:21,716 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:05:23,431 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:05:42,036 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:05:42,041 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:05:42,050 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:05:42,119 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:05:42,121 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:05:43,762 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:05:44,486 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:05:44,488 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:05:44,500 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:05:44,569 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:05:44,571 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:05:45,640 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:05:59,456 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:05:59,458 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:05:59,477 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:05:59,546 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:05:59,548 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:06:00,827 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:06:04,984 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:06:04,984 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:06:05,041 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:06:05,043 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:06:05,340 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:06:06,256 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:06:24,943 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:06:24,944 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:06:24,959 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:06:25,025 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:06:25,027 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:06:26,199 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:06:31,276 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:06:31,282 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:06:31,290 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:06:31,365 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:06:31,367 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:06:32,563 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:06:35,167 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:06:35,171 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:06:35,178 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:06:35,243 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:06:35,245 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:06:36,348 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:06:38,619 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:06:38,623 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:06:38,627 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:06:38,708 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:06:38,709 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:06:39,781 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:06:41,654 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:06:41,665 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:06:41,665 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:06:41,666 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:06:42,080 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:06:58,784 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:06:58,787 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:06:58,800 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:06:58,889 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:06:58,891 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:06:59,028 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:06:59,045 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:06:59,047 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:06:59,057 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:06:59,534 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:07:01,588 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:07:01,590 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:07:01,599 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:07:01,603 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:07:01,969 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:07:02,795 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:07:03,584 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:07:03,586 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:07:04,809 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:07:52,877 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:07:52,881 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:07:52,903 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:07:52,999 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:07:53,001 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:07:54,225 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:08:05,197 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:08:05,203 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:08:05,221 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:08:06,044 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:08:06,045 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:08:07,286 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:08:30,970 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:08:30,977 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:08:30,979 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:08:31,058 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:08:31,060 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:08:32,277 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:08:43,421 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:08:43,421 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:08:43,431 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:08:43,483 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:08:43,484 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:08:54,634 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:08:56,879 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:08:56,879 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:08:56,890 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:08:56,954 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:08:56,956 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:08:58,275 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:09:31,639 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:09:31,639 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:09:31,661 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:09:31,708 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:09:31,710 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:09:32,909 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:09:39,168 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:09:39,175 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:09:39,207 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:09:39,288 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:09:39,290 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:09:40,440 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:09:47,292 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:09:47,294 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:09:47,315 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:09:47,383 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:09:47,386 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:09:48,562 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:10:09,720 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:10:09,721 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:10:09,752 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:10:09,849 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:10:09,851 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:10:10,955 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:10:21,157 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:10:21,160 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:10:21,176 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:10:21,215 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:10:21,217 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:10:22,324 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:10:38,499 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:10:38,499 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:10:38,513 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:10:38,568 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:10:38,570 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:10:39,917 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:10:48,599 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:10:48,602 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:10:48,609 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:10:48,666 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:10:48,667 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:10:49,934 INFO "GET /api/v1/admin/logs/?page=1&lines_per_page=10 HTTP/1.1" 200 1116
+2024-08-14 00:10:50,596 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:10:50,601 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:10:50,608 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:10:50,609 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:10:50,610 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:10:51,079 INFO "GET /api/v1/admin/logs/?page=1&lines_per_page=10 HTTP/1.1" 200 1115
+2024-08-14 00:10:53,870 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:10:53,883 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:10:53,887 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:10:53,889 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:10:53,893 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:10:54,860 INFO "GET /api/v1/admin/logs/?page=1&lines_per_page=10 HTTP/1.1" 200 1115
+2024-08-14 00:10:55,208 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:10:55,208 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:10:55,222 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:10:55,232 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:10:55,263 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:10:55,665 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:10:56,189 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:10:56,201 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:10:56,205 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:10:56,208 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:10:56,546 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:10:56,982 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:12:30,680 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:12:30,681 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:12:30,689 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:12:30,696 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:12:31,095 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:12:40,712 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:12:40,713 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:12:40,724 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:12:40,776 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:12:40,778 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:12:41,934 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:12:48,229 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:12:48,242 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:12:48,246 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:12:48,297 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:12:48,594 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:12:52,160 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:12:52,160 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:12:52,174 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:12:52,216 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:12:52,217 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:12:53,503 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:13:04,239 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:13:04,240 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:13:04,247 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:13:04,323 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:13:04,324 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:13:05,968 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:13:15,768 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:13:15,771 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:13:15,777 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:13:15,825 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:13:15,826 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:13:17,292 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:13:22,359 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:13:22,365 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:13:22,367 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:13:22,372 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:13:22,637 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:13:33,037 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:13:33,037 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:13:33,049 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:13:33,094 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:13:33,096 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:13:34,158 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:13:55,868 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:13:55,869 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:13:55,880 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:13:55,955 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:13:55,956 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:13:57,002 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:14:02,976 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:14:02,980 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:14:02,992 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:14:03,036 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:14:03,038 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:14:04,135 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:14:29,762 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:14:29,763 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:14:29,771 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:14:29,844 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:14:29,846 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:14:31,124 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:14:49,295 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:14:49,296 INFO "GET /api/v1/summary/ HTTP/1.1" 200 46
+2024-08-14 00:14:49,297 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2023 HTTP/1.1" 500 60
+2024-08-14 00:14:49,305 INFO "GET /api/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3590
+2024-08-14 00:14:49,732 INFO "GET /api/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 3562
+2024-08-14 00:14:59,612 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:14:59,615 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:14:59,620 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:14:59,710 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:14:59,712 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:15:00,756 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:16:33,201 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:16:33,202 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:16:40,775 INFO "POST /api/v1/auth/login/ HTTP/1.1" 200 30
+2024-08-14 00:16:40,863 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:16:40,867 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:16:40,875 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:16:40,934 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:16:40,935 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:16:42,248 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:16:49,898 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:16:49,898 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:16:49,910 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:16:50,059 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:16:50,062 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:16:51,354 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
+2024-08-14 00:19:54,647 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:19:54,648 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:19:55,385 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:19:55,386 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:19:55,539 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:19:55,540 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:02,429 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:02,430 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:03,156 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:03,157 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:03,339 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:03,340 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:03,484 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:03,485 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:04,237 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:04,238 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:04,396 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:04,397 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:05,773 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:05,774 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:05,940 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:05,941 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:06,109 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:06,110 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:28,681 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:28,683 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:29,508 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:29,509 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:29,692 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:29,693 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:30,540 WARNING Bad Request: /api/v1/auth/login/
+2024-08-14 00:21:30,541 WARNING "POST /api/v1/auth/login/ HTTP/1.1" 400 33
+2024-08-14 00:21:42,983 INFO "POST /api/v1/auth/login/ HTTP/1.1" 200 30
+2024-08-14 00:21:43,059 INFO "GET /api/v1/dashboard/information/tfidf_model_corpus/ HTTP/1.1" 200 30
+2024-08-14 00:21:43,061 INFO "GET /api/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 211
+2024-08-14 00:21:43,069 INFO "GET /api/v1/dashboard/information/get_authors_comparator/ HTTP/1.1" 200 48
+2024-08-14 00:21:43,136 ERROR Internal Server Error: /api/v1/dashboard/country/get_acumulated/
+2024-08-14 00:21:43,139 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
+2024-08-14 00:21:44,869 INFO "GET /api/v1/dashboard/information/get_articles_comparator/ HTTP/1.1" 200 45
