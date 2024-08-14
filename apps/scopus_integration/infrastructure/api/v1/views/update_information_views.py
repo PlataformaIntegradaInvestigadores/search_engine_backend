@@ -1,6 +1,7 @@
 import json
 
 import requests
+from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -22,6 +23,11 @@ class UpdateInformationViewSet(viewsets.ViewSet):
         super().__init__(**kwargs)
         self.model_corpus_observer = ModelCorpusObserverService()
 
+    @extend_schema(
+        summary='Update author information',
+        description='This endpoint updates the author information.',
+        tags=['Scopus Integration']
+    )
     @action(detail=False, methods=['post'], url_path='author-information', url_name='update-author-information')
     def update_author_information(self, request, *args, **kwargs):
         if not self.lock.acquire(blocking=False):

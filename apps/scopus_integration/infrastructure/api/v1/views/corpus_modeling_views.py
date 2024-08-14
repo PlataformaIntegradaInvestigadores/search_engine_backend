@@ -1,4 +1,5 @@
 import pandas as pd
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -18,6 +19,10 @@ nltk.download('stopwords')
 
 
 class GenerateCorpusView(APIView):
+    @extend_schema(
+        summary='Generate corpus',
+        tags=['TF-IDF'],
+    )
     def post(self, request):
         try:
             corpus_path = 'resources/corpus/'

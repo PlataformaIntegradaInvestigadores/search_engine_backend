@@ -19,6 +19,7 @@ class CoAuthorsViewSet(viewsets.ViewSet):
         description="Find coauthors by author id",
         tags=['Coauthors'],
         responses={'data': 'data'},
+        summary="Find coauthors by author id"
     )
     @action(detail=True, methods=['get'], url_path='')
     def coauthors_by_id(self, request, *args, **kwargs):

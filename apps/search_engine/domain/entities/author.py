@@ -1,12 +1,19 @@
 import time
 
 from django_neomodel import DjangoNode
-from neomodel import StructuredNode, StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty, \
-    BooleanProperty, db
+from neomodel import StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty, \
+    BooleanProperty, db, StructuredRel
 
 from apps.search_engine.domain.entities.affiliation import Affiliation
 from apps.search_engine.domain.entities.coauthored import CoAuthored
 from apps.search_engine.domain.entities.topic import Topic
+import logging
+
+logger = logging.getLogger('django')
+
+
+class Relevant(StructuredRel):
+    order = IntegerProperty()
 
 
 class Author(DjangoNode):
@@ -18,7 +25,7 @@ class Author(DjangoNode):
     citation_count = IntegerProperty(default=0)
     current_affiliation = StringProperty()
     affiliations = RelationshipTo('apps.search_engine.domain.entities.affiliation.Affiliation', 'AFFILIATED_WITH')
-    articles = RelationshipTo('apps.search_engine.domain.entities.article.Article', 'WROTE')
+    articles = RelationshipTo('apps.search_engine.domain.entities.article.Article', 'WROTE', model=Relevant)
     co_authors = Relationship('Author', 'CO_AUTHORED', model=CoAuthored)
     topics = RelationshipTo('apps.search_engine.domain.entities.topic.Topic', 'EXPERT_IN')
     updated = BooleanProperty(default=False)
@@ -73,22 +80,28 @@ class Author(DjangoNode):
             raise ValueError("Invalid scopus_id on author update")
 
         try:
-            print("Updating author: ", scopus_id)
+            logger.log(logging.INFO, f"Updating author: {scopus_id}")
             author = cls.nodes.get(scopus_id=scopus_id)
+            logger.log(logging.INFO, f"Author found: {author.first_name} {author.last_name}")
 
             author_profile = author_data.get('author-profile', {})
             current_affiliation_dict = author_profile.get('affiliation-current', {})
             current_affiliation = current_affiliation_dict.get('affiliation', {})
+            if isinstance(current_affiliation, list):
+                current_affiliation = current_affiliation[0]
             ip_doc = current_affiliation.get('ip-doc', {})
             parent_preferred_name = ip_doc.get('parent-preferred-name', {})
+
+            logger.log(logging.INFO, f"Updating author: {author.first_name} {author.last_name}")
 
             if isinstance(parent_preferred_name, dict):
                 current_aff = parent_preferred_name.get('$', '')
             else:
                 current_aff = ip_doc.get('afdispname', '')
-
+            logger.log(logging.INFO, f"Current affiliation: {current_aff}")
             preferred_name = author_profile.get('preferred-name', {})
 
+            logger.log(logging.INFO, f"Preferred name: {preferred_name}")
             author.first_name = preferred_name.get('given-name', '')
             author.last_name = preferred_name.get('surname', '')
             author.auth_name = preferred_name.get('indexed-name', '')
@@ -98,35 +111,39 @@ class Author(DjangoNode):
             author.current_affiliation = current_aff
             author.save()
 
-            print(author.current_affiliation)
+            logger.log(logging.INFO, f"Author updated: {author.first_name} {author.last_name}")
+            # Handling subject-areas
+            subject_areas = author_data.get('subject-areas', {}).get("subject-area", [])
+            logger.log(logging.INFO, f"Subject areas: {subject_areas}")
+            if isinstance(subject_areas, list):
+                for keyword in subject_areas:
+                    if isinstance(keyword, dict):
+                        keyword_instance = Topic.from_json(keyword.get('$', ''))
+                        if keyword_instance and not author.topics.is_connected(keyword_instance):
+                            author.topics.connect(keyword_instance)
 
-            subject_areas = author_data.get('subject-areas', {})
-            if not isinstance(subject_areas, dict):
-                subject_areas = {}
-            keywords = subject_areas.get("subject-area", [])
-            keyword_instances = [Topic.from_json(keyword.get('$', '')) for keyword in keywords]
-            for keyword_instance in keyword_instances:
-                if not author.topics.is_connected(keyword_instance):
-                    author.topics.connect(keyword_instance)
-
+            logger.log(logging.INFO, f"Time spent updating author: {time.time() - time_0}")
             affiliation_history = author_profile.get('affiliation-history', {})
             affiliations = affiliation_history.get('affiliation', [])
+            logger.log(logging.INFO, f"Affiliations: {affiliations}")
             if isinstance(affiliations, dict):
                 affiliations = [affiliations]
+            if isinstance(affiliations, list):
+                affiliation_instances = [
+                    instance for affiliation_data in affiliations
+                    if (instance := Affiliation.retrieve_from_json(affiliation_data)) is not None
+                ]
 
-            affiliation_instances = [
-                instance for affiliation_data in affiliations
-                if (instance := Affiliation.retrieve_from_json(affiliation_data)) is not None
-            ]
-
-            for affiliation_instance in affiliation_instances:
-                if not author.affiliations.is_connected(affiliation_instance):
-                    author.affiliations.connect(affiliation_instance)
+                for affiliation_instance in affiliation_instances:
+                    if not author.affiliations.is_connected(affiliation_instance):
+                        author.affiliations.connect(affiliation_instance)
 
             print("Time spent updating author: ", time.time() - time_0)
 
             return author
         except cls.DoesNotExist:
+            logger.log(logging.ERROR, f"Author not found: {scopus_id}")
             raise ValueError("Author not found")
         except Exception as e:
+            logger.log(logging.ERROR, f"Error updating author from json: {e} scopus_id: {scopus_id}")
             raise ValueError("Error updating author from json: " + str(e))

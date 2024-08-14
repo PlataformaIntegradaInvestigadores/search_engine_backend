@@ -24,7 +24,8 @@ class LoggerViewSet(viewsets.ViewSet):
                              description='End date in YYYY-MM-DD format'),
             OpenApiParameter(name='keyword', type=str, location=OpenApiParameter.QUERY,
                              description='Keyword to search in logs'),
-        ]
+        ],
+        summary="List all logs"
     )
     def list(self, request, *args, **kwargs):
         try:

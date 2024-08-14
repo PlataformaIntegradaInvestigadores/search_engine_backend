@@ -30,7 +30,6 @@ class Article(DjangoNode):
         app_label = 'search_engine'
 
     @classmethod
-    @db.transaction
     def from_json(cls, article_data, client) -> 'Article':
         scopus_id = cls.validate_scopus_id(article_data.get('dc:identifier', ''))
         if scopus_id is None:
@@ -72,16 +71,20 @@ class Article(DjangoNode):
             authors = article_data.get('author', [])
 
             author_instances = [Author.from_dict(author) for author in authors]
+            order = 1
             for author_instance in author_instances:
+                # Changed here
                 if not author_instance.articles.is_connected(article):
-                    author_instance.articles.connect(article)
+                    author_instance.articles.connect(article, {'order': order})
+                order = order + 1
             time_0 = time.time()
+            logger.log(logging.INFO, "Starting co-author processing")
             # Build CoAuthored relationships
-
             for i, author_instance in enumerate(author_instances):
                 for j in range(i + 1, len(author_instances)):
                     co_author_instance = author_instances[j]
                     logger.log(logging.INFO, f"Processing co-author {co_author_instance.scopus_id}")
+
                     if author_instance.co_authors.is_connected(co_author_instance):
                         coauth_relationship = author_instance.co_authors.relationship(co_author_instance)
                         coauth_relationship.collab_strength = cls.calculate_collab_strength(
@@ -118,5 +121,5 @@ class Article(DjangoNode):
             return None
 
     @staticmethod
-    def calculate_collab_strength(shared_pubs, total_pubs_a, total_pubs_b):
+    def calculate_collab_strength(shared_pubs, total_pubs_a, total_pubs_b) -> int:
         return shared_pubs / (total_pubs_a * total_pubs_b) ** 0.5

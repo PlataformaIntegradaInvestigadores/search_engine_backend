@@ -3,7 +3,6 @@ from neomodel import db
 
 from apps.scopus_integration.application.services.scopus_client import ScopusClient
 from apps.scopus_integration.application.usecases.author_retrieval_usecase import AuthorRetrieval
-from apps.scopus_integration.domain.repositories.AuthorRepositoryPort import AuthorRepositoryPort
 from apps.search_engine.domain.entities.author import Author
 from apps.search_engine.domain.repositories.author_repository import AuthorRepository
 
@@ -26,7 +25,7 @@ class UpdateAuthorInformationUseCase:
 
                 for retrieval in author_retrievals:
                     try:
-                        retrieval.execute(self.client)
+                        retrieval.retrieve(self.client)
                     except requests.HTTPError as e:
                         raise e
                     except Exception as e:

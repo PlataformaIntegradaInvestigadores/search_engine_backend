@@ -37,7 +37,8 @@ class AuthorViews(viewsets.ViewSet):
         parameters=[
             OpenApiParameter(name='page_size', type=int, required=False),
             OpenApiParameter(name='page', type=int, required=False)
-        ]
+        ],
+        summary="List all authors"
     )
     def list(self, request, *args, **kwargs):
         page_size = int(request.query_params.get('page_size', 10))
@@ -65,7 +66,8 @@ class AuthorViews(viewsets.ViewSet):
             OpenApiParameter(name='query', type=str, required=True),
             OpenApiParameter(name='page_size', type=int, required=False),
             OpenApiParameter(name='page', type=int, required=False)
-        ]
+        ],
+        summary="Find authors by query"
     )
     @action(detail=False, methods=['get'], url_path='find_by_query')
     def find_by_query(self, request, *args, **kwargs):
@@ -88,7 +90,8 @@ class AuthorViews(viewsets.ViewSet):
     @extend_schema(
         description="Retrieve an author by id",
         responses=AuthorSerializer,
-        tags=['Authors']
+        tags=['Authors'],
+        summary="Retrieve an author by Scopus ID"
     )
     def retrieve(self, request, *args, **kwargs):
         try:

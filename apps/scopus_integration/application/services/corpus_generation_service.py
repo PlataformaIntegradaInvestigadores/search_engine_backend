@@ -78,4 +78,3 @@ class CorpusService(CorpusRepository):
             return combined_data
         except Exception as e:
             raise Exception("Error while generating corpus ", str(e))
-
