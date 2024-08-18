@@ -67,3 +67,4 @@ Este proyecto Django implementa un motor de búsqueda para la plataforma Centine
 - Para acceder a la consola de MongoDB, puedes utilizar el siguiente comando:
   ```bash
     docker exec -it <nombre_del_contenedor> mongo -u your_username -p your_password --authenticationDatabase your_db_name
+- Las credenciales de Centinela son las que se usarán para acceder al panel de administrador de Centinela. No existen credenciales por defecto.
