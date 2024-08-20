@@ -102,6 +102,7 @@ LOGGING = {
             "backupCount": 7,
             "formatter": "verbose",
             "encoding": "utf-8",
+            "delay": True
         },
     },
     "formatters": {

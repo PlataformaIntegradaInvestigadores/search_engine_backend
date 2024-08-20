@@ -52,7 +52,6 @@ class SearchAffiliationRepository:
 
     def retrieve(self, client: ScopusClient = None, get_all=False):
         try:
-            next_url = ""
             api_response = client.exec_request(self.url)
 
             if 'search-results' not in api_response:
@@ -65,43 +64,52 @@ class SearchAffiliationRepository:
             self.num_res = len(self.results)
             logger.info(f'Current results: {self.num_res}')
 
-            existing_cursors = {cursor.next_url for cursor in CursorReference.nodes.all()}
-            logger.info(f"Existing cursors: {existing_cursors}")
+            # Check if there are existing cursors
+            existing_cursors = {reference.cursor for reference in CursorReference.nodes.all()}
+            logger.info(f"Existing cursors: {len(existing_cursors)}")
 
-            if get_all is True:
+            if get_all:
                 while self.num_res < self.tot_num_res:
-                    with db.transaction:
-                        next_url = None
-                        for e in api_response['search-results'].get('link', []):
-                            if e.get('@ref') == 'next':
-                                next_url = e.get('@href')
-                                if next_url in existing_cursors:
-                                    logger.info(f"Cursor {next_url} already exists. Skipping...")
-                                    break
-                                else:
-                                    logger.info(f"Creating cursor {next_url}")
-                                    CursorReference(next_url=encodeFacets(next_url, facets=self.facets)).save()
+                    cursor_dict = api_response['search-results'].get('cursor', {})
+                    cursor = cursor_dict.get('@next') if cursor_dict else None
+                    links = api_response['search-results'].get('link', [])
+                    next_url = [e.get('@href') for e in links if e.get('@ref') == 'next'][0]
 
-                        if not next_url:
-                            logger.info("No next URL found, stopping.")
-                            break
+                    # If cursor is in existing_cursors, it means that the search was already done
+                    if cursor in existing_cursors:
+                        while True:
+                            # Search for the next cursor
+                            api_response = client.exec_request(encodeFacets(next_url, self.facets))
+                            cursor_dict = api_response['search-results'].get('cursor', {})
+                            cursor = cursor_dict.get('@next') if cursor_dict else None
+                            links = api_response['search-results'].get('link', [])
+                            next_url = [e.get('@href') for e in links if e.get('@ref') == 'next'][0]
+                            if cursor and cursor not in existing_cursors:
+                                break
+                            # Whe next_url is None, it means that there are no more results
+                            if not next_url:
+                                break
+                            logger.info(f"Cursor {cursor} already exists. Skipping...")
 
-                        api_response = client.exec_request(encodeFacets(next_url, self.facets))
-                        new_entries = api_response['search-results'].get('entry', [])
+                    api_response = client.exec_request(encodeFacets(next_url, self.facets))
+                    new_entries = api_response['search-results'].get('entry', [])
 
-                        for article_ in new_entries:
-                            try:
-                                scopus_id = Article.validate_scopus_id(article_.get('dc:identifier', ''))
-                                doi = article_.get('prism:doi', '') or None
-                            except ValueError as e:
-                                logger.error(f"Error on article validation: {e}")
-                                continue
-                            else:
-                                logger.info(f"Creating article with Scopus ID {scopus_id}")
-                                Article.from_json(article_, client)
+                    for article_ in new_entries:
+                        try:
+                            scopus_id = Article.validate_scopus_id(article_.get('dc:identifier', ''))
+                        except ValueError as e:
+                            logger.error(f"Error on article validation: {e}")
+                            raise e
+                        else:
+                            logger.info(f"Processing article with scopus_id: {scopus_id}")
+                            Article.from_json(article_, client)
 
-                        self.results += new_entries
-                        self.num_res = len(self.results)
+                    self.results += new_entries
+                    self.num_res = len(self.results)
+
+                    if cursor and cursor not in existing_cursors:
+                        CursorReference(next_url=next_url, cursor=cursor).save()
+                        logger.info(f"Cursor {cursor} created and saved")
 
         except requests.HTTPError as e:
             logger.error(f"Error on search due to HTTP error: {e}")
