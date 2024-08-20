@@ -30,6 +30,7 @@ class Article(DjangoNode):
         app_label = 'search_engine'
 
     @classmethod
+    @db.transaction
     def from_json(cls, article_data, client) -> 'Article':
         scopus_id = cls.validate_scopus_id(article_data.get('dc:identifier', ''))
         if scopus_id is None:
@@ -38,8 +39,10 @@ class Article(DjangoNode):
 
         try:
             article = cls.nodes.get(scopus_id=scopus_id)
+            logger.info("Article already exists, returning it without further processing")
             return article  # Article already exists, return it without further processing
         except cls.DoesNotExist:
+            logger.info("Article does not exist, creating it", scopus_id)
             article_data_processed = {
                 'title': article_data.get('dc:title', ''),
                 'doi': article_data.get('prism:doi', '') if article_data.get('prism:doi', '') else None,
@@ -66,7 +69,7 @@ class Article(DjangoNode):
                     article.affiliations.connect(affiliation_instance)
 
             print("Iniciando procesamiento de autores")
-            logger.log(logging.INFO, "Iniciando procesamiento de autores")
+            logger.log(logging.INFO, "Starting author processing")
             # Process authors
             authors = article_data.get('author', [])
 
@@ -83,7 +86,6 @@ class Article(DjangoNode):
             for i, author_instance in enumerate(author_instances):
                 for j in range(i + 1, len(author_instances)):
                     co_author_instance = author_instances[j]
-                    logger.log(logging.INFO, f"Processing co-author {co_author_instance.scopus_id}")
 
                     if author_instance.co_authors.is_connected(co_author_instance):
                         coauth_relationship = author_instance.co_authors.relationship(co_author_instance)
@@ -94,17 +96,11 @@ class Article(DjangoNode):
                         )
                         coauth_relationship.shared_pubs += 1
                         coauth_relationship.save()
-                        logger.log(logging.INFO,
-                                   f"Updated relationship strength: {coauth_relationship.collab_strength}")
-                        print(f"Updated relationship strength: {coauth_relationship.collab_strength}")
                     else:
-                        logging.log(logging.INFO, "Creating new relationship")
                         coauth_relationship = author_instance.co_authors.connect(co_author_instance,
                                                                                  {'collab_strength': 1.0,
                                                                                   'shared_pubs': 1})
                         coauth_relationship.save()
-                        logger.log(logging.INFO,
-                                   f"Created relationship strength: {coauth_relationship.collab_strength}")
                         print(f"Created relationship strength: {coauth_relationship.collab_strength}")
 
         return article

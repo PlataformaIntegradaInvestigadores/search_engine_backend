@@ -92,16 +92,13 @@ class Author(DjangoNode):
             ip_doc = current_affiliation.get('ip-doc', {})
             parent_preferred_name = ip_doc.get('parent-preferred-name', {})
 
-            logger.log(logging.INFO, f"Updating author: {author.first_name} {author.last_name}")
-
             if isinstance(parent_preferred_name, dict):
                 current_aff = parent_preferred_name.get('$', '')
             else:
                 current_aff = ip_doc.get('afdispname', '')
-            logger.log(logging.INFO, f"Current affiliation: {current_aff}")
+
             preferred_name = author_profile.get('preferred-name', {})
 
-            logger.log(logging.INFO, f"Preferred name: {preferred_name}")
             author.first_name = preferred_name.get('given-name', '')
             author.last_name = preferred_name.get('surname', '')
             author.auth_name = preferred_name.get('indexed-name', '')
@@ -111,10 +108,9 @@ class Author(DjangoNode):
             author.current_affiliation = current_aff
             author.save()
 
-            logger.log(logging.INFO, f"Author updated: {author.first_name} {author.last_name}")
             # Handling subject-areas
             subject_areas = author_data.get('subject-areas', {}).get("subject-area", [])
-            logger.log(logging.INFO, f"Subject areas: {subject_areas}")
+
             if isinstance(subject_areas, list):
                 for keyword in subject_areas:
                     if isinstance(keyword, dict):
@@ -122,10 +118,8 @@ class Author(DjangoNode):
                         if keyword_instance and not author.topics.is_connected(keyword_instance):
                             author.topics.connect(keyword_instance)
 
-            logger.log(logging.INFO, f"Time spent updating author: {time.time() - time_0}")
             affiliation_history = author_profile.get('affiliation-history', {})
             affiliations = affiliation_history.get('affiliation', [])
-            logger.log(logging.INFO, f"Affiliations: {affiliations}")
 
             if isinstance(affiliations, dict):
                 affiliations = [affiliations]
@@ -139,8 +133,7 @@ class Author(DjangoNode):
                     if not author.affiliations.is_connected(affiliation_instance):
                         author.affiliations.connect(affiliation_instance)
 
-            print("Time spent updating author: ", time.time() - time_0)
-
+            logger.log(logging.INFO, f"Author updated: {scopus_id}, time: {time.time() - time_0}")
             return author
         except cls.DoesNotExist:
             logger.log(logging.ERROR, f"Author not found: {scopus_id}")

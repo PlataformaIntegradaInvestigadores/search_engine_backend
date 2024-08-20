@@ -1,10 +1,11 @@
 from django_neomodel import DjangoNode
-from neomodel import StringProperty
+from neomodel import StringProperty, UniqueIdProperty
 
 
 class CursorReference(DjangoNode):
-    next_url = StringProperty(unique_index=True)
-    reference = StringProperty(unique_index=True)
+    next_url = StringProperty()
+    cursor = UniqueIdProperty()
+    current_url = StringProperty()
 
     class Meta:
         app_label = 'scopus_integration'
