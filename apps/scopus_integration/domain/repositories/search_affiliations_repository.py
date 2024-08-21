@@ -74,7 +74,7 @@ class SearchAffiliationRepository:
                     cursor = cursor_dict.get('@next') if cursor_dict else None
                     links = api_response['search-results'].get('link', [])
                     next_url = [e.get('@href') for e in links if e.get('@ref') == 'next'][0]
-
+                    logger.info(f"Current results {self.num_res} of {self.tot_num_res}")
                     # If cursor is in existing_cursors, it means that the search was already done
                     if cursor in existing_cursors:
                         while True:
@@ -108,12 +108,16 @@ class SearchAffiliationRepository:
                     self.num_res = len(self.results)
 
                     if cursor and cursor not in existing_cursors:
-                        CursorReference(next_url=next_url, cursor=cursor).save()
-                        logger.info(f"Cursor {cursor} created and saved")
+                        try:
+                            CursorReference(next_url=next_url, cursor=cursor).save()
+                            logger.info(f"Cursor {cursor} created and saved")
+                        except Exception as e:
+                            logger.error(f"Error on cursor creation: {e}")
+                            raise e
 
         except requests.HTTPError as e:
             logger.error(f"Error on search due to HTTP error: {e}")
             raise e
         except Exception as e:
             logger.error(f"Unexpected error during search: {e}")
-            raise
+            raise e

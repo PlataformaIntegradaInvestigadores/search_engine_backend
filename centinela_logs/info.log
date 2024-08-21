@@ -1,3 +1,9 @@
 2024-08-21 00:01:30,853 INFO Watching for file changes with StatReloader
 2024-08-21 00:08:39,566 INFO /app/apps/search_engine/domain/entities/article.py changed, reloading.
 2024-08-21 00:08:42,064 INFO Watching for file changes with StatReloader
+2024-08-21 00:24:01,274 INFO /app/apps/scopus_integration/domain/repositories/search_affiliations_repository.py changed, reloading.
+2024-08-21 00:24:06,276 INFO Watching for file changes with StatReloader
+2024-08-21 00:28:11,806 INFO /app/apps/scopus_integration/domain/repositories/search_affiliations_repository.py changed, reloading.
+2024-08-21 00:28:16,662 INFO Watching for file changes with StatReloader
+2024-08-21 00:29:36,231 INFO /app/apps/scopus_integration/domain/repositories/search_affiliations_repository.py changed, reloading.
+2024-08-21 00:29:40,434 INFO Watching for file changes with StatReloader
