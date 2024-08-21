@@ -42,7 +42,7 @@ class Article(DjangoNode):
             logger.info("Article already exists, returning it without further processing")
             return article  # Article already exists, return it without further processing
         except cls.DoesNotExist:
-            logger.info("Article does not exist, creating it", scopus_id)
+            logger.info(f"Article does not exist, creating it {scopus_id}")
             article_data_processed = {
                 'title': article_data.get('dc:title', ''),
                 'doi': article_data.get('prism:doi', '') if article_data.get('prism:doi', '') else None,
