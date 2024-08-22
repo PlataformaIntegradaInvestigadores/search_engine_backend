@@ -41,12 +41,14 @@ neo4j_password = os.environ.get('NEO4J_PASSWORD')
 neo4j_host = os.environ.get('NEO4J_HOST')
 neo4j_port = os.environ.get('NEO4J_PORT')
 
-config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
-print(config.DATABASE_URL)
-if DEBUG:
-    config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
-else:
-    config.DATABASE_URL = f'bolt+s://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+# config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+try:
+    if DEBUG:
+        config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+    else:
+        config.DATABASE_URL = f'bolt+s://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+except Exception as e:
+    raise ValueError(f"Error connecting to Neo4j database: {e}")
 
 mongo_db_name = os.environ.get('MONGO_DB_NAME')
 mongo_db_username = os.environ.get('MONGO_DB_USERNAME')
