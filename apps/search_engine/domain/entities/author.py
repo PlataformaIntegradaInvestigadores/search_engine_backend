@@ -87,15 +87,23 @@ class Author(DjangoNode):
             author_profile = author_data.get('author-profile', {})
             current_affiliation_dict = author_profile.get('affiliation-current', {})
             current_affiliation = current_affiliation_dict.get('affiliation', {})
+
             if isinstance(current_affiliation, list):
                 current_affiliation = current_affiliation[0]
             ip_doc = current_affiliation.get('ip-doc', {})
             parent_preferred_name = ip_doc.get('parent-preferred-name', {})
 
-            if isinstance(parent_preferred_name, dict):
-                current_aff = parent_preferred_name.get('$', '')
+            if parent_preferred_name:
+                if isinstance(parent_preferred_name, dict):
+                    current_aff = parent_preferred_name.get('$', '')
+                else:
+                    current_aff = ip_doc.get('afdispname', '')
             else:
-                current_aff = ip_doc.get('afdispname', '')
+                preferred_name = ip_doc.get('preferred-name', {})
+                if isinstance(current_affiliation, dict):
+                    current_aff = preferred_name.get('$', '')
+                else:
+                    current_aff = ip_doc.get('afdispname', '')
 
             preferred_name = author_profile.get('preferred-name', {})
 
