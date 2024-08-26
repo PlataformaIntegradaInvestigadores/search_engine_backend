@@ -145,7 +145,7 @@ class Author(DjangoNode):
             return author
         except cls.DoesNotExist:
             logger.log(logging.ERROR, f"Author not found: {scopus_id}")
-            raise ValueError("Author not found")
+            pass
         except Exception as e:
             logger.log(logging.ERROR, f"Error updating author from json: {e} scopus_id: {scopus_id}")
             raise ValueError("Error updating author from json: " + str(e))
