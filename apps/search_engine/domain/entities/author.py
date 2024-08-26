@@ -117,7 +117,11 @@ class Author(DjangoNode):
             author.save()
 
             # Handling subject-areas
-            subject_areas = author_data.get('subject-areas', {}).get("subject-area", [])
+            subject_areas = author_data.get('subject-areas', {})
+            if subject_areas is not None:
+                subject_areas = subject_areas.get("subject-area", [])
+            else:
+                subject_areas = []
 
             if isinstance(subject_areas, list):
                 for keyword in subject_areas:
