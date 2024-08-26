@@ -38,7 +38,6 @@ class UpdateAuthorInformationUseCase:
                 for author_instance, retrieval in zip(batch_authors, author_retrievals):
                     try:
                         retrieval_info = retrieval.result[0]
-                        logger.info(f"Updating author {author_instance.scopus_id}")
                         Author.update_from_json(author_data=retrieval_info)
                     except Exception as e:
                         print(f"Error updating author {author_instance.scopus_id}: {e}")

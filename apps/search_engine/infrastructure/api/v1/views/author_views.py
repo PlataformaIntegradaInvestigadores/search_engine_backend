@@ -133,7 +133,6 @@ class AuthorViews(viewsets.ViewSet):
 
             serializer = AffiliationNameSerializer(affiliations, many=True)
             serialized_data = serializer.data
-            print(serialized_data)
             seen = OrderedDict()
             for affiliation in serialized_data:
                 if affiliation['scopusId'] not in seen:
