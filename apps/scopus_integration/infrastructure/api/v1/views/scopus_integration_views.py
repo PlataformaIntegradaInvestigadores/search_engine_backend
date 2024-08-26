@@ -28,9 +28,9 @@ class ScopusIntegrationViewSet(viewsets.ModelViewSet):
         tags=['Scopus Integration'],
     )
     def list(self, request, *args, **kwargs):
-        if not self.lock.acquire(blocking=False):
-            return Response({"success": False, "message": "Another instance is already running."},
-                            status=status.HTTP_429_TOO_MANY_REQUESTS)
+        # if not self.lock.acquire(blocking=False):
+        #     return Response({"success": False, "message": "Another instance is already running."},
+        #                     status=status.HTTP_429_TOO_MANY_REQUESTS)
         try:
             logger.log(logging.INFO, "Starting the Scopus integration .....")
             scopus_integration = ScopusIntegrationUseCase(scopus_client=self.scopus_client)
@@ -52,4 +52,4 @@ class ScopusIntegrationViewSet(viewsets.ModelViewSet):
         finally:
             self.model_corpus_observer.delete_corpus()
             self.model_corpus_observer.delete_model()
-            self.lock.release()
+            # self.lock.release()

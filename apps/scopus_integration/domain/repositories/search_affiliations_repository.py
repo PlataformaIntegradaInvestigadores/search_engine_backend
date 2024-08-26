@@ -70,26 +70,43 @@ class SearchAffiliationRepository:
 
             if get_all:
                 while self.num_res < self.tot_num_res:
-                    cursor_dict = api_response['search-results'].get('cursor', {})
+                    cursor_dict = api_response.get('search-results', {}).get('cursor', {})
                     cursor = cursor_dict.get('@next') if cursor_dict else None
-                    links = api_response['search-results'].get('link', [])
-                    next_url = [e.get('@href') for e in links if e.get('@ref') == 'next'][0]
+                    links = api_response.get('search-results', {}).get('link', [])
+
+                    next_urls = [e.get('@href') for e in links if e.get('@ref') == 'next']
+                    next_url = next_urls[0] if next_urls else None
+
                     logger.info(f"Current results {self.num_res} of {self.tot_num_res}")
+
                     # If cursor is in existing_cursors, it means that the search was already done
                     if cursor in existing_cursors:
                         while True:
-                            # Search for the next cursor
-                            api_response = client.exec_request(encodeFacets(next_url, self.facets))
-                            cursor_dict = api_response['search-results'].get('cursor', {})
+                            if not next_url:
+                                logger.info("No more results available.")
+                                break
+
+                            try:
+                                # Search for the next cursor
+                                api_response = client.exec_request(encodeFacets(next_url, self.facets))
+                            except Exception as e:
+                                logger.error(f"API request failed: {e}")
+                                raise e
+
+                            cursor_dict = api_response.get('search-results', {}).get('cursor', {})
                             cursor = cursor_dict.get('@next') if cursor_dict else None
-                            links = api_response['search-results'].get('link', [])
-                            next_url = [e.get('@href') for e in links if e.get('@ref') == 'next'][0]
+                            links = api_response.get('search-results', {}).get('link', [])
+
+                            next_urls = [e.get('@href') for e in links if e.get('@ref') == 'next']
+                            next_url = next_urls[0] if next_urls else None
+
                             if cursor and cursor not in existing_cursors:
                                 break
-                            # Whe next_url is None, it means that there are no more results
-                            if not next_url:
-                                break
+
                             logger.info(f"Cursor {cursor} already exists. Skipping...")
+                            self.results += api_response['search-results'].get('entry', [])
+                            self.num_res = len(self.results)
+                            logger.info(f"Current results {self.num_res} of {self.tot_num_res}")
 
                     api_response = client.exec_request(encodeFacets(next_url, self.facets))
                     new_entries = api_response['search-results'].get('entry', [])
