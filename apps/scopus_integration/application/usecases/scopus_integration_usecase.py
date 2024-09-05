@@ -21,7 +21,7 @@ class ScopusIntegrationUseCase:
         cursor = '*'
         query = url_encode("AFFIL(AFFILCOUNTRY(Ecuador))")
 
-        url = f"https://api.elsevier.com/content/search/{search_type}?query={query}&count={count}&view={view}&field={field}&cursor={cursor}"
+        url = f"https://api.elsevier.com/content/search/{search_type}?query={query}&count={count}&view={view}&field={field}&cursor={cursor}&date=2010-2020"
         affiliation_repository = SearchAffiliationRepository(url=url)
         self.search_affiliation_repository = affiliation_repository
         print("Iniciando la ejecucion de la busqueda .....")
