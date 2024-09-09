@@ -19,15 +19,16 @@ from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api-se/admin/', admin.site.urls),
+    path('api-se/schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI for schema:
-    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    path('api-se/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api-se/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 
     # Urls for each app
-    path('api/v1/', include('apps.search_engine.infrastructure.api.v1.urls.root_urls'), name='author'),
-    path('api/v1/', include('apps.scopus_integration.infrastructure.api.v1.urls.root_url'), name='scopus'),
-    path('api/v1/dashboard/', include('apps.dashboards.infrastructure.api.v1.urls.root_urls'), name='dashboard'),
-    path('api/v1/auth/', include('apps.authentication.infrastructure.api.v1.urls.root_urls'), name='authentication'),
+    path('api-se/v1/', include('apps.search_engine.infrastructure.api.v1.urls.root_urls'), name='author'),
+    path('api-se/v1/', include('apps.scopus_integration.infrastructure.api.v1.urls.root_url'), name='scopus'),
+    path('api-se/v1/dashboard/', include('apps.dashboards.infrastructure.api.v1.urls.root_urls'), name='dashboard'),
+
+    path('api-se/v1/auth/', include('apps.authentication.infrastructure.api.v1.urls.root_urls'), name='authentication'),
 ]
