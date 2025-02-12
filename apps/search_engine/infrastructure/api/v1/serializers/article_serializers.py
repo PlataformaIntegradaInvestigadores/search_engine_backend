@@ -37,17 +37,19 @@ class MostRelevantArticlesRequestSerializer(serializers.Serializer):
     type = serializers.CharField(required=False)
     years = serializers.ListField(child=serializers.CharField(), required=False)
 
-
+# En article_serializers.py
 class MostRelevantArticleResponseSerializer(serializers.Serializer):
     title = serializers.CharField()
     author_count = serializers.IntegerField()
     affiliation_count = serializers.IntegerField()
     publication_date = serializers.CharField()
-    scopus_id = serializers.IntegerField()
-
+    scopus_id = serializers.CharField()
+    relevance = serializers.FloatField()
+    authors = serializers.ListField(child=serializers.CharField(), required=False)
+    affiliations = serializers.ListField(child=serializers.CharField(), required=False)
+    
     def get_affiliation_count(self, obj):
         return len(obj.affiliations.all())
-
 
 class YearsSerializer(serializers.Serializer):
     year = serializers.CharField()
