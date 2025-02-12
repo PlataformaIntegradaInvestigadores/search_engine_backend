@@ -92,9 +92,45 @@ log_dir = Path(BASE_DIR) / 'centinela_logs'
 if not log_dir.exists():
     log_dir.mkdir(parents=True)
 
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "handlers": {
+#         "file": {
+#             "level": "INFO",
+#             "class": "logging.handlers.TimedRotatingFileHandler",
+#             "filename": os.path.join(log_dir, "info.log"),
+#             "when": "midnight",
+#             "backupCount": 7,
+#             "formatter": "verbose",
+#             "encoding": "utf-8",
+#             "delay": True
+#         },
+#     },
+#     "formatters": {
+#         "verbose": {
+#             "format": "{asctime} {levelname} {message}",
+#             "style": "{",
+#         },
+#     },
+#     "loggers": {
+#         "django": {
+#             "handlers": ["file"],
+#             "level": "DEBUG",
+#             "propagate": True,
+#         },
+#     },
+# }
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{asctime} {levelname} {message}",
+            "style": "{",
+        },
+    },
     "handlers": {
         "file": {
             "level": "INFO",
@@ -106,16 +142,20 @@ LOGGING = {
             "encoding": "utf-8",
             "delay": True
         },
-    },
-    "formatters": {
-        "verbose": {
-            "format": "{asctime} {levelname} {message}",
-            "style": "{",
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
         },
     },
     "loggers": {
         "django": {
-            "handlers": ["file"],
+            "handlers": ["file", "console"],  # Agregamos console aquí
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        # Agregamos un logger específico para tus apps
+        "apps": {
+            "handlers": ["file", "console"],
             "level": "DEBUG",
             "propagate": True,
         },
