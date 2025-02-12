@@ -25,35 +25,86 @@ class ArticleService(ArticleRepository):
             return total_articles
         except Exception as e:
             raise ValueError(f"Error finding total articles: {e}")
-
+        
     def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> Tuple[List[object], int]:
         try:
             skip = (page - 1) * page_size
-            # Cast to int the list of ids
-            # ids_integer = [int(w) for w in ids]  # Join IDs into a quoted string
-            # Retrieve total articles found on that list
-            ids_integer = [w for w in ids]
+            # Asegúrate de que los IDs estén en el formato correcto
+            ids_integer = [str(w) for w in ids]  
+
+            # Obtener total de artículos
             query_to_find_articles = f"MATCH (a:Article) WHERE a.scopus_id IN {ids_integer} RETURN count(a) AS total"
             total_results, meta = db.cypher_query(query_to_find_articles)
             total_articles = total_results[0][0]
 
-            # Retrieve articles found on that list
-            query = (f"MATCH (a:Article) WHERE a.scopus_id IN {ids_integer} RETURN a ORDER BY a.publication_date DESC "
-                     f"SKIP {skip} LIMIT {page_size}")
+            # Obtener artículos con toda su información
+            query = (f"""
+                MATCH (a:Article) 
+                WHERE a.scopus_id IN {ids_integer} 
+                OPTIONAL MATCH (a)-[:WROTE]-(au:Author)
+                OPTIONAL MATCH (a)-[:BELONGS_TO]-(aff:Affiliation)
+                RETURN a, 
+                    count(DISTINCT au) as author_count,
+                    count(DISTINCT aff) as affiliation_count,
+                    collect(DISTINCT au.auth_name) as authors,
+                    collect(DISTINCT aff.name) as affiliations
+                ORDER BY a.publication_date DESC 
+                SKIP {skip} LIMIT {page_size}
+            """)
+            
             results, meta = db.cypher_query(query)
-            articles = [Article.inflate(row[0]) for row in results]
+            
+            # Procesar resultados
+            articles = []
+            for row in results:
+                article = Article.inflate(row[0])
+                article_dict = {
+                    'scopus_id': article.scopus_id,
+                    'title': article.title,
+                    'publication_date': article.publication_date,
+                    'author_count': row[1],
+                    'affiliation_count': row[2],
+                    'authors': row[3],
+                    'affiliations': row[4]
+                }
+                articles.append(article_dict)
 
             return articles, total_articles
         except Exception as e:
-            raise Exception(f"Error finding articles by ids: {e}")
-
+            raise Exception(f"Error finding articles by ids: {e}")    
+    
+    # En article_service.py
     def find_most_relevant_articles_by_topic(self, topic: str):
         try:
             m = Model("article")
-            return m.get_most_relevant_docs_by_topic_v2(topic, None)
+            # Esto devuelve solo IDs y scores
+            df = m.get_most_relevant_docs_by_topic_v2(topic, None)
+            
+            # Necesitamos obtener la información completa de cada artículo
+            article_list = []
+            for scopus_id, score in df.items():
+                try:
+                    # Obtener el artículo completo de Neo4j
+                    article = self.find_by_id(str(scopus_id))
+                    if article:
+                        # Convertir a diccionario y agregar el score
+                        article_dict = {
+                            'scopus_id': article.scopus_id,
+                            'title': article.title,
+                            'publication_date': article.publication_date,
+                            'author_count': article.author_count,
+                            'affiliation_count': article.affiliation_count,
+                            'relevance': float(score)
+                        }
+                        article_list.append(article_dict)
+                except Exception as e:
+                    print(f"Error processing article {scopus_id}: {e}")
+                    continue
+
+            return article_list
         except Exception as e:
             raise Exception(f"Error finding most relevant articles by topic: {e}")
-
+    
     def find_articles_by_filter_years(self, filter_type: str, filter_years: List[str], ids: List[str]) -> List[object]:
         try:
             # Cambiar este cmportamiento dependiendo de la bd
