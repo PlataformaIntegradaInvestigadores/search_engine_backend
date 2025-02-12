@@ -1,0 +1,1 @@
+scibert_scivocab_uncased/**/* filter=lfs diff=lfs merge=lfs -text
