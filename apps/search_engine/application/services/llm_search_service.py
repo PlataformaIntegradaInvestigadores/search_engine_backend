@@ -217,7 +217,7 @@ class LLMSearchService:
             BASE_DIR = 'resources/'
             self.scibert_model_path = os.path.join(BASE_DIR, 'models', 'scibert_scivocab_uncased')
             self.keybert_path = os.path.join(BASE_DIR, 'models', 'keybert')
-            self.embeddings_path = os.path.join(BASE_DIR, 'embeddings', 'centinela_genkeywords.npy')
+            self.embeddings_path = os.path.join(BASE_DIR, 'embeddings', 'corpus_embeddings_12mil_registros.npy')
             self.initialize_components()
             self.__class__._initialized = True
         
@@ -244,27 +244,24 @@ class LLMSearchService:
             
         except Exception as e:
             logger.error(f"Error initializing components: {e}")
-            raise
+            raise    
     
     
     def get_corpus_from_neo4j(self) -> List[Dict]:
         try:
             query = """
             MATCH (a:Article)
-            WITH a
-            OPTIONAL MATCH (a)-[:WROTE]->(au:Author)
-            WITH a, collect(DISTINCT au.auth_name) as authors
+            OPTIONAL MATCH (a)-[:WROTE]-(au:Author)
             OPTIONAL MATCH (a)-[:BELONGS_TO]->(af:Affiliation)
-            WITH a, authors, collect(DISTINCT af.name) as affiliations  
             OPTIONAL MATCH (a)-[:USES]->(t:Topic)
             RETURN a.scopus_id as article_id,
                 a.title as title,
                 a.abstract as abstract,
                 a.publication_date as publication_date,
-                size(authors) as author_count,
-                size(affiliations) as affiliation_count,
-                authors,
-                affiliations,
+                count(DISTINCT au) as author_count,
+                count(DISTINCT af) as affiliation_count,
+                collect(DISTINCT au.auth_name) as authors,
+                collect(DISTINCT af.name) as affiliations,
                 collect(DISTINCT t.name) as topics
             """
             
