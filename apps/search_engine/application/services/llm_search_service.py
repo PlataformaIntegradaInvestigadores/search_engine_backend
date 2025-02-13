@@ -217,7 +217,7 @@ class LLMSearchService:
             BASE_DIR = 'resources/'
             self.scibert_model_path = os.path.join(BASE_DIR, 'models', 'scibert_scivocab_uncased')
             self.keybert_path = os.path.join(BASE_DIR, 'models', 'keybert')
-            self.embeddings_path = os.path.join(BASE_DIR, 'embeddings', 'corpus_embeddings_12mil_registros.npy')
+            self.embeddings_path = os.path.join(BASE_DIR, 'embeddings', 'centinela_genkeywords.npy')
             self.initialize_components()
             self.__class__._initialized = True
         
