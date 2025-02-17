@@ -1,5 +1,10 @@
-# Archivos de entorno y configuración
-.env
+# Archivos de control de versión
+.git
+.gitignore
+
+# Archivos de configuración y documentación
+README.md
+.env.template
 
 # Archivos y carpetas de IDE/Editor
 .idea/
@@ -8,18 +13,15 @@
 # Archivos generados por Python
 __pycache__/
 *.pyc
-
-# Archivos de modelos
-resources/*/*.pkl
+*.pkl
 
 # Bases de datos locales
 db.sqlite3
 neo4j_db/
 mongo_db/
 
-# Archivos de logs
-centinela_logs/debug.log
-*.log
-
 # Entorno virtual
 venv/
+
+# Archivos de log
+*.log
