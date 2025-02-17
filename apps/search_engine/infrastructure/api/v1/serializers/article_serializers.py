@@ -37,17 +37,36 @@ class MostRelevantArticlesRequestSerializer(serializers.Serializer):
     type = serializers.CharField(required=False)
     years = serializers.ListField(child=serializers.CharField(), required=False)
 
+# En article_serializers.py
+# class MostRelevantArticleResponseSerializer(serializers.Serializer):
+#     title = serializers.CharField()
+#     author_count = serializers.IntegerField()
+#     affiliation_count = serializers.IntegerField()
+#     publication_date = serializers.CharField()
+#     scopus_id = serializers.CharField()
+#     relevance = serializers.FloatField()
+#     authors = serializers.ListField(child=serializers.CharField(), required=False)
+#     affiliations = serializers.ListField(child=serializers.CharField(), required=False)
+    
+#     def get_affiliation_count(self, obj):
+#         return len(obj.affiliations.all())
 
 class MostRelevantArticleResponseSerializer(serializers.Serializer):
     title = serializers.CharField()
-    author_count = serializers.IntegerField()
-    affiliation_count = serializers.IntegerField()
+    author_count = serializers.IntegerField(min_value=0)  # Asegurar que acepte cero
+    affiliation_count = serializers.IntegerField(min_value=0)  # Asegurar que acepte cero
     publication_date = serializers.CharField()
-    scopus_id = serializers.IntegerField()
+    scopus_id = serializers.CharField()
+    relevance = serializers.FloatField()
+    authors = serializers.ListField(child=serializers.CharField(), required=False, allow_empty=True)
+    affiliations = serializers.ListField(child=serializers.CharField(), required=False, allow_empty=True)
 
-    def get_affiliation_count(self, obj):
-        return len(obj.affiliations.all())
-
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        # Asegurar que los conteos sean enteros positivos
+        data['author_count'] = max(0, int(instance.get('author_count', 0)))
+        data['affiliation_count'] = max(0, int(instance.get('affiliation_count', 0)))
+        return data
 
 class YearsSerializer(serializers.Serializer):
     year = serializers.CharField()
