@@ -10,4 +10,5 @@ urlpatterns = [
          name='affiliations'),
     path('coauthors/', include('apps.search_engine.infrastructure.api.v1.urls.coauthor_urls'), name='coauthors'),
     path('summary/', SummaryView.as_view(), name='summary'),
+    path('llm-search/', include('apps.search_engine.infrastructure.api.v1.urls.llm_search_urls')),  # Modified this line
 ]
