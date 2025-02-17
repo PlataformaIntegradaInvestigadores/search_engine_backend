@@ -1,5 +1,5 @@
 from typing import List
-
+import pandas as pd
 from neomodel import db, Q
 
 from apps.search_engine.domain.entities.author import Author
@@ -37,14 +37,44 @@ class AuthorService(AuthorRepository):
         except Exception as e:
             raise ValueError(f"Error finding total authors: {e}")
 
+    # def find_most_relevant_authors_by_topic(self, topic: str, authors_number: int):
+    #     try:
+    #         m = Model("author")
+    #         authors = m.get_most_relevant_docs_by_topic_v2(topic, authors_number)
+    #         return authors
+    #     except Exception as e:
+    #         raise Exception(f"Error finding most relevant authors by topic: {e}")
+
     def find_most_relevant_authors_by_topic(self, topic: str, authors_number: int):
         try:
             m = Model("author")
+            
+            # Primero intentar con la query completa
             authors = m.get_most_relevant_docs_by_topic_v2(topic, authors_number)
+            
+            # Si no hay resultados, intentar con términos individuales
+            if authors.empty:
+                terms = topic.split()
+                all_authors = []
+                
+                for term in terms:
+                    term_authors = m.get_most_relevant_docs_by_topic_v2(term, authors_number)
+                    if not term_authors.empty:
+                        all_authors.append(term_authors)
+                
+                if all_authors:
+                    # Combinar resultados de términos individuales
+                    combined = pd.concat(all_authors)
+                    # Agrupar por autor y sumar scores
+                    combined = combined.groupby(combined.index).sum()
+                    # Ordenar y limitar
+                    authors = combined.sort_values(ascending=False).head(authors_number)
+            
             return authors
+            
         except Exception as e:
             raise Exception(f"Error finding most relevant authors by topic: {e}")
-
+    
     def find_community(self, authors_ids: List[str]):
         try:
             query = Q(scopus_id__in=authors_ids)
