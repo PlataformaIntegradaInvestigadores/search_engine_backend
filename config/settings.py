@@ -28,7 +28,7 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-ROTATED-SECRET-KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG = os.environ.get('DEBUG') == 'True'
 
 ALLOWED_HOSTS = ["*"]
 
@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_mongoengine',
     'django_neomodel',
     'corsheaders',
     'drf_spectacular',
