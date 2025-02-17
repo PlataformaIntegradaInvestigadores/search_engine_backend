@@ -10,11 +10,19 @@ services:
       - "8001:8001"
     environment:
       - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+      - NEO4J_USERNAME=${NEO4J_USERNAME}
+      - NEO4J_HOST=${NEO4J_HOST}
+      - NEO4J_PORT=${NEO4J_PORT}
       - MONGO_DB_NAME=${MONGO_DB_NAME}
       - MONGO_DB_USERNAME=${MONGO_DB_USERNAME}
       - MONGO_DB_PASSWORD=${MONGO_DB_PASSWORD}
       - MONGO_DB_HOST=${MONGO_DB_HOST}
       - MONGO_DB_PORT=${MONGO_DB_PORT}
+      - ADMIN_CENTINELA=${ADMIN_CENTINELA}
+      - PASSWORD_CENTINELA=${PASSWORD_CENTINELA}
+    depends_on:
+      - mongo
+      - neo4j
     links:
       - "neo4j:neo4j"
       - "mongo:mongo"
@@ -27,7 +35,7 @@ services:
       - "7474:7474"
       - "7687:7687"
     environment:
-      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
+      - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD}
       - NEO4J_apoc_export_file_enabled=true
       - NEO4J_apoc_import_file_enabled=true
       - NEO4J_apoc_import_file_use__neo4j__config=true
@@ -49,3 +57,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DB_PASSWORD}
     volumes:
       - ./mongo_db/data:/data/db
+
+networks:
+  default:
+    driver: bridge
