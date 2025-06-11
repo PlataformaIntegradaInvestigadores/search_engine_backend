@@ -5,15 +5,26 @@
 # Archivos de configuración y documentación
 README.md
 .env.template
+.env.local
+.env.development
 
 # Archivos y carpetas de IDE/Editor
 .idea/
 .vscode/
+*.swp
+*.swo
+*~
 
 # Archivos generados por Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
 *.pkl
+.pytest_cache/
+.coverage
+htmlcov/
 
 # Bases de datos locales
 db.sqlite3
@@ -22,6 +33,33 @@ mongo_db/
 
 # Entorno virtual
 venv/
+env/
+.venv/
+.env/
 
 # Archivos de log
 *.log
+centinela_logs/
+
+# Archivos de prueba temporales
+test_*.py
+*_test.py
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Docker files
+Dockerfile
+.dockerignore
+docker-compose.yml
+compose.yaml
+
+# Archivos de documentación
+docs/
+*.md
+
+# Archivos de testing y Postman
+*.postman_collection.json
+*.postman_environment.json
+POSTMAN_TESTS_README.md

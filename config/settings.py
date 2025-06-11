@@ -81,7 +81,8 @@ INSTALLED_APPS = [
     'apps.search_engine',
     'apps.scopus_integration',
     'apps.dashboards',
-    'apps.authentication'
+    'apps.authentication',
+    'apps.text_processing'
 ]
 
 REST_FRAMEWORK = {
