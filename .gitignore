@@ -20,6 +20,7 @@ mongo_db/
 # Archivos de logs
 centinela_logs/debug.log
 *.log
+centinela_logs/*.log*
 
 # Entorno virtual
 venv/
