@@ -1,0 +1,480 @@
+{
+	"info": {
+		"_postman_id": "text-processing-api-tests",
+		"name": "Text Processing API - Test Collection",
+		"description": "Collection to test the text vectorization service endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8001",
+			"type": "string"
+		},
+		{
+			"key": "api_prefix",
+			"value": "/api-se/v1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Health Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Service is healthy\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"healthy\");",
+							"    pm.expect(jsonData.service).to.eql(\"text_processing\");",
+							"});",
+							"",
+							"pm.test(\"Model dimension is present\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.model_dimension).to.be.a(\"number\");",
+							"    pm.expect(jsonData.model_dimension).to.be.above(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}{{api_prefix}}/text-processing/health/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_prefix}}",
+						"text-processing",
+						"health",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vectorize Text - Spanish to English",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has vector\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.vector).to.be.an(\"array\");",
+							"    pm.expect(jsonData.vector.length).to.be.above(0);",
+							"});",
+							"",
+							"pm.test(\"Response has correct metadata\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.dimension).to.be.a(\"number\");",
+							"    pm.expect(jsonData.original_language).to.be.a(\"string\");",
+							"    pm.expect(jsonData.was_translated).to.be.a(\"boolean\");",
+							"    pm.expect(jsonData.processed_text).to.be.a(\"string\");",
+							"});",
+							"",
+							"pm.test(\"Translation occurred for Spanish text\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.original_language).to.eql(\"es\");",
+							"    pm.expect(jsonData.was_translated).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Processing times are present\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.processing_time).to.be.an(\"object\");",
+							"    pm.expect(jsonData.processing_time.translation_time).to.be.a(\"number\");",
+							"    pm.expect(jsonData.processing_time.embedding_time).to.be.a(\"number\");",
+							"    pm.expect(jsonData.processing_time.total_time).to.be.a(\"number\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relevante sobre inteligencia artificial y procesamiento de lenguaje natural.\",\n    \"translate_to_english\": true,\n    \"clean_text\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_prefix}}/text-processing/vectorize/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_prefix}}",
+						"text-processing",
+						"vectorize",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vectorize Text - English (No Translation)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"No translation occurred for English text\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.original_language).to.eql(\"en\");",
+							"    pm.expect(jsonData.was_translated).to.be.false;",
+							"});",
+							"",
+							"pm.test(\"Vector has correct dimension\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.dimension).to.eql(jsonData.vector.length);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"This is a sample English text for testing semantic embeddings generation. It contains relevant information about artificial intelligence and natural language processing.\",\n    \"translate_to_english\": true,\n    \"clean_text\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_prefix}}/text-processing/vectorize/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_prefix}}",
+						"text-processing",
+						"vectorize",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vectorize Text - Without Translation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Translation was disabled\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.was_translated).to.be.false;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Texto en español sin traducir para probar el embedding directo.\",\n    \"translate_to_english\": false,\n    \"clean_text\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_prefix}}/text-processing/vectorize/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_prefix}}",
+						"text-processing",
+						"vectorize",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vectorize Text - Without Cleaning",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Text contains special characters\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    // Processed text should retain some original formatting",
+							"    pm.expect(jsonData.processed_text).to.include(\"!\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hello World! This text has special characters: @#$%^&*()... Let's see how it handles them!\",\n    \"translate_to_english\": true,\n    \"clean_text\": false\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_prefix}}/text-processing/vectorize/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_prefix}}",
+						"text-processing",
+						"vectorize",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vectorize Text - Long Text",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Long text processed successfully\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.vector).to.be.an(\"array\");",
+							"    pm.expect(jsonData.processed_text.length).to.be.above(100);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"La inteligencia artificial (IA) es una rama de la informática que se centra en la creación de sistemas capaces de realizar tareas que típicamente requieren inteligencia humana. Estos sistemas pueden aprender, razonar, percibir, y en algunos casos, actuar de manera autónoma. El procesamiento de lenguaje natural (PLN) es una subdisciplina de la IA que se enfoca en la interacción entre las computadoras y el lenguaje humano. Su objetivo es permitir que las máquinas comprendan, interpreten y generen texto de manera similar a como lo haría un ser humano. Los embeddings o representaciones vectoriales son una técnica fundamental en PLN que convierte palabras, frases o documentos en vectores numéricos de alta dimensión. Estos vectores capturan relaciones semánticas y sintácticas del lenguaje, permitiendo que los algoritmos de aprendizaje automático trabajen con texto de manera eficiente. Los modelos de transformers, como BERT y GPT, han revolucionado el campo del PLN al demostrar capacidades excepcionales en una amplia gama de tareas lingüísticas.\",\n    \"translate_to_english\": true,\n    \"clean_text\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_prefix}}/text-processing/vectorize/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_prefix}}",
+						"text-processing",
+						"vectorize",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vectorize Text - Error: Empty Text",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error).to.include(\"Text field is required\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"translate_to_english\": true,\n    \"clean_text\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_prefix}}/text-processing/vectorize/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_prefix}}",
+						"text-processing",
+						"vectorize",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vectorize Text - Error: Empty String",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Error message is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error).to.include(\"non-empty string\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"\",\n    \"translate_to_english\": true,\n    \"clean_text\": true\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_prefix}}/text-processing/vectorize/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_prefix}}",
+						"text-processing",
+						"vectorize",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vectorize Text - Minimal Options",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Default options applied\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    // Should use default values for translate_to_english (true) and clean_text (true)",
+							"    pm.expect(jsonData.vector).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Simple test message\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_prefix}}/text-processing/vectorize/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_prefix}}",
+						"text-processing",
+						"vectorize",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

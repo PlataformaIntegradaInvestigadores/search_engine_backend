@@ -5411,3 +5411,121 @@
 2024-08-22 21:55:30,583 ERROR "GET /api/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 500 50
 2024-08-22 22:12:23,988 INFO "GET /api/schema/swagger-ui/ HTTP/1.1" 200 4650
 2024-08-22 22:12:24,790 INFO "GET /api/schema/ HTTP/1.1" 200 176077
+2025-06-10 23:33:57,629 INFO Watching for file changes with StatReloader
+2025-06-10 23:34:16,761 INFO Loaded embeddings with size: 27677
+2025-06-10 23:34:16,763 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.3', 7687)) (reason [Errno 111] Connection refused)
+2025-06-10 23:34:16,763 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.3', 7687)) (reason [Errno 111] Connection refused)
+2025-06-10 23:34:17,844 INFO Loaded embeddings with size: 27677
+2025-06-10 23:34:17,846 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.3', 7687)) (reason [Errno 111] Connection refused)
+2025-06-10 23:34:17,847 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.3', 7687)) (reason [Errno 111] Connection refused)
+2025-06-10 23:36:35,668 INFO Watching for file changes with StatReloader
+2025-06-10 23:36:42,069 INFO Loaded embeddings with size: 27677
+2025-06-10 23:36:43,936 INFO Retrieved 0 documents from Neo4j
+2025-06-10 23:37:02,939 WARNING Not Found: /
+2025-06-10 23:37:02,941 WARNING "GET / HTTP/1.1" 404 3054
+2025-06-10 23:37:13,537 INFO Text vectorizer components initialized successfully
+2025-06-10 23:37:13,538 INFO Starting text vectorization
+2025-06-10 23:37:13,538 INFO Original text: 'test...'
+2025-06-10 23:37:14,411 INFO Detected language: et
+2025-06-10 23:37:28,663 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:37:28,664 INFO "GET //api-se/v1/text-processing/health/ HTTP/1.1" 200 121
+2025-06-10 23:37:40,806 INFO Starting text vectorization
+2025-06-10 23:37:40,807 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:37:40,811 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:37:40,811 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:37:41,451 INFO Translated from es to en
+2025-06-10 23:37:41,680 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:37:41,682 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15635
+2025-06-10 23:38:09,909 INFO Starting text vectorization
+2025-06-10 23:38:09,909 INFO Original text: 'La inteligencia artificial (IA) es una rama de la informática que se centra en la creación de sistem...'
+2025-06-10 23:38:09,910 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:38:09,911 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:38:10,500 INFO Translated from es to en
+2025-06-10 23:38:10,868 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:38:10,870 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 16501
+2025-06-10 23:41:24,563 WARNING Bad Request: /api-se/v1/text-processing/vectorize/
+2025-06-10 23:41:24,564 WARNING "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 400 34
+2025-06-10 23:41:33,296 INFO Starting text vectorization
+2025-06-10 23:41:33,297 INFO Original text: 'Simple test message...'
+2025-06-10 23:41:33,305 INFO Detected language: fr
+2025-06-10 23:41:33,311 INFO Detected language: fr
+2025-06-10 23:41:33,634 INFO Translated from fr to en
+2025-06-10 23:41:33,723 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:41:33,724 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15529
+2025-06-10 23:41:57,732 INFO Starting text vectorization
+2025-06-10 23:41:57,733 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:41:57,733 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:41:57,733 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:41:58,242 INFO Translated from es to en
+2025-06-10 23:41:58,290 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:41:58,292 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15636
+2025-06-10 23:42:40,018 INFO Starting text vectorization
+2025-06-10 23:42:40,019 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:42:40,019 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:42:40,020 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:42:40,265 INFO Translated from es to en
+2025-06-10 23:42:40,301 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:42:40,303 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15636
+2025-06-10 23:42:46,728 INFO Starting text vectorization
+2025-06-10 23:42:46,729 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:42:46,729 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:42:46,729 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:42:46,998 INFO Translated from es to en
+2025-06-10 23:42:47,038 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:42:47,040 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15636
+2025-06-10 23:42:48,032 INFO Starting text vectorization
+2025-06-10 23:42:48,033 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:42:48,034 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:42:48,034 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:42:48,230 INFO Translated from es to en
+2025-06-10 23:42:48,274 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:42:48,275 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15636
+2025-06-10 23:42:52,823 ERROR Error in text vectorization endpoint: JSON parse error - Expecting property name enclosed in double quotes: line 4 column 1 (char 223)
+2025-06-10 23:42:52,823 ERROR Internal Server Error: /api-se/v1/text-processing/vectorize/
+2025-06-10 23:42:52,824 ERROR "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 500 56
+2025-06-10 23:42:57,680 INFO Starting text vectorization
+2025-06-10 23:42:57,681 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:42:57,681 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:42:57,682 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:42:57,929 INFO Translated from es to en
+2025-06-10 23:42:57,970 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:42:57,972 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15638
+2025-06-10 23:43:03,799 INFO Starting text vectorization
+2025-06-10 23:43:03,800 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:43:03,800 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:43:03,801 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:43:04,050 INFO Translated from es to en
+2025-06-10 23:43:04,100 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:43:04,102 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15635
+2025-06-10 23:43:41,674 INFO Starting text vectorization
+2025-06-10 23:43:41,674 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:43:41,675 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:43:41,675 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:43:42,716 INFO Translated from es to en
+2025-06-10 23:43:42,779 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:43:42,781 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15783
+2025-06-10 23:43:47,346 INFO Starting text vectorization
+2025-06-10 23:43:47,346 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:43:47,347 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:43:47,347 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:43:47,595 INFO Translated from es to en
+2025-06-10 23:43:47,635 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:43:47,636 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15636
+2025-06-10 23:55:42,462 INFO Starting text vectorization
+2025-06-10 23:55:42,463 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:55:42,463 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:55:42,464 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:55:42,953 INFO Translated from es to en
+2025-06-10 23:55:43,036 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:55:43,037 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15636
+2025-06-10 23:56:15,895 INFO Starting text vectorization
+2025-06-10 23:56:15,895 INFO Original text: 'Este es un texto de prueba en español para generar embeddings semánticos. Contiene información relev...'
+2025-06-10 23:56:15,895 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:56:15,896 INFO Spanish word(s) detected, treating as Spanish
+2025-06-10 23:56:16,195 INFO Translated from es to en
+2025-06-10 23:56:16,247 INFO Text vectorization completed. Vector dimension: 768
+2025-06-10 23:56:16,249 INFO "POST //api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15636
