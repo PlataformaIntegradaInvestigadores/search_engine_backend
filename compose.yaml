@@ -21,8 +21,10 @@ services:
       - ADMIN_CENTINELA=${ADMIN_CENTINELA}
       - PASSWORD_CENTINELA=${PASSWORD_CENTINELA}
     depends_on:
-      - mongo
-      - neo4j
+      mongo:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
     links:
       - "neo4j:neo4j"
       - "mongo:mongo"
@@ -45,6 +47,11 @@ services:
       - ./neo4j_db/logs:/logs
       - ./neo4j_db/import:/var/lib/neo4j/import
       - ./neo4j_db/plugins:/plugins
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   mongo:
     container_name: mongo
@@ -57,6 +64,11 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DB_PASSWORD}
     volumes:
       - ./mongo_db/data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
   default:
