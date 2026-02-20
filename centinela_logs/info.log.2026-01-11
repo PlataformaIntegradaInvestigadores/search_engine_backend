@@ -1,0 +1,1532 @@
+2026-01-11 22:30:57,017 INFO Watching for file changes with StatReloader
+2026-01-11 22:31:09,022 INFO Loaded embeddings with size: 27677
+2026-01-11 22:31:09,024 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:31:09,025 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:31:09,596 INFO Loaded embeddings with size: 27677
+2026-01-11 22:31:09,598 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:31:09,598 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:31:34,077 INFO Watching for file changes with StatReloader
+2026-01-11 22:31:39,853 INFO Loaded embeddings with size: 27677
+2026-01-11 22:31:39,854 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:31:39,855 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:31:40,481 INFO Loaded embeddings with size: 27677
+2026-01-11 22:31:40,482 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:31:40,483 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:32:05,294 INFO Watching for file changes with StatReloader
+2026-01-11 22:32:10,680 INFO Loaded embeddings with size: 27677
+2026-01-11 22:32:10,682 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:32:10,682 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:32:11,269 INFO Loaded embeddings with size: 27677
+2026-01-11 22:32:11,271 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:32:11,271 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:32:35,291 INFO Watching for file changes with StatReloader
+2026-01-11 22:32:40,821 INFO Loaded embeddings with size: 27677
+2026-01-11 22:32:40,823 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:32:40,823 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:32:41,388 INFO Loaded embeddings with size: 27677
+2026-01-11 22:32:41,390 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:32:41,390 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:33:51,770 INFO Watching for file changes with StatReloader
+2026-01-11 22:33:59,948 INFO Loaded embeddings with size: 27677
+2026-01-11 22:33:59,950 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:33:59,951 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:34:00,682 INFO Loaded embeddings with size: 27677
+2026-01-11 22:34:00,684 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:34:00,685 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:35:43,508 INFO Watching for file changes with StatReloader
+2026-01-11 22:35:50,450 INFO Loaded embeddings with size: 27677
+2026-01-11 22:35:50,452 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:35:50,452 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:35:51,053 INFO Loaded embeddings with size: 27677
+2026-01-11 22:35:51,055 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:35:51,055 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:40:04,604 INFO Watching for file changes with StatReloader
+2026-01-11 22:40:15,933 INFO Loaded embeddings with size: 27677
+2026-01-11 22:40:15,935 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7474 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7474)) (reason [Errno 111] Connection refused)
+2026-01-11 22:40:15,935 ERROR Error initializing components: Couldn't connect to neo4j:7474 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7474)) (reason [Errno 111] Connection refused)
+2026-01-11 22:40:16,453 INFO Loaded embeddings with size: 27677
+2026-01-11 22:40:16,455 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7474 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7474)) (reason [Errno 111] Connection refused)
+2026-01-11 22:40:16,455 ERROR Error initializing components: Couldn't connect to neo4j:7474 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7474)) (reason [Errno 111] Connection refused)
+2026-01-11 22:40:47,116 INFO Watching for file changes with StatReloader
+2026-01-11 22:40:55,545 INFO Loaded embeddings with size: 27677
+2026-01-11 22:40:55,547 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7474 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7474)) (reason [Errno 111] Connection refused)
+2026-01-11 22:40:55,548 ERROR Error initializing components: Couldn't connect to neo4j:7474 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7474)) (reason [Errno 111] Connection refused)
+2026-01-11 22:40:56,245 INFO Loaded embeddings with size: 27677
+2026-01-11 22:40:56,247 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7474 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7474)) (reason [Errno 111] Connection refused)
+2026-01-11 22:40:56,247 ERROR Error initializing components: Couldn't connect to neo4j:7474 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7474)) (reason [Errno 111] Connection refused)
+2026-01-11 22:41:49,498 INFO Watching for file changes with StatReloader
+2026-01-11 22:42:02,242 INFO Loaded embeddings with size: 27677
+2026-01-11 22:42:02,246 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.2', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:42:02,246 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.2', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:42:02,911 INFO Loaded embeddings with size: 27677
+2026-01-11 22:42:02,914 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.2', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:42:02,914 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.2', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:44:21,378 INFO Watching for file changes with StatReloader
+2026-01-11 22:44:28,324 INFO Loaded embeddings with size: 27677
+2026-01-11 22:44:28,325 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:44:28,326 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:44:28,863 INFO Loaded embeddings with size: 27677
+2026-01-11 22:44:28,865 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:44:28,865 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:45:16,062 INFO Watching for file changes with StatReloader
+2026-01-11 22:45:22,096 INFO Loaded embeddings with size: 27677
+2026-01-11 22:45:22,098 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:45:22,098 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:45:22,746 INFO Loaded embeddings with size: 27677
+2026-01-11 22:45:22,748 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:45:22,748 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:45:40,988 INFO Watching for file changes with StatReloader
+2026-01-11 22:45:43,705 INFO Watching for file changes with StatReloader
+2026-01-11 22:45:49,633 INFO Loaded embeddings with size: 27677
+2026-01-11 22:45:49,634 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:45:49,635 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:45:50,289 INFO Loaded embeddings with size: 27677
+2026-01-11 22:45:50,291 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:45:50,291 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.20.0.3', 7687)) (reason [Errno 111] Connection refused)
+2026-01-11 22:46:10,086 INFO Watching for file changes with StatReloader
+2026-01-11 22:46:15,345 INFO Loaded embeddings with size: 27677
+2026-01-11 22:46:16,898 INFO Retrieved 0 documents from Neo4j
+2026-01-11 22:46:23,168 WARNING Not Found: /
+2026-01-11 22:46:23,170 WARNING "GET / HTTP/1.1" 404 3054
+2026-01-11 22:46:23,478 WARNING Not Found: /favicon.ico
+2026-01-11 22:46:23,479 WARNING "GET /favicon.ico HTTP/1.1" 404 3105
+2026-01-11 22:55:55,692 INFO Text vectorizer components initialized successfully
+2026-01-11 22:55:55,693 INFO Starting text vectorization
+2026-01-11 22:55:55,693 INFO Original text: 'La democracia deliberativa busca el consenso a través del diálogo racional entre ciudadanos....'
+2026-01-11 22:55:55,693 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:55:55,694 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:55:56,229 INFO Translated from es to en
+2026-01-11 22:55:59,100 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:55:59,102 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15550
+2026-01-11 22:55:59,611 INFO Starting text vectorization
+2026-01-11 22:55:59,612 INFO Original text: 'La democracia deliberativa busca el consenso a través del diálogo racional entre ciudadanos....'
+2026-01-11 22:55:59,612 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:55:59,613 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:55:59,857 INFO Translated from es to en
+2026-01-11 22:55:59,903 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:55:59,904 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 22:56:00,411 INFO Starting text vectorization
+2026-01-11 22:56:00,411 INFO Original text: 'La democracia deliberativa busca el consenso a través del diálogo racional entre ciudadanos....'
+2026-01-11 22:56:00,412 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:56:00,412 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:56:00,954 INFO Translated from es to en
+2026-01-11 22:56:00,995 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:56:00,996 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15550
+2026-01-11 22:56:01,504 INFO Starting text vectorization
+2026-01-11 22:56:01,505 INFO Original text: 'El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio clim...'
+2026-01-11 22:56:01,505 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:56:01,506 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:56:01,506 ERROR Translation error: El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era.  --> Text length need to be between 0 and 5000 characters
+2026-01-11 22:56:01,878 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:56:01,879 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 22574
+2026-01-11 22:56:02,388 INFO Starting text vectorization
+2026-01-11 22:56:02,388 INFO Original text: 'El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio clim...'
+2026-01-11 22:56:02,389 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:56:02,389 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:56:02,390 ERROR Translation error: El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era.  --> Text length need to be between 0 and 5000 characters
+2026-01-11 22:56:02,721 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:56:02,722 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 22576
+2026-01-11 22:56:03,229 INFO Starting text vectorization
+2026-01-11 22:56:03,230 INFO Original text: 'El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio clim...'
+2026-01-11 22:56:03,230 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:56:03,231 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:56:03,231 ERROR Translation error: El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era. El cambio climático representa uno de los desafíos más significativos de nuestra era.  --> Text length need to be between 0 and 5000 characters
+2026-01-11 22:56:03,558 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:56:03,560 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 22576
+2026-01-11 22:59:49,818 INFO Starting text vectorization
+2026-01-11 22:59:49,819 INFO Original text: 'La inteligencia artificial transformará la medicina diagnóstica en la próxima década....'
+2026-01-11 22:59:49,819 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:49,819 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:50,190 INFO Translated from es to en
+2026-01-11 22:59:50,240 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:50,241 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15666
+2026-01-11 22:59:50,247 INFO Starting text vectorization
+2026-01-11 22:59:50,247 INFO Original text: 'Artificial intelligence will transform diagnostic medicine in the next decade....'
+2026-01-11 22:59:51,213 INFO Detected language: en
+2026-01-11 22:59:51,257 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:51,258 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15650
+2026-01-11 22:59:51,267 INFO Starting text vectorization
+2026-01-11 22:59:51,267 INFO Original text: 'El cambio climático es causado principalmente por emisiones de gases de efecto invernadero....'
+2026-01-11 22:59:51,267 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:51,268 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:51,790 INFO Translated from es to en
+2026-01-11 22:59:51,835 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:51,836 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15530
+2026-01-11 22:59:51,841 INFO Starting text vectorization
+2026-01-11 22:59:51,841 INFO Original text: 'Las emisiones de gases de efecto invernadero son la causa principal del calentamiento global....'
+2026-01-11 22:59:51,842 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:51,842 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:52,323 INFO Translated from es to en
+2026-01-11 22:59:52,380 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:52,382 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15611
+2026-01-11 22:59:52,390 INFO Starting text vectorization
+2026-01-11 22:59:52,391 INFO Original text: 'Algoritmos genéticos para optimización de funciones complejas....'
+2026-01-11 22:59:52,391 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:52,391 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:52,798 INFO Translated from es to en
+2026-01-11 22:59:52,840 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:52,841 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15490
+2026-01-11 22:59:52,847 INFO Starting text vectorization
+2026-01-11 22:59:52,847 INFO Original text: 'Computación evolutiva aplicada a problemas de búsqueda heurística....'
+2026-01-11 22:59:52,848 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:52,848 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:53,434 INFO Translated from es to en
+2026-01-11 22:59:53,488 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:53,490 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15545
+2026-01-11 22:59:53,497 INFO Starting text vectorization
+2026-01-11 22:59:53,497 INFO Original text: 'Impacto de la política fiscal en la inflación....'
+2026-01-11 22:59:53,498 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:53,498 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:55,776 INFO Translated from es to en
+2026-01-11 22:59:55,822 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:55,824 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15521
+2026-01-11 22:59:55,830 INFO Starting text vectorization
+2026-01-11 22:59:55,830 INFO Original text: 'Efectos macroeconómicos del gasto público y los impuestos....'
+2026-01-11 22:59:55,831 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:55,831 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:56,233 INFO Translated from es to en
+2026-01-11 22:59:56,285 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:56,287 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15501
+2026-01-11 22:59:56,294 INFO Starting text vectorization
+2026-01-11 22:59:56,295 INFO Original text: 'Técnicas avanzadas de cultivo de tejidos vegetales....'
+2026-01-11 22:59:56,295 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:56,296 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:56,862 INFO Translated from es to en
+2026-01-11 22:59:56,905 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:56,908 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15479
+2026-01-11 22:59:56,923 INFO Starting text vectorization
+2026-01-11 22:59:56,923 INFO Original text: 'Análisis de la arquitectura gótica en el siglo XII....'
+2026-01-11 22:59:56,923 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:56,924 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 22:59:57,329 INFO Translated from es to en
+2026-01-11 22:59:57,378 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 22:59:57,380 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15638
+2026-01-11 23:07:36,341 INFO Starting text vectorization
+2026-01-11 23:07:36,341 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:07:36,342 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:07:36,342 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:07:36,969 INFO Translated from es to en
+2026-01-11 23:07:37,020 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:07:37,021 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15516
+2026-01-11 23:08:00,030 INFO Starting text vectorization
+2026-01-11 23:08:00,030 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:00,031 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:00,031 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:00,263 INFO Translated from es to en
+2026-01-11 23:08:00,301 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:00,302 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:08:00,399 INFO Starting text vectorization
+2026-01-11 23:08:00,399 INFO Original text: 'Benchmark post iteración 0: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:00,399 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:00,400 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:00,817 INFO Translated from es to en
+2026-01-11 23:08:00,881 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:00,883 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15646
+2026-01-11 23:08:00,906 INFO Starting text vectorization
+2026-01-11 23:08:00,906 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:00,907 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:00,907 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:01,508 INFO Translated from es to en
+2026-01-11 23:08:01,548 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:01,549 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15550
+2026-01-11 23:08:01,563 INFO Starting text vectorization
+2026-01-11 23:08:01,563 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:01,563 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:01,564 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:01,789 INFO Translated from es to en
+2026-01-11 23:08:01,830 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:01,831 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:08:01,954 INFO Starting text vectorization
+2026-01-11 23:08:01,954 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:01,955 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:01,955 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:02,179 INFO Translated from es to en
+2026-01-11 23:08:02,213 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:02,214 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:08:02,230 INFO Starting text vectorization
+2026-01-11 23:08:02,230 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:02,231 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:02,231 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:02,450 INFO Translated from es to en
+2026-01-11 23:08:02,489 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:02,491 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:02,514 INFO Starting text vectorization
+2026-01-11 23:08:02,514 INFO Original text: 'Benchmark post iteración 1: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:02,514 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:02,515 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:03,118 INFO Translated from es to en
+2026-01-11 23:08:03,158 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:03,159 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15648
+2026-01-11 23:08:03,170 INFO Starting text vectorization
+2026-01-11 23:08:03,170 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:03,171 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:03,171 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:03,399 INFO Translated from es to en
+2026-01-11 23:08:03,433 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:03,434 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:08:03,447 INFO Starting text vectorization
+2026-01-11 23:08:03,447 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:03,447 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:03,448 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:03,663 INFO Translated from es to en
+2026-01-11 23:08:03,701 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:03,703 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:08:03,749 INFO Starting text vectorization
+2026-01-11 23:08:03,749 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:03,750 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:03,750 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:03,951 INFO Translated from es to en
+2026-01-11 23:08:03,990 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:03,991 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:08:04,005 INFO Starting text vectorization
+2026-01-11 23:08:04,006 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:04,006 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:04,007 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:04,259 INFO Translated from es to en
+2026-01-11 23:08:04,297 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:04,298 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:04,356 INFO Starting text vectorization
+2026-01-11 23:08:04,356 INFO Original text: 'Benchmark post iteración 2: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:04,357 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:04,357 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:04,705 INFO Translated from es to en
+2026-01-11 23:08:04,743 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:04,745 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15664
+2026-01-11 23:08:04,760 INFO Starting text vectorization
+2026-01-11 23:08:04,761 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:04,761 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:04,761 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:04,973 INFO Translated from es to en
+2026-01-11 23:08:05,017 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:05,019 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:08:05,036 INFO Starting text vectorization
+2026-01-11 23:08:05,036 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:05,037 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:05,037 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:05,279 INFO Translated from es to en
+2026-01-11 23:08:05,320 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:05,321 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:05,369 INFO Starting text vectorization
+2026-01-11 23:08:05,369 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:05,370 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:05,370 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:05,594 INFO Translated from es to en
+2026-01-11 23:08:05,672 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:05,673 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15549
+2026-01-11 23:08:05,689 INFO Starting text vectorization
+2026-01-11 23:08:05,689 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:05,690 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:05,690 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:05,917 INFO Translated from es to en
+2026-01-11 23:08:05,956 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:05,957 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15519
+2026-01-11 23:08:05,978 INFO Starting text vectorization
+2026-01-11 23:08:05,979 INFO Original text: 'Benchmark post iteración 3: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:05,979 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:05,979 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:06,441 INFO Translated from es to en
+2026-01-11 23:08:06,486 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:06,488 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15657
+2026-01-11 23:08:06,502 INFO Starting text vectorization
+2026-01-11 23:08:06,502 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:06,502 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:06,503 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:06,696 INFO Translated from es to en
+2026-01-11 23:08:06,740 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:06,741 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 23:08:06,758 INFO Starting text vectorization
+2026-01-11 23:08:06,758 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:06,759 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:06,759 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:06,971 INFO Translated from es to en
+2026-01-11 23:08:07,014 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:07,015 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15519
+2026-01-11 23:08:07,062 INFO Starting text vectorization
+2026-01-11 23:08:07,063 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:07,063 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:07,063 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:07,267 INFO Translated from es to en
+2026-01-11 23:08:07,308 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:07,309 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 23:08:07,326 INFO Starting text vectorization
+2026-01-11 23:08:07,326 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:07,326 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:07,327 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:07,547 INFO Translated from es to en
+2026-01-11 23:08:07,586 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:07,587 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:07,608 INFO Starting text vectorization
+2026-01-11 23:08:07,608 INFO Original text: 'Benchmark post iteración 4: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:07,609 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:07,609 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:08,020 INFO Translated from es to en
+2026-01-11 23:08:08,061 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:08,063 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15648
+2026-01-11 23:08:08,078 INFO Starting text vectorization
+2026-01-11 23:08:08,078 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:08,078 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:08,079 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:08,282 INFO Translated from es to en
+2026-01-11 23:08:08,323 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:08,324 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 23:08:08,335 INFO Starting text vectorization
+2026-01-11 23:08:08,335 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:08,336 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:08,336 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:08,530 INFO Translated from es to en
+2026-01-11 23:08:08,569 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:08,571 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:08,669 INFO Starting text vectorization
+2026-01-11 23:08:08,669 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:08,669 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:08,670 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:08,896 INFO Translated from es to en
+2026-01-11 23:08:08,935 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:08,936 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:08:08,949 INFO Starting text vectorization
+2026-01-11 23:08:08,949 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:08,950 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:08,950 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:09,167 INFO Translated from es to en
+2026-01-11 23:08:09,217 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:09,218 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:08:48,623 INFO Starting text vectorization
+2026-01-11 23:08:48,623 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:48,623 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:48,624 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:48,836 INFO Translated from es to en
+2026-01-11 23:08:48,875 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:48,877 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:48,902 INFO Starting text vectorization
+2026-01-11 23:08:48,902 INFO Original text: 'Benchmark post iteración 0: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:48,903 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:48,903 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:49,341 INFO Translated from es to en
+2026-01-11 23:08:49,389 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:49,392 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15645
+2026-01-11 23:08:49,445 INFO Starting text vectorization
+2026-01-11 23:08:49,446 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:49,446 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:49,447 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:49,707 INFO Translated from es to en
+2026-01-11 23:08:49,742 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:49,744 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:08:49,756 INFO Starting text vectorization
+2026-01-11 23:08:49,757 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:49,757 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:49,758 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:49,964 INFO Translated from es to en
+2026-01-11 23:08:50,012 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:50,013 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:50,048 INFO Starting text vectorization
+2026-01-11 23:08:50,049 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:50,049 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:50,050 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:50,276 INFO Translated from es to en
+2026-01-11 23:08:50,362 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:50,364 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:08:50,385 INFO Starting text vectorization
+2026-01-11 23:08:50,386 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:50,386 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:50,387 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:50,605 INFO Translated from es to en
+2026-01-11 23:08:50,648 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:50,649 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:50,668 INFO Starting text vectorization
+2026-01-11 23:08:50,668 INFO Original text: 'Benchmark post iteración 1: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:50,668 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:50,669 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:50,894 INFO Translated from es to en
+2026-01-11 23:08:50,936 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:50,937 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15652
+2026-01-11 23:08:50,952 INFO Starting text vectorization
+2026-01-11 23:08:50,952 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:50,953 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:50,953 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:51,154 INFO Translated from es to en
+2026-01-11 23:08:51,191 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:51,192 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:08:51,205 INFO Starting text vectorization
+2026-01-11 23:08:51,205 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:51,206 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:51,206 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:51,416 INFO Translated from es to en
+2026-01-11 23:08:51,458 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:51,460 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15516
+2026-01-11 23:08:51,497 INFO Starting text vectorization
+2026-01-11 23:08:51,497 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:51,498 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:51,498 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:51,712 INFO Translated from es to en
+2026-01-11 23:08:51,751 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:51,752 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:08:51,765 INFO Starting text vectorization
+2026-01-11 23:08:51,766 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:51,766 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:51,766 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:51,993 INFO Translated from es to en
+2026-01-11 23:08:52,035 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:52,036 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:08:52,054 INFO Starting text vectorization
+2026-01-11 23:08:52,054 INFO Original text: 'Benchmark post iteración 2: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:52,055 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:52,055 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:52,261 INFO Translated from es to en
+2026-01-11 23:08:52,296 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:52,297 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15666
+2026-01-11 23:08:52,309 INFO Starting text vectorization
+2026-01-11 23:08:52,309 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:52,310 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:52,310 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:52,538 INFO Translated from es to en
+2026-01-11 23:08:52,575 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:52,576 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:08:52,594 INFO Starting text vectorization
+2026-01-11 23:08:52,594 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:52,595 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:52,595 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:52,794 INFO Translated from es to en
+2026-01-11 23:08:52,839 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:52,840 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:52,878 INFO Starting text vectorization
+2026-01-11 23:08:52,879 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:52,879 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:52,879 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:53,092 INFO Translated from es to en
+2026-01-11 23:08:53,131 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:53,133 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:08:53,148 INFO Starting text vectorization
+2026-01-11 23:08:53,148 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:53,149 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:53,149 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:53,372 INFO Translated from es to en
+2026-01-11 23:08:53,410 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:53,411 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:08:53,427 INFO Starting text vectorization
+2026-01-11 23:08:53,427 INFO Original text: 'Benchmark post iteración 3: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:53,428 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:53,428 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:53,635 INFO Translated from es to en
+2026-01-11 23:08:53,677 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:53,678 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15658
+2026-01-11 23:08:53,690 INFO Starting text vectorization
+2026-01-11 23:08:53,691 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:53,691 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:53,691 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:53,925 INFO Translated from es to en
+2026-01-11 23:08:53,964 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:53,966 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:08:53,979 INFO Starting text vectorization
+2026-01-11 23:08:53,980 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:53,980 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:53,980 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:54,196 INFO Translated from es to en
+2026-01-11 23:08:54,233 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:54,234 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:08:54,264 INFO Starting text vectorization
+2026-01-11 23:08:54,264 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:54,264 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:54,265 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:55,133 INFO Translated from es to en
+2026-01-11 23:08:55,183 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:55,184 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15550
+2026-01-11 23:08:56,327 INFO Starting text vectorization
+2026-01-11 23:08:56,327 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:56,328 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:56,328 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:56,561 INFO Translated from es to en
+2026-01-11 23:08:56,604 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:56,605 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:08:56,623 INFO Starting text vectorization
+2026-01-11 23:08:56,623 INFO Original text: 'Benchmark post iteración 4: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:08:56,624 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:56,624 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:56,849 INFO Translated from es to en
+2026-01-11 23:08:56,889 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:56,890 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15649
+2026-01-11 23:08:56,904 INFO Starting text vectorization
+2026-01-11 23:08:56,904 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:56,905 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:56,905 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:57,123 INFO Translated from es to en
+2026-01-11 23:08:57,159 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:57,160 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:08:57,171 INFO Starting text vectorization
+2026-01-11 23:08:57,171 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:57,172 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:57,172 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:57,372 INFO Translated from es to en
+2026-01-11 23:08:57,409 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:57,410 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:08:57,442 INFO Starting text vectorization
+2026-01-11 23:08:57,442 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:08:57,442 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:57,443 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:57,639 INFO Translated from es to en
+2026-01-11 23:08:57,677 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:57,678 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 23:08:57,689 INFO Starting text vectorization
+2026-01-11 23:08:57,690 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:08:57,690 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:57,690 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:08:57,906 INFO Translated from es to en
+2026-01-11 23:08:57,952 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:08:57,953 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:15:56,124 INFO Starting text vectorization
+2026-01-11 23:15:56,124 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:15:56,125 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:56,125 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:56,632 INFO Translated from es to en
+2026-01-11 23:15:56,680 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:56,682 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15515
+2026-01-11 23:15:56,701 INFO Starting text vectorization
+2026-01-11 23:15:56,702 INFO Original text: 'Benchmark post iteración 0: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:15:56,702 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:56,702 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:56,907 INFO Translated from es to en
+2026-01-11 23:15:56,954 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:56,955 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15646
+2026-01-11 23:15:56,969 INFO Starting text vectorization
+2026-01-11 23:15:56,969 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:15:56,969 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:56,970 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:57,253 INFO Translated from es to en
+2026-01-11 23:15:57,291 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:57,293 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:15:57,311 INFO Starting text vectorization
+2026-01-11 23:15:57,311 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:15:57,311 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:57,312 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:57,526 INFO Translated from es to en
+2026-01-11 23:15:57,566 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:57,567 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:15:57,601 INFO Starting text vectorization
+2026-01-11 23:15:57,601 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:15:57,602 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:57,602 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:57,809 INFO Translated from es to en
+2026-01-11 23:15:57,847 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:57,848 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:15:57,861 INFO Starting text vectorization
+2026-01-11 23:15:57,861 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:15:57,861 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:57,862 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:58,054 INFO Translated from es to en
+2026-01-11 23:15:58,092 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:58,093 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:15:58,110 INFO Starting text vectorization
+2026-01-11 23:15:58,110 INFO Original text: 'Benchmark post iteración 1: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:15:58,111 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:58,111 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:58,327 INFO Translated from es to en
+2026-01-11 23:15:58,365 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:58,366 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15651
+2026-01-11 23:15:58,382 INFO Starting text vectorization
+2026-01-11 23:15:58,382 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:15:58,383 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:58,383 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:58,600 INFO Translated from es to en
+2026-01-11 23:15:58,638 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:58,639 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:15:58,654 INFO Starting text vectorization
+2026-01-11 23:15:58,654 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:15:58,654 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:58,655 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:58,866 INFO Translated from es to en
+2026-01-11 23:15:58,909 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:58,911 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15516
+2026-01-11 23:15:58,944 INFO Starting text vectorization
+2026-01-11 23:15:58,944 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:15:58,945 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:58,945 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:59,162 INFO Translated from es to en
+2026-01-11 23:15:59,198 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:59,199 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:15:59,211 INFO Starting text vectorization
+2026-01-11 23:15:59,212 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:15:59,212 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:59,212 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:59,429 INFO Translated from es to en
+2026-01-11 23:15:59,469 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:59,471 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:15:59,488 INFO Starting text vectorization
+2026-01-11 23:15:59,489 INFO Original text: 'Benchmark post iteración 2: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:15:59,489 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:59,489 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:59,713 INFO Translated from es to en
+2026-01-11 23:15:59,756 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:15:59,757 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15666
+2026-01-11 23:15:59,769 INFO Starting text vectorization
+2026-01-11 23:15:59,769 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:15:59,770 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:59,770 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:15:59,974 INFO Translated from es to en
+2026-01-11 23:16:00,009 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:00,011 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 23:16:00,026 INFO Starting text vectorization
+2026-01-11 23:16:00,027 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:00,027 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:00,028 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:00,240 INFO Translated from es to en
+2026-01-11 23:16:00,279 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:00,280 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15519
+2026-01-11 23:16:00,312 INFO Starting text vectorization
+2026-01-11 23:16:00,312 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:00,313 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:00,313 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:00,528 INFO Translated from es to en
+2026-01-11 23:16:00,573 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:00,574 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:00,591 INFO Starting text vectorization
+2026-01-11 23:16:00,592 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:00,592 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:00,592 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:00,821 INFO Translated from es to en
+2026-01-11 23:16:00,863 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:00,865 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:00,887 INFO Starting text vectorization
+2026-01-11 23:16:00,888 INFO Original text: 'Benchmark post iteración 3: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:16:00,888 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:00,888 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:01,379 INFO Translated from es to en
+2026-01-11 23:16:01,446 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:01,448 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15656
+2026-01-11 23:16:01,463 INFO Starting text vectorization
+2026-01-11 23:16:01,463 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:01,464 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:01,464 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:01,694 INFO Translated from es to en
+2026-01-11 23:16:01,750 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:01,752 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:01,772 INFO Starting text vectorization
+2026-01-11 23:16:01,773 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:01,773 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:01,774 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:01,990 INFO Translated from es to en
+2026-01-11 23:16:02,049 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:02,050 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:02,085 INFO Starting text vectorization
+2026-01-11 23:16:02,085 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:02,086 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:02,086 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:02,324 INFO Translated from es to en
+2026-01-11 23:16:02,370 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:02,372 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15548
+2026-01-11 23:16:02,390 INFO Starting text vectorization
+2026-01-11 23:16:02,391 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:02,391 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:02,391 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:02,607 INFO Translated from es to en
+2026-01-11 23:16:02,654 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:02,656 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:02,683 INFO Starting text vectorization
+2026-01-11 23:16:02,683 INFO Original text: 'Benchmark post iteración 4: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:16:02,684 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:02,684 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:02,932 INFO Translated from es to en
+2026-01-11 23:16:02,973 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:02,974 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15648
+2026-01-11 23:16:02,986 INFO Starting text vectorization
+2026-01-11 23:16:02,987 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:02,987 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:02,988 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:03,470 INFO Translated from es to en
+2026-01-11 23:16:03,506 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:03,507 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15550
+2026-01-11 23:16:03,518 INFO Starting text vectorization
+2026-01-11 23:16:03,519 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:03,519 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:03,519 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:03,741 INFO Translated from es to en
+2026-01-11 23:16:03,780 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:03,781 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:03,813 INFO Starting text vectorization
+2026-01-11 23:16:03,814 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:03,814 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:03,814 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:04,244 INFO Translated from es to en
+2026-01-11 23:16:04,281 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:04,283 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:04,296 INFO Starting text vectorization
+2026-01-11 23:16:04,296 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:04,297 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:04,297 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:04,523 INFO Translated from es to en
+2026-01-11 23:16:04,561 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:04,563 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15516
+2026-01-11 23:16:04,581 INFO Starting text vectorization
+2026-01-11 23:16:04,582 INFO Original text: 'Benchmark post iteración 5: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:16:04,582 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:04,583 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:05,153 INFO Translated from es to en
+2026-01-11 23:16:05,200 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:05,201 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15678
+2026-01-11 23:16:05,213 INFO Starting text vectorization
+2026-01-11 23:16:05,214 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:05,214 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:05,214 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:05,442 INFO Translated from es to en
+2026-01-11 23:16:05,482 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:05,483 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:05,495 INFO Starting text vectorization
+2026-01-11 23:16:05,496 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:05,496 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:05,497 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:05,719 INFO Translated from es to en
+2026-01-11 23:16:05,762 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:05,764 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:05,796 INFO Starting text vectorization
+2026-01-11 23:16:05,796 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:05,796 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:05,797 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:06,005 INFO Translated from es to en
+2026-01-11 23:16:06,041 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:06,042 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:06,066 INFO Starting text vectorization
+2026-01-11 23:16:06,066 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:06,066 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:06,067 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:06,294 INFO Translated from es to en
+2026-01-11 23:16:06,335 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:06,336 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:06,354 INFO Starting text vectorization
+2026-01-11 23:16:06,354 INFO Original text: 'Benchmark post iteración 6: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:16:06,355 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:06,355 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:06,921 INFO Translated from es to en
+2026-01-11 23:16:06,965 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:06,966 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15654
+2026-01-11 23:16:06,978 INFO Starting text vectorization
+2026-01-11 23:16:06,979 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:06,979 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:06,979 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:07,216 INFO Translated from es to en
+2026-01-11 23:16:07,262 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:07,264 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15549
+2026-01-11 23:16:07,282 INFO Starting text vectorization
+2026-01-11 23:16:07,282 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:07,283 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:07,283 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:07,502 INFO Translated from es to en
+2026-01-11 23:16:07,541 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:07,542 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15519
+2026-01-11 23:16:07,569 INFO Starting text vectorization
+2026-01-11 23:16:07,570 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:07,570 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:07,571 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:07,793 INFO Translated from es to en
+2026-01-11 23:16:07,830 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:07,831 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:07,842 INFO Starting text vectorization
+2026-01-11 23:16:07,843 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:07,843 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:07,844 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:08,043 INFO Translated from es to en
+2026-01-11 23:16:08,098 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:08,100 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15516
+2026-01-11 23:16:08,125 INFO Starting text vectorization
+2026-01-11 23:16:08,125 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:08,125 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:08,126 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:08,321 INFO Translated from es to en
+2026-01-11 23:16:08,371 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:08,373 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15549
+2026-01-11 23:16:08,385 INFO Starting text vectorization
+2026-01-11 23:16:08,385 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:08,386 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:08,387 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:08,628 INFO Translated from es to en
+2026-01-11 23:16:08,667 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:08,668 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:08,685 INFO Starting text vectorization
+2026-01-11 23:16:08,685 INFO Original text: 'Benchmark post iteración 7: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:16:08,686 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:08,686 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:09,241 INFO Translated from es to en
+2026-01-11 23:16:09,287 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:09,289 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15624
+2026-01-11 23:16:09,306 INFO Starting text vectorization
+2026-01-11 23:16:09,306 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:09,307 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:09,308 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:09,694 INFO Translated from es to en
+2026-01-11 23:16:09,730 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:09,731 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15549
+2026-01-11 23:16:09,749 INFO Starting text vectorization
+2026-01-11 23:16:09,749 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:09,750 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:09,750 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:09,956 INFO Translated from es to en
+2026-01-11 23:16:09,998 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:09,999 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:10,034 INFO Starting text vectorization
+2026-01-11 23:16:10,034 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:10,035 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:10,035 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:10,255 INFO Translated from es to en
+2026-01-11 23:16:10,296 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:10,297 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:10,310 INFO Starting text vectorization
+2026-01-11 23:16:10,310 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:10,311 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:10,311 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:10,515 INFO Translated from es to en
+2026-01-11 23:16:10,552 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:10,553 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:10,575 INFO Starting text vectorization
+2026-01-11 23:16:10,575 INFO Original text: 'Benchmark post iteración 8: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:16:10,576 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:10,576 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:10,962 INFO Translated from es to en
+2026-01-11 23:16:11,013 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:11,015 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15628
+2026-01-11 23:16:11,027 INFO Starting text vectorization
+2026-01-11 23:16:11,028 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:11,028 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:11,028 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:11,245 INFO Translated from es to en
+2026-01-11 23:16:11,281 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:11,282 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:11,301 INFO Starting text vectorization
+2026-01-11 23:16:11,301 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:11,302 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:11,302 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:11,575 INFO Translated from es to en
+2026-01-11 23:16:11,612 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:11,614 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:11,646 INFO Starting text vectorization
+2026-01-11 23:16:11,647 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:11,647 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:11,648 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:11,843 INFO Translated from es to en
+2026-01-11 23:16:11,883 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:11,885 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:11,905 INFO Starting text vectorization
+2026-01-11 23:16:11,906 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:11,906 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:11,907 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:12,118 INFO Translated from es to en
+2026-01-11 23:16:12,158 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:12,159 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:12,175 INFO Starting text vectorization
+2026-01-11 23:16:12,176 INFO Original text: 'Benchmark post iteración 9: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performan...'
+2026-01-11 23:16:12,176 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:12,176 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:12,714 INFO Translated from es to en
+2026-01-11 23:16:12,759 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:12,760 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15653
+2026-01-11 23:16:12,771 INFO Starting text vectorization
+2026-01-11 23:16:12,771 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:12,772 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:12,772 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:12,997 INFO Translated from es to en
+2026-01-11 23:16:13,035 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:13,036 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:13,049 INFO Starting text vectorization
+2026-01-11 23:16:13,049 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:13,049 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:13,050 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:13,333 INFO Translated from es to en
+2026-01-11 23:16:13,377 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:13,379 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:13,418 INFO Starting text vectorization
+2026-01-11 23:16:13,418 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:13,419 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:13,419 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:13,671 INFO Translated from es to en
+2026-01-11 23:16:13,706 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:13,707 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:13,721 INFO Starting text vectorization
+2026-01-11 23:16:13,721 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:13,722 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:13,722 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:13,954 INFO Translated from es to en
+2026-01-11 23:16:13,992 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:13,994 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:14,012 INFO Starting text vectorization
+2026-01-11 23:16:14,012 INFO Original text: 'Benchmark post iteración 10: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:14,013 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:14,013 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:14,366 INFO Translated from es to en
+2026-01-11 23:16:14,404 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:14,405 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15656
+2026-01-11 23:16:14,418 INFO Starting text vectorization
+2026-01-11 23:16:14,419 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:14,419 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:14,420 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:14,691 INFO Translated from es to en
+2026-01-11 23:16:14,732 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:14,734 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:14,748 INFO Starting text vectorization
+2026-01-11 23:16:14,749 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:14,749 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:14,750 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:14,970 INFO Translated from es to en
+2026-01-11 23:16:15,008 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:15,009 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15515
+2026-01-11 23:16:15,044 INFO Starting text vectorization
+2026-01-11 23:16:15,044 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:15,045 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:15,045 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:15,312 INFO Translated from es to en
+2026-01-11 23:16:15,353 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:15,354 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:15,374 INFO Starting text vectorization
+2026-01-11 23:16:15,374 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:15,375 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:15,375 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:15,627 INFO Translated from es to en
+2026-01-11 23:16:15,667 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:15,668 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:15,685 INFO Starting text vectorization
+2026-01-11 23:16:15,685 INFO Original text: 'Benchmark post iteración 11: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:15,685 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:15,685 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:16,283 INFO Translated from es to en
+2026-01-11 23:16:16,322 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:16,323 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15665
+2026-01-11 23:16:16,335 INFO Starting text vectorization
+2026-01-11 23:16:16,335 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:16,335 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:16,336 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:16,578 INFO Translated from es to en
+2026-01-11 23:16:16,625 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:16,626 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:16,638 INFO Starting text vectorization
+2026-01-11 23:16:16,639 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:16,639 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:16,639 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:16,842 INFO Translated from es to en
+2026-01-11 23:16:16,884 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:16,885 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15519
+2026-01-11 23:16:16,914 INFO Starting text vectorization
+2026-01-11 23:16:16,915 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:16,915 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:16,915 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:17,123 INFO Translated from es to en
+2026-01-11 23:16:17,163 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:17,164 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:17,175 INFO Starting text vectorization
+2026-01-11 23:16:17,176 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:17,176 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:17,177 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:17,427 INFO Translated from es to en
+2026-01-11 23:16:17,473 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:17,474 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:17,492 INFO Starting text vectorization
+2026-01-11 23:16:17,492 INFO Original text: 'Benchmark post iteración 12: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:17,493 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:17,493 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:17,828 INFO Translated from es to en
+2026-01-11 23:16:17,873 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:17,875 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15658
+2026-01-11 23:16:17,889 INFO Starting text vectorization
+2026-01-11 23:16:17,889 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:17,889 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:17,890 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:18,100 INFO Translated from es to en
+2026-01-11 23:16:18,137 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:18,139 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:18,154 INFO Starting text vectorization
+2026-01-11 23:16:18,154 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:18,154 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:18,155 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:18,380 INFO Translated from es to en
+2026-01-11 23:16:18,425 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:18,427 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15519
+2026-01-11 23:16:18,463 INFO Starting text vectorization
+2026-01-11 23:16:18,463 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:18,464 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:18,464 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:18,687 INFO Translated from es to en
+2026-01-11 23:16:18,758 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:18,760 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:18,778 INFO Starting text vectorization
+2026-01-11 23:16:18,778 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:18,779 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:18,779 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:18,999 INFO Translated from es to en
+2026-01-11 23:16:19,047 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:19,049 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:19,066 INFO Starting text vectorization
+2026-01-11 23:16:19,067 INFO Original text: 'Benchmark post iteración 13: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:19,067 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:19,068 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:19,659 INFO Translated from es to en
+2026-01-11 23:16:19,700 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:19,702 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15654
+2026-01-11 23:16:19,715 INFO Starting text vectorization
+2026-01-11 23:16:19,716 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:19,716 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:19,716 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:20,667 INFO Translated from es to en
+2026-01-11 23:16:20,707 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:21,851 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:21,865 INFO Starting text vectorization
+2026-01-11 23:16:21,866 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:21,866 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:21,867 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:22,075 INFO Translated from es to en
+2026-01-11 23:16:22,118 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:22,119 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:22,153 INFO Starting text vectorization
+2026-01-11 23:16:22,154 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:22,154 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:22,154 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:22,374 INFO Translated from es to en
+2026-01-11 23:16:22,419 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:22,420 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:22,435 INFO Starting text vectorization
+2026-01-11 23:16:22,435 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:22,436 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:22,437 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:22,638 INFO Translated from es to en
+2026-01-11 23:16:22,693 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:22,694 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:22,726 INFO Starting text vectorization
+2026-01-11 23:16:22,726 INFO Original text: 'Benchmark post iteración 14: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:22,727 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:22,728 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:23,509 INFO Translated from es to en
+2026-01-11 23:16:23,552 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:23,553 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15644
+2026-01-11 23:16:23,569 INFO Starting text vectorization
+2026-01-11 23:16:23,569 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:23,569 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:23,570 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:23,810 INFO Translated from es to en
+2026-01-11 23:16:23,855 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:23,860 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:23,874 INFO Starting text vectorization
+2026-01-11 23:16:23,874 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:23,874 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:23,875 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:24,096 INFO Translated from es to en
+2026-01-11 23:16:24,142 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:24,144 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15516
+2026-01-11 23:16:24,181 INFO Starting text vectorization
+2026-01-11 23:16:24,181 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:24,181 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:24,182 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:24,401 INFO Translated from es to en
+2026-01-11 23:16:24,438 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:24,440 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15550
+2026-01-11 23:16:24,454 INFO Starting text vectorization
+2026-01-11 23:16:24,455 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:24,455 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:24,455 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:24,684 INFO Translated from es to en
+2026-01-11 23:16:24,730 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:24,732 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:24,751 INFO Starting text vectorization
+2026-01-11 23:16:24,751 INFO Original text: 'Benchmark post iteración 15: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:24,751 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:24,752 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:25,298 INFO Translated from es to en
+2026-01-11 23:16:25,350 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:25,351 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15659
+2026-01-11 23:16:25,364 INFO Starting text vectorization
+2026-01-11 23:16:25,364 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:25,364 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:25,365 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:25,597 INFO Translated from es to en
+2026-01-11 23:16:25,647 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:25,649 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:25,665 INFO Starting text vectorization
+2026-01-11 23:16:25,666 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:25,666 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:25,666 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:25,904 INFO Translated from es to en
+2026-01-11 23:16:25,955 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:25,956 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:26,007 INFO Starting text vectorization
+2026-01-11 23:16:26,008 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:26,008 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:26,009 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:26,222 INFO Translated from es to en
+2026-01-11 23:16:26,284 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:26,286 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:26,300 INFO Starting text vectorization
+2026-01-11 23:16:26,300 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:26,301 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:26,301 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:26,510 INFO Translated from es to en
+2026-01-11 23:16:26,554 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:26,556 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:26,575 INFO Starting text vectorization
+2026-01-11 23:16:26,576 INFO Original text: 'Benchmark post iteración 16: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:26,576 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:26,576 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:27,006 INFO Translated from es to en
+2026-01-11 23:16:27,064 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:27,066 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15681
+2026-01-11 23:16:27,080 INFO Starting text vectorization
+2026-01-11 23:16:27,080 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:27,081 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:27,081 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:27,298 INFO Translated from es to en
+2026-01-11 23:16:27,343 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:27,344 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:27,357 INFO Starting text vectorization
+2026-01-11 23:16:27,358 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:27,358 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:27,359 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:27,559 INFO Translated from es to en
+2026-01-11 23:16:27,599 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:27,601 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:27,655 INFO Starting text vectorization
+2026-01-11 23:16:27,655 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:27,656 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:27,656 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:27,893 INFO Translated from es to en
+2026-01-11 23:16:27,938 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:27,939 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15550
+2026-01-11 23:16:27,954 INFO Starting text vectorization
+2026-01-11 23:16:27,954 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:27,955 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:27,955 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:28,205 INFO Translated from es to en
+2026-01-11 23:16:28,251 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:28,253 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:28,281 INFO Starting text vectorization
+2026-01-11 23:16:28,282 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:28,282 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:28,283 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:28,523 INFO Translated from es to en
+2026-01-11 23:16:28,568 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:28,569 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:28,581 INFO Starting text vectorization
+2026-01-11 23:16:28,582 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:28,582 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:28,583 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:28,802 INFO Translated from es to en
+2026-01-11 23:16:28,845 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:28,846 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15516
+2026-01-11 23:16:28,866 INFO Starting text vectorization
+2026-01-11 23:16:28,866 INFO Original text: 'Benchmark post iteración 17: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:28,866 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:28,867 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:29,219 INFO Translated from es to en
+2026-01-11 23:16:29,267 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:29,269 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15660
+2026-01-11 23:16:29,281 INFO Starting text vectorization
+2026-01-11 23:16:29,281 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:29,282 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:29,282 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:29,518 INFO Translated from es to en
+2026-01-11 23:16:29,558 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:29,559 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15550
+2026-01-11 23:16:29,574 INFO Starting text vectorization
+2026-01-11 23:16:29,574 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:29,574 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:29,575 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:29,782 INFO Translated from es to en
+2026-01-11 23:16:29,820 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:29,821 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15519
+2026-01-11 23:16:29,853 INFO Starting text vectorization
+2026-01-11 23:16:29,853 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:29,853 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:29,854 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:30,082 INFO Translated from es to en
+2026-01-11 23:16:30,121 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:30,123 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15550
+2026-01-11 23:16:30,138 INFO Starting text vectorization
+2026-01-11 23:16:30,138 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:30,139 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:30,139 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:30,380 INFO Translated from es to en
+2026-01-11 23:16:30,424 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:30,425 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:30,448 INFO Starting text vectorization
+2026-01-11 23:16:30,448 INFO Original text: 'Benchmark post iteración 18: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:30,449 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:30,449 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:30,843 INFO Translated from es to en
+2026-01-11 23:16:30,881 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:30,882 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15636
+2026-01-11 23:16:30,895 INFO Starting text vectorization
+2026-01-11 23:16:30,896 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:30,896 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:30,896 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:31,112 INFO Translated from es to en
+2026-01-11 23:16:31,148 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:31,149 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:31,160 INFO Starting text vectorization
+2026-01-11 23:16:31,160 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:31,161 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:31,161 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:31,400 INFO Translated from es to en
+2026-01-11 23:16:31,464 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:31,465 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15516
+2026-01-11 23:16:31,509 INFO Starting text vectorization
+2026-01-11 23:16:31,510 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:31,510 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:31,511 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:31,725 INFO Translated from es to en
+2026-01-11 23:16:31,772 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:31,773 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15549
+2026-01-11 23:16:31,788 INFO Starting text vectorization
+2026-01-11 23:16:31,789 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:31,789 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:31,790 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:32,018 INFO Translated from es to en
+2026-01-11 23:16:32,060 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:32,061 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:32,081 INFO Starting text vectorization
+2026-01-11 23:16:32,081 INFO Original text: 'Benchmark post iteración 19: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:32,081 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:32,082 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:32,443 INFO Translated from es to en
+2026-01-11 23:16:32,484 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:32,485 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15637
+2026-01-11 23:16:32,503 INFO Starting text vectorization
+2026-01-11 23:16:32,504 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:32,504 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:32,504 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:32,722 INFO Translated from es to en
+2026-01-11 23:16:32,760 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:32,762 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:32,780 INFO Starting text vectorization
+2026-01-11 23:16:32,780 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:32,780 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:32,781 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:32,999 INFO Translated from es to en
+2026-01-11 23:16:33,047 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:33,049 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:33,089 INFO Starting text vectorization
+2026-01-11 23:16:33,089 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:33,090 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:33,090 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:33,291 INFO Translated from es to en
+2026-01-11 23:16:33,333 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:33,334 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:33,358 INFO Starting text vectorization
+2026-01-11 23:16:33,358 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:33,359 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:33,359 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:33,577 INFO Translated from es to en
+2026-01-11 23:16:33,620 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:33,624 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:33,647 INFO Starting text vectorization
+2026-01-11 23:16:33,647 INFO Original text: 'Benchmark post iteración 20: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:33,648 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:33,648 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:34,079 INFO Translated from es to en
+2026-01-11 23:16:34,141 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:34,142 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15657
+2026-01-11 23:16:34,157 INFO Starting text vectorization
+2026-01-11 23:16:34,157 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:34,158 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:34,158 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:34,372 INFO Translated from es to en
+2026-01-11 23:16:34,408 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:34,409 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:34,422 INFO Starting text vectorization
+2026-01-11 23:16:34,423 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:34,424 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:34,424 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:34,624 INFO Translated from es to en
+2026-01-11 23:16:34,668 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:34,669 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15515
+2026-01-11 23:16:34,703 INFO Starting text vectorization
+2026-01-11 23:16:34,703 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:34,703 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:34,704 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:34,920 INFO Translated from es to en
+2026-01-11 23:16:34,958 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:34,960 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:34,972 INFO Starting text vectorization
+2026-01-11 23:16:34,972 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:34,972 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:34,973 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:35,185 INFO Translated from es to en
+2026-01-11 23:16:35,227 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:35,228 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15515
+2026-01-11 23:16:35,248 INFO Starting text vectorization
+2026-01-11 23:16:35,248 INFO Original text: 'Benchmark post iteración 21: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:35,249 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:35,249 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:35,625 INFO Translated from es to en
+2026-01-11 23:16:35,665 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:35,667 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15627
+2026-01-11 23:16:35,682 INFO Starting text vectorization
+2026-01-11 23:16:35,682 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:35,683 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:35,683 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:35,884 INFO Translated from es to en
+2026-01-11 23:16:35,921 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:35,922 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 23:16:35,934 INFO Starting text vectorization
+2026-01-11 23:16:35,934 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:35,935 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:35,935 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:36,134 INFO Translated from es to en
+2026-01-11 23:16:36,181 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:36,182 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:36,217 INFO Starting text vectorization
+2026-01-11 23:16:36,217 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:36,217 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:36,218 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:36,436 INFO Translated from es to en
+2026-01-11 23:16:36,474 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:36,475 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:36,493 INFO Starting text vectorization
+2026-01-11 23:16:36,493 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:36,494 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:36,494 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:36,704 INFO Translated from es to en
+2026-01-11 23:16:36,749 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:36,750 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:36,772 INFO Starting text vectorization
+2026-01-11 23:16:36,773 INFO Original text: 'Benchmark post iteración 22: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:36,773 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:36,773 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:37,207 INFO Translated from es to en
+2026-01-11 23:16:37,254 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:37,255 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15652
+2026-01-11 23:16:37,269 INFO Starting text vectorization
+2026-01-11 23:16:37,269 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:37,270 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:37,270 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:37,493 INFO Translated from es to en
+2026-01-11 23:16:37,535 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:37,537 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15551
+2026-01-11 23:16:37,552 INFO Starting text vectorization
+2026-01-11 23:16:37,552 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:37,553 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:37,553 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:37,794 INFO Translated from es to en
+2026-01-11 23:16:37,838 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:37,839 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15519
+2026-01-11 23:16:37,872 INFO Starting text vectorization
+2026-01-11 23:16:37,873 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:37,874 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:37,875 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:38,082 INFO Translated from es to en
+2026-01-11 23:16:38,125 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:38,127 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:38,143 INFO Starting text vectorization
+2026-01-11 23:16:38,143 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:38,143 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:38,144 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:38,329 INFO Translated from es to en
+2026-01-11 23:16:38,370 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:38,372 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:38,389 INFO Starting text vectorization
+2026-01-11 23:16:38,390 INFO Original text: 'Benchmark post iteración 23: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:38,390 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:38,390 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:38,966 INFO Translated from es to en
+2026-01-11 23:16:39,010 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:39,011 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15621
+2026-01-11 23:16:39,024 INFO Starting text vectorization
+2026-01-11 23:16:39,024 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:39,025 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:39,025 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:39,241 INFO Translated from es to en
+2026-01-11 23:16:39,283 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:39,284 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 23:16:39,301 INFO Starting text vectorization
+2026-01-11 23:16:39,302 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:39,302 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:39,303 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:39,564 INFO Translated from es to en
+2026-01-11 23:16:39,604 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:39,605 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15518
+2026-01-11 23:16:39,636 INFO Starting text vectorization
+2026-01-11 23:16:39,637 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:39,637 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:39,637 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:39,887 INFO Translated from es to en
+2026-01-11 23:16:39,924 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:39,925 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 23:16:39,941 INFO Starting text vectorization
+2026-01-11 23:16:39,941 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:39,942 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:39,942 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:40,167 INFO Translated from es to en
+2026-01-11 23:16:40,207 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:40,208 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15519
+2026-01-11 23:16:40,227 INFO Starting text vectorization
+2026-01-11 23:16:40,227 INFO Original text: 'Benchmark post iteración 24: Análisis de rendimiento en sistemas distribuidos.. Autor: Test Performa...'
+2026-01-11 23:16:40,228 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:40,228 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:40,725 INFO Translated from es to en
+2026-01-11 23:16:40,781 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:40,782 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15617
+2026-01-11 23:16:40,794 INFO Starting text vectorization
+2026-01-11 23:16:40,795 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:40,795 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:40,796 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:41,006 INFO Translated from es to en
+2026-01-11 23:16:41,043 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:41,045 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15552
+2026-01-11 23:16:41,056 INFO Starting text vectorization
+2026-01-11 23:16:41,056 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:41,056 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:41,057 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:41,303 INFO Translated from es to en
+2026-01-11 23:16:41,382 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:41,383 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517
+2026-01-11 23:16:41,428 INFO Starting text vectorization
+2026-01-11 23:16:41,428 INFO Original text: 'Investigador: Test Performance. Campo de investigación: Artificial Intelligence. Intereses: Machine ...'
+2026-01-11 23:16:41,429 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:41,429 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:41,635 INFO Translated from es to en
+2026-01-11 23:16:41,677 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:41,679 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15553
+2026-01-11 23:16:41,699 INFO Starting text vectorization
+2026-01-11 23:16:41,699 INFO Original text: 'Intereses: Machine Learning, Neural Networks. Área de investigación: Artificial Intelligence...'
+2026-01-11 23:16:41,700 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:41,701 INFO Spanish word(s) detected, treating as Spanish
+2026-01-11 23:16:41,901 INFO Translated from es to en
+2026-01-11 23:16:41,948 INFO Text vectorization completed. Vector dimension: 768
+2026-01-11 23:16:41,949 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15517

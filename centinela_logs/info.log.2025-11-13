@@ -1,0 +1,11 @@
+2025-11-13 23:55:00,152 INFO Watching for file changes with StatReloader
+2025-11-13 23:55:12,718 INFO Loaded embeddings with size: 27677
+2025-11-13 23:55:12,720 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-13 23:55:12,720 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-13 23:55:13,144 INFO Loaded embeddings with size: 27677
+2025-11-13 23:55:13,147 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-13 23:55:13,148 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)

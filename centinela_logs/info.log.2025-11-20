@@ -1,0 +1,22 @@
+2025-11-20 19:48:37,651 INFO Watching for file changes with StatReloader
+2025-11-20 19:48:48,895 INFO Loaded embeddings with size: 27677
+2025-11-20 19:48:48,897 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-20 19:48:48,897 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-20 19:48:49,276 INFO Loaded embeddings with size: 27677
+2025-11-20 19:48:49,281 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-20 19:48:49,281 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-20 20:11:16,327 INFO Watching for file changes with StatReloader
+2025-11-20 20:11:27,189 INFO Loaded embeddings with size: 27677
+2025-11-20 20:11:27,191 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-20 20:11:27,192 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-20 20:11:27,600 INFO Loaded embeddings with size: 27677
+2025-11-20 20:11:27,602 ERROR Error retrieving corpus from Neo4j: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
+2025-11-20 20:11:27,603 ERROR Error initializing components: Couldn't connect to neo4j:7687 (resolved to ()):
+Failed to establish connection to ResolvedIPv4Address(('172.18.0.4', 7687)) (reason [Errno 111] Connection refused)
