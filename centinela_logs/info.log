@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 2026-02-20 02:14:02,758 INFO Watching for file changes with StatReloader
 2026-02-20 02:15:56,115 INFO Watching for file changes with StatReloader
 2026-02-20 02:16:10,281 INFO Loaded embeddings with size: 27677
@@ -1730,3 +1731,104 @@
 2026-02-20 11:53:14,908 INFO Translated from es to en
 2026-02-20 11:53:14,950 INFO Text vectorization completed. Vector dimension: 768
 2026-02-20 11:53:14,951 INFO "POST /api-se/v1/text-processing/vectorize/ HTTP/1.1" 200 15664
+=======
+2026-05-04 00:28:09,093 INFO Loaded embeddings with size: 27677
+2026-05-04 00:29:23,230 INFO Watching for file changes with StatReloader
+2026-05-04 00:30:04,191 INFO Loaded embeddings with size: 27677
+2026-05-04 00:30:44,768 INFO Retrieved 27677 documents from Neo4j
+2026-05-04 00:32:20,829 INFO Text vectorizer components initialized successfully
+2026-05-04 00:32:24,450 INFO "GET /api-se/schema/ HTTP/1.1" 200 92648
+2026-05-04 00:32:25,544 INFO Starting text vectorization
+2026-05-04 00:32:25,545 INFO Original text: 'test...'
+2026-05-04 00:32:26,316 INFO Detected language: et
+2026-05-04 00:32:28,469 INFO Text vectorization completed. Vector dimension: 768
+2026-05-04 00:32:28,471 INFO "GET /api-se/v1/text-processing/health/ HTTP/1.1" 200 121
+2026-05-04 00:32:29,192 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 00:33:34,665 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 00:33:37,552 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 00:33:57,271 INFO Starting text vectorization
+2026-05-04 00:33:57,272 INFO Original text: 'test...'
+2026-05-04 00:33:57,280 INFO Detected language: et
+2026-05-04 00:33:57,347 INFO Text vectorization completed. Vector dimension: 768
+2026-05-04 00:33:57,349 INFO "GET /api-se/v1/text-processing/health/ HTTP/1.1" 200 121
+2026-05-04 00:40:16,038 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 00:40:16,091 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 00:40:16,259 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 00:40:16,527 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:16,550 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:27,653 INFO "GET /api-se/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 451
+2026-05-04 00:40:27,667 INFO "GET /api-se/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 451
+2026-05-04 00:40:27,688 INFO "GET /api-se/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 200 66
+2026-05-04 00:40:27,693 INFO "GET /api-se/v1/dashboard/country/get_range_info/?year=2024 HTTP/1.1" 200 451
+2026-05-04 00:40:27,764 INFO "GET /api-se/v1/dashboard/affiliation/get_affiliations/ HTTP/1.1" 200 2806
+2026-05-04 00:40:27,807 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=10 HTTP/1.1" 200 358
+2026-05-04 00:40:27,831 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:28,131 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:28,762 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 00:40:28,785 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 00:40:28,899 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 00:40:28,982 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:29,000 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:34,046 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:34,060 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:37,185 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:37,200 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:39,676 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 00:40:39,727 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 00:40:39,884 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 00:40:40,128 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:40:40,159 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:55:34,122 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 00:55:34,320 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 00:55:34,507 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:55:34,586 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:55:35,125 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 00:55:40,855 INFO "GET /api-se/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 451
+2026-05-04 00:55:40,872 INFO "GET /api-se/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 451
+2026-05-04 00:55:40,945 INFO "GET /api-se/v1/dashboard/country/get_range_info/?year=2024 HTTP/1.1" 200 451
+2026-05-04 00:55:40,945 INFO "GET /api-se/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 200 66
+2026-05-04 00:55:40,945 INFO "GET /api-se/v1/dashboard/affiliation/get_affiliations/ HTTP/1.1" 200 2806
+2026-05-04 00:55:41,019 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=10 HTTP/1.1" 200 358
+2026-05-04 00:55:41,059 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:55:41,863 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:55:45,262 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 00:55:45,376 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 00:55:45,529 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 00:55:45,630 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 00:55:45,655 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:30:34,343 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 01:37:24,814 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 01:37:24,946 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 01:37:25,026 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 01:37:25,131 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:37:25,174 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:37:26,735 INFO "GET /api-se/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 451
+2026-05-04 01:37:26,760 INFO "GET /api-se/v1/dashboard/country/get_last_years/ HTTP/1.1" 200 451
+2026-05-04 01:37:26,771 INFO "GET /api-se/v1/dashboard/country/get_acumulated/?year=2024 HTTP/1.1" 200 66
+2026-05-04 01:37:26,776 INFO "GET /api-se/v1/dashboard/country/get_range_info/?year=2024 HTTP/1.1" 200 451
+2026-05-04 01:37:26,786 INFO "GET /api-se/v1/dashboard/affiliation/get_affiliations/ HTTP/1.1" 200 2806
+2026-05-04 01:37:26,866 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=10 HTTP/1.1" 200 358
+2026-05-04 01:37:26,896 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:37:27,064 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:37:28,918 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 01:37:28,926 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 01:37:29,094 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 01:37:29,094 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 01:37:29,125 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 01:37:29,256 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 01:37:29,363 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:37:29,380 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:37:40,471 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 01:37:40,603 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 01:37:40,678 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:37:40,703 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:37:41,077 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 01:37:50,180 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 01:37:50,213 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 01:37:50,358 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 01:37:50,360 INFO "GET /api-se/v1/dashboard/country/get_acumulated/ HTTP/1.1" 200 66
+2026-05-04 01:37:50,384 INFO "GET /api-se/v1/summary/ HTTP/1.1" 200 49
+2026-05-04 01:37:50,528 INFO "GET /api-se/v1/dashboard/country/get_topics/?number_top=100 HTTP/1.1" 200 3398
+2026-05-04 01:37:50,611 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+2026-05-04 01:37:50,631 INFO "GET /api-se/v1/dashboard/province/get_provinces/ HTTP/1.1" 200 2000
+>>>>>>> Stashed changes
