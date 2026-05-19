@@ -40,6 +40,7 @@ env/
 # Archivos de log
 *.log
 centinela_logs/
+seed_data/
 
 # Archivos de prueba temporales
 test_*.py
