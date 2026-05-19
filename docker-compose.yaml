@@ -1,11 +1,10 @@
 services:
-  web:
+  search_backend:
     build: .
-    command: python manage.py runserver 0.0.0.0:8001 --noreload
     volumes:
       - ./centinela_logs:/centinela_logs
       - .:/app
-    restart: always
+    restart: unless-stopped
     ports:
       - "8001:8001"
     environment:
@@ -20,31 +19,28 @@ services:
       - MONGO_DB_PORT=${MONGO_DB_PORT}
       - ADMIN_CENTINELA=${ADMIN_CENTINELA}
       - PASSWORD_CENTINELA=${PASSWORD_CENTINELA}
-    # depends_on:
-    #   - mongo
-    #   - neo4j
     depends_on:
       neo4j:
         condition: service_healthy
       mongo:
         condition: service_healthy
-    links:
-      - "neo4j:neo4j"
-      - "mongo:mongo"
+    networks:
+      centinela-net:
+        aliases:
+          - search-engine-backend
 
   neo4j:
-    container_name: neo4j
-    image: neo4j:latest
-    restart: always
+    image: neo4j:5.18
+    restart: unless-stopped
     ports:
       - "7474:7474"
       - "7687:7687"
     environment:
       - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD}
+      - NEO4J_PLUGINS=["apoc","graph-data-science"]
       - NEO4J_apoc_export_file_enabled=true
       - NEO4J_apoc_import_file_enabled=true
       - NEO4J_apoc_import_file_use__neo4j__config=true
-      - NEO4J_PLUGINS=["apoc", "graph-data-science"]
     volumes:
       - ./neo4j_db/data:/data
       - ./neo4j_db/logs:/logs
@@ -56,11 +52,12 @@ services:
       timeout: 10s
       retries: 10
       start_period: 120s
+    networks:
+      - centinela-net
 
   mongo:
-    container_name: mongo
-    image: mongo:latest
-    restart: always
+    image: mongo:7.0
+    restart: unless-stopped
     ports:
       - "27017:27017"
     environment:
@@ -69,12 +66,14 @@ services:
     volumes:
       - ./mongo_db/data:/data/db
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh mongo:27017/db --quiet
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/admin --quiet
       interval: 10s
       timeout: 10s
       retries: 5
       start_period: 60s
+    networks:
+      - centinela-net
 
 networks:
-  default:
-    driver: bridge
+  centinela-net:
+    external: true
