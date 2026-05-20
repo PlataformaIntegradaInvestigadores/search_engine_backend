@@ -160,7 +160,7 @@ restore_mongo() {
   [[ -n "$mongo_container" ]] || fail "MongoDB container was not found"
 
   log "copying Mongo dump"
-  docker cp "$SEED_DIR/centinela_db" "$mongo_container:/backup/centinela_db"
+  docker cp "$SEED_DIR/centinela_db" "$mongo_container:/tmp/centinela_db"
 
   log "restoring Mongo dump"
   compose_exec mongo mongorestore \
@@ -170,7 +170,7 @@ restore_mongo() {
     --password "$mongo_password" \
     --authenticationDatabase admin \
     --db "$mongo_db" \
-    /backup/centinela_db
+    /tmp/centinela_db
 }
 
 finish_django_setup() {
