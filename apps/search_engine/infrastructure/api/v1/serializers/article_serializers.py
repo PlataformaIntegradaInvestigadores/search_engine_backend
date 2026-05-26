@@ -34,7 +34,6 @@ class MostRelevantArticlesRequestSerializer(serializers.Serializer):
     query = serializers.CharField()
     page = serializers.IntegerField()
     size = serializers.IntegerField()
-    type = serializers.CharField(required=False)
     years = serializers.ListField(child=serializers.CharField(), required=False)
 
 # En article_serializers.py

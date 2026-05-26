@@ -26,3 +26,6 @@ centinela_logs/*
 
 # Entorno virtual
 venv/
+
+# Cache de modelos (Hugging Face)
+hf_cache/
