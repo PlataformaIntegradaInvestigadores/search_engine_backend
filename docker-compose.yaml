@@ -5,8 +5,10 @@ services:
       - ./centinela_logs:/centinela_logs
       - .:/app
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     ports:
-      - "8001:8001"
+      - "127.0.0.1:8001:8001"
     environment:
       - NEO4J_PASSWORD=${NEO4J_PASSWORD}
       - NEO4J_USERNAME=${NEO4J_USERNAME}
@@ -33,8 +35,8 @@ services:
     image: neo4j:5.18
     restart: unless-stopped
     ports:
-      - "7474:7474"
-      - "7687:7687"
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
     environment:
       - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD}
       - NEO4J_PLUGINS=["apoc","graph-data-science"]
@@ -59,7 +61,7 @@ services:
     image: mongo:7.0
     restart: unless-stopped
     ports:
-      - "27017:27017"
+      - "127.0.0.1:27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_DB_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DB_PASSWORD}
