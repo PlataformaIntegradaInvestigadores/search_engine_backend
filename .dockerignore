@@ -30,6 +30,7 @@ htmlcov/
 db.sqlite3
 neo4j_db/
 mongo_db/
+hf_cache/
 
 # Entorno virtual
 venv/
