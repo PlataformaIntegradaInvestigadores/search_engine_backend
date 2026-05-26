@@ -45,6 +45,7 @@ db.sqlite3
 *.backup
 neo4j_db/
 mongo_db/
+hf_cache/
 
 # Entorno virtual
 venv/
