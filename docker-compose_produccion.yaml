@@ -36,7 +36,7 @@ services:
       - "7474"
       - "7687"
     environment:
-      - NEO4J_AUTH=${NEO4J_USERNAME:-neo4j}/${NEO4J_PASSWORD:-change-me-strong-neo4j-password}
+      - NEO4J_AUTH=${NEO4J_ADMIN_USERNAME:-neo4j}/${NEO4J_ADMIN_PASSWORD:-change-me-strong-neo4j-admin-password}
       - NEO4J_PLUGINS=["apoc","graph-data-science"]
       - NEO4J_apoc_export_file_enabled=true
       - NEO4J_apoc_import_file_enabled=true
@@ -63,8 +63,8 @@ services:
     expose:
       - "27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_DB_USERNAME:-centinela_search_app}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DB_PASSWORD:-change-me-strong-mongo-password}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME:-mongo_admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD:-change-me-strong-mongo-root-password}
     volumes:
       - mongo_data:/data/db
     healthcheck:
