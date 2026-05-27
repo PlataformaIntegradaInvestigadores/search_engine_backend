@@ -23,7 +23,7 @@ services:
       mongo:
         condition: service_healthy
     volumes:
-      - search_logs:/centinela_logs
+      - search_logs:/app/centinela_logs
     networks:
       centinela-net:
         aliases:
