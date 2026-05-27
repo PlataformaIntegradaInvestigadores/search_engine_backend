@@ -6,7 +6,7 @@ cd "$ROOT_DIR"
 
 COMPOSE_FILE="${COMPOSE_FILE:-docker-compose.yaml}"
 ENV_FILE="${ENV_FILE:-.env}"
-SEED_REMOTE="${SEED_REMOTE:-gdrive:Centinela/seed-data}"
+SEED_REMOTE="${SEED_REMOTE:-}"
 SEED_DIR="${SEED_DIR:-$ROOT_DIR/seed_data}"
 COMPOSE=(docker compose -f "$COMPOSE_FILE")
 
@@ -63,8 +63,6 @@ wait_for() {
 prepare_local_files() {
   require_command git
   require_command docker
-  require_command rclone
-  require_command unzip
 
   if ! git lfs version >/dev/null 2>&1; then
     fail "git-lfs is required. Install it and run: git lfs install"
@@ -78,17 +76,49 @@ prepare_local_files() {
   chmod -R a+rwX "$ROOT_DIR/centinela_logs"
 }
 
-fetch_seed_data() {
-  log "copying seed data from $SEED_REMOTE"
-  rclone copy "$SEED_REMOTE" "$SEED_DIR" -P
+seed_data_ready() {
+  [[ -f "$SEED_DIR/backup.json" && -d "$SEED_DIR/centinela_db" ]]
+}
 
-  if [[ -f "$SEED_DIR/centinela_db.zip" ]]; then
+extract_mongo_archive() {
+  if [[ -f "$SEED_DIR/centinela_db.zip" && ! -d "$SEED_DIR/centinela_db" ]]; then
+    require_command unzip
     log "extracting Mongo seed archive"
     unzip -o "$SEED_DIR/centinela_db.zip" -d "$SEED_DIR"
   fi
+}
 
-  [[ -f "$SEED_DIR/backup.json" ]] || fail "missing Neo4j backup: $SEED_DIR/backup.json"
-  [[ -d "$SEED_DIR/centinela_db" ]] || fail "missing Mongo dump directory: $SEED_DIR/centinela_db"
+missing_seed_data_message() {
+  cat >&2 <<EOF
+[bootstrap] error: missing Search seed data.
+[bootstrap] expected:
+[bootstrap]   $SEED_DIR/backup.json
+[bootstrap]   $SEED_DIR/centinela_db/
+[bootstrap]
+[bootstrap] Download the Neo4j backup and Mongo dump from the agreed project source,
+[bootstrap] place them in the paths above, and rerun this script.
+[bootstrap] If you have a configured rclone remote, you can also run:
+[bootstrap]   SEED_REMOTE=<remote>:<path> $0
+EOF
+  exit 1
+}
+
+fetch_seed_data() {
+  extract_mongo_archive
+
+  if seed_data_ready; then
+    log "using local seed data from $SEED_DIR"
+    return
+  fi
+
+  if [[ -n "$SEED_REMOTE" ]]; then
+    require_command rclone
+    log "copying seed data from $SEED_REMOTE"
+    rclone copy "$SEED_REMOTE" "$SEED_DIR" -P
+    extract_mongo_archive
+  fi
+
+  seed_data_ready || missing_seed_data_message
 }
 
 start_stack() {
