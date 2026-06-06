@@ -32,7 +32,7 @@ services:
           - search-engine-backend
 
   neo4j:
-    image: neo4j:5.18
+    image: neo4j:latest
     restart: unless-stopped
     ports:
       - "127.0.0.1:7474:7474"
@@ -58,7 +58,7 @@ services:
       - centinela-net
 
   mongo:
-    image: mongo:7.0
+    image: mongo:8.0
     restart: unless-stopped
     ports:
       - "127.0.0.1:27017:27017"
