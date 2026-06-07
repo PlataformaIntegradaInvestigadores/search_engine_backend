@@ -39,6 +39,7 @@ seed_data/
 # =========================
 resources/*/*.pkl
 *.joblib
+hf_cache/
 
 # =========================
 # IDE / Editor
