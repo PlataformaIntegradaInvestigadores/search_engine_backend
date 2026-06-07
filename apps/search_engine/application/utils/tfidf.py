@@ -5,6 +5,8 @@ import pandas as pd
 import pickle
 import nltk
 import spacy
+import os
+from functools import lru_cache
 from langdetect import detect
 from deep_translator import GoogleTranslator
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -13,6 +15,29 @@ from keybert import KeyBERT
 from sentence_transformers import SentenceTransformer
 
 nltk.download('stopwords')
+
+
+@lru_cache(maxsize=1)
+def _get_spacy_model():
+    return spacy.load("en_core_web_sm")
+
+
+@lru_cache(maxsize=1)
+def _get_sentence_transformer():
+    device = os.getenv("ST_DEVICE", "cpu")
+    local_path = os.getenv(
+        "ST_MODEL_PATH",
+        os.path.join(os.path.dirname(__file__), "../../../../resources/models/scibert_scivocab_uncased")
+    )
+    local_path = os.path.abspath(local_path)
+    if os.path.isdir(local_path):
+        return SentenceTransformer(local_path, device=device)
+    return SentenceTransformer('allenai/scibert_scivocab_uncased', device=device)
+
+
+@lru_cache(maxsize=1)
+def _get_keybert_model():
+    return KeyBERT()
 
 class Model:
     tokenizer = TfidfVectorizer().build_tokenizer()
@@ -24,9 +49,9 @@ class Model:
         self.type = type
         self.base_path = 'resources/'
         self.model = self.load_model(type)
-        self.nlp = spacy.load("en_core_web_sm")
-        self.kw_model = KeyBERT()
-        self.scibert_model = SentenceTransformer('allenai/scibert_scivocab_uncased')
+        # Cache heavy NLP models once per process
+        self.nlp = _get_spacy_model()
+        self.kw_model = None
         self.translator = GoogleTranslator(source='auto', target='en')
     
     def load_model(self, model_type: str):
@@ -54,6 +79,11 @@ class Model:
         return ''.join([char if char.isalnum() or char.isspace() else ' ' for char in text]).strip()
     
     def enhance_query_semantically(self, query):
+        if self.kw_model is None:
+            try:
+                self.kw_model = _get_keybert_model()
+            except Exception:
+                return query
         if len(query.split()) <= 3:
             return query
         
