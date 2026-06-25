@@ -28,7 +28,11 @@ class ArticleViewSet(viewsets.ViewSet):
 
     # Inject the service
     article_service = ArticleService()
-    llm_search_service = LLMSearchService()
+    try:
+        llm_search_service = LLMSearchService()
+    except Exception as _e:
+        logger.warning(f"LLMSearchService no disponible en startup: {_e}")
+        llm_search_service = None
 
     @extend_schema(
         description="List all articles",

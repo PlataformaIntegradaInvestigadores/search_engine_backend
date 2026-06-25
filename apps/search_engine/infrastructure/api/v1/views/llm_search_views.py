@@ -3,10 +3,18 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema
 
+import logging
+
 from apps.search_engine.application.services.llm_search_service import LLMSearchService
 
+logger = logging.getLogger(__name__)
+
 class LLMSearchViewSet(viewsets.ViewSet):
-    llm_search_service = LLMSearchService()
+    try:
+        llm_search_service = LLMSearchService()
+    except Exception as _e:
+        logger.warning(f"LLMSearchService no disponible en startup: {_e}")
+        llm_search_service = None
     
     @extend_schema(
         summary='Search using LLM',
