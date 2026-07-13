@@ -15,6 +15,7 @@ from apps.dashboards.domain.entities.affiliation_topics_acumulated import Affili
 from apps.dashboards.domain.entities.affiliation_topics_year import AffiliationTopicsYear
 from apps.dashboards.domain.entities.affiliation_year import AffiliationYear
 from apps.dashboards.domain.entities.affiliation_year_acumulated import AffiliationAcumulated
+from apps.dashboards.domain.entities.country_topics_year import CountryTopicsYear
 from apps.dashboards.infrastructure.api.v1.serializers.affiliation_acumulated_serializer import \
     AffiliationAcumulatedSerializer
 from apps.dashboards.infrastructure.api.v1.serializers.affiliation_serializer import AffiliationSerializer
@@ -416,6 +417,59 @@ class AffiliationViewSet(viewsets.ModelViewSet):
             serializer = AffiliationYearSerializer(year_s, many=True)
             topics = serializer.data
             return Response(topics)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @extend_schema(
+        description="Get topics x affiliations production matrix for a year (heatmap de concentración)",
+        tags=['Affiliations'],
+        parameters=[
+            OpenApiParameter(name='year', type=int, location=OpenApiParameter.QUERY, description='Year'),
+            OpenApiParameter(name='top_affiliations', type=int, location=OpenApiParameter.QUERY,
+                             description='Number of top affiliations to include (default 10)'),
+            OpenApiParameter(name='top_topics', type=int, location=OpenApiParameter.QUERY,
+                             description='Number of top topics to include (default 12)'),
+        ]
+    )
+    @action(detail=False, methods=['get'])
+    def get_topics_heatmap(self, request):
+        try:
+            year = int(request.query_params.get('year'))
+            top_n_affiliations = int(request.query_params.get('top_affiliations', 10))
+            top_n_topics = int(request.query_params.get('top_topics', 12))
+
+            top_affiliations = list(
+                AffiliationYear.objects(year=year).order_by('-total_articles')[:top_n_affiliations]
+            )
+            affiliations_payload = [
+                {'scopus_id': a.scopus_id, 'name': a.name, 'total_articles': a.total_articles}
+                for a in top_affiliations
+            ]
+            top_scopus_ids = [a.scopus_id for a in top_affiliations]
+
+            top_topics = list(
+                CountryTopicsYear.objects(year=year).filter(topic_name__ne=' ').filter(topic_name__ne='')
+                .order_by('-total_articles')[:top_n_topics]
+            )
+            topic_names = [t.topic_name for t in top_topics]
+
+            # Pipeline de agregación: una sola consulta contra affiliation_topics_year
+            # en lugar de N x M lecturas individuales.
+            pipeline = [
+                {'$match': {
+                    'year': year,
+                    'scopus_id': {'$in': top_scopus_ids},
+                    'topic_name': {'$in': topic_names},
+                }},
+                {'$project': {'_id': 0, 'scopus_id': 1, 'topic_name': 1, 'total_articles': 1}},
+            ]
+            cells = list(AffiliationTopicsYear.objects.aggregate(*pipeline))
+
+            return Response({
+                'affiliations': affiliations_payload,
+                'topics': topic_names,
+                'cells': cells,
+            })
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 # class AffiliationViewSet(viewsets.ModelViewSet):

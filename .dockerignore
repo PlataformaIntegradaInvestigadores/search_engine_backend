@@ -3,14 +3,6 @@
 .gitignore
 
 # Archivos de configuración y documentación
-.env
-.env*
-*.env
-*.pem
-*.key
-*.crt
-*.p12
-*.pfx
 README.md
 .env.template
 .env.local
@@ -36,16 +28,8 @@ htmlcov/
 
 # Bases de datos locales
 db.sqlite3
-*.sqlite
-*.sqlite3
-*.db
-*.sql
-*.dump
-*.bak
-*.backup
 neo4j_db/
 mongo_db/
-hf_cache/
 
 # Entorno virtual
 venv/
@@ -56,7 +40,6 @@ env/
 # Archivos de log
 *.log
 centinela_logs/
-seed_data/
 
 # Archivos de prueba temporales
 test_*.py
@@ -67,10 +50,9 @@ test_*.py
 Thumbs.db
 
 # Docker files
-Dockerfile*
+Dockerfile
 .dockerignore
-docker-compose*.yml
-docker-compose*.yaml
+docker-compose.yml
 compose.yaml
 
 # Archivos de documentación
