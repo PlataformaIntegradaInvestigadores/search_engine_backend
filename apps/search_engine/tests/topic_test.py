@@ -29,5 +29,6 @@ class TopicTestCase(APITestCase):
             print("Topic not deleted.")
 
     def test_after_delete_topic(self):
+        self.topic.delete()
         with self.assertRaises(DoesNotExist):
             Topic.nodes.get(name="test topic2")
