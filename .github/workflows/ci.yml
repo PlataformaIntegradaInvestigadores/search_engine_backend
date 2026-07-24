@@ -139,7 +139,7 @@ jobs:
       - name: Reconstruir contenedor
         run: |
           cd /opt/centinela
-          docker compose up -d --build search-backend
+          docker compose up -d --build --no-deps search-backend
 
       - name: Health check
         run: |
@@ -156,6 +156,6 @@ jobs:
           if [ "$HEALTHY" = "false" ]; then
             echo "Health check fallido — rollback"
             cd /opt/centinela/search_engine_backend && git reset --hard HEAD~1
-            cd /opt/centinela && docker compose up -d --build search-backend
+            cd /opt/centinela && docker compose up -d --build --no-deps search-backend
             exit 1
           fi
