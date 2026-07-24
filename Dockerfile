@@ -20,4 +20,4 @@ USER appuser
 
 EXPOSE 8001
 
-CMD ["gunicorn", "config.wsgi:application", "-b", "0.0.0.0:8001", "-w", "2", "--timeout", "300"]
+CMD ["gunicorn", "config.wsgi:application", "-b", "0.0.0.0:8001", "-w", "2", "--timeout", "300", "--preload"]
