@@ -30,7 +30,9 @@ SECRET_KEY = 'django-insecure-ROTATED-SECRET-KEY'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') == 'True'
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    host.strip() for host in os.environ.get('ALLOWED_HOSTS', '*').split(',') if host.strip()
+]
 
 CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", ]
 CORS_ORIGIN_ALLOW_ALL = True
@@ -40,13 +42,13 @@ neo4j_username = os.environ.get('NEO4J_USERNAME')
 neo4j_password = os.environ.get('NEO4J_PASSWORD')
 neo4j_host = os.environ.get('NEO4J_HOST')
 neo4j_port = os.environ.get('NEO4J_PORT')
+neo4j_scheme = os.environ.get('NEO4J_SCHEME')
 
 # config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
 try:
-    if DEBUG:
-        config.DATABASE_URL = f'bolt://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
-    else:
-        config.DATABASE_URL = f'bolt+s://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
+    if not neo4j_scheme:
+        neo4j_scheme = 'bolt' if DEBUG else 'bolt+s'
+    config.DATABASE_URL = f'{neo4j_scheme}://{neo4j_username}:{neo4j_password}@{neo4j_host}:{neo4j_port}'
 except Exception as e:
     raise ValueError(f"Error connecting to Neo4j database: {e}")
 
@@ -55,8 +57,9 @@ mongo_db_username = os.environ.get('MONGO_DB_USERNAME')
 mongo_db_password = os.environ.get('MONGO_DB_PASSWORD')
 mongo_host = os.environ.get("MONGO_DB_HOST")
 mongo_port = os.environ.get("MONGO_DB_PORT")
+mongo_auth_source = os.environ.get('MONGO_AUTH_SOURCE', 'admin')
 
-mongo_uri = f'mongodb://{mongo_db_username}:{mongo_db_password}@{mongo_host}:{mongo_port}/{mongo_db_name}?authSource=admin'
+mongo_uri = f'mongodb://{mongo_db_username}:{mongo_db_password}@{mongo_host}:{mongo_port}/{mongo_db_name}?authSource={mongo_auth_source}'
 # print(mongo_uri)
 mongoengine.connect(host=mongo_uri)
 # mongoengine.connect(
@@ -92,7 +95,7 @@ REST_FRAMEWORK = {
 }
 log_dir = Path(BASE_DIR) / 'centinela_logs'
 if not log_dir.exists():
-    log_dir.mkdir(parents=True)
+    log_dir.mkdir(parents=True, exist_ok=True)
 
 # LOGGING = {
 #     "version": 1,
