@@ -27,6 +27,17 @@ class ArticleViewSet(viewsets.ViewSet):
 
     # Inject the service
     article_service = ArticleService()
+    _llm_search_service = None
+
+    @property
+    def llm_search_service(self):
+        # Instanciacion perezosa: LLMSearchService carga modelos SciBERT/KeyBERT
+        # pesados. Si esto se hace a nivel de clase (import time), cualquier
+        # test que cargue el urlconf completo (via Django test client) crashea
+        # aunque no toque este endpoint.
+        if ArticleViewSet._llm_search_service is None:
+            ArticleViewSet._llm_search_service = LLMSearchService()
+        return ArticleViewSet._llm_search_service
 
     @extend_schema(
         description="List all articles",
