@@ -83,14 +83,19 @@ volumes:
     name: centinela_search_logs
   neo4j_data:
     name: centinela_neo4j_data
+    external: true
   neo4j_logs:
     name: centinela_neo4j_logs
+    external: true
   neo4j_import:
     name: centinela_neo4j_import
+    external: true
   neo4j_plugins:
     name: centinela_neo4j_plugins
+    external: true
   mongo_data:
     name: centinela_mongo_data
+    external: true
 
 networks:
   centinela-net:

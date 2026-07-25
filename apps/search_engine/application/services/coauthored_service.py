@@ -1,4 +1,4 @@
-from neomodel import DoesNotExist
+from neomodel import DoesNotExist, db
 
 from apps.search_engine.domain.repositories.author_repository import AuthorRepository
 from apps.search_engine.domain.repositories.coauthored_repository import CoAuthoredRepository
@@ -14,19 +14,32 @@ class CoAuthoredService(CoAuthoredRepository):
     def find_coauthors_by_id(self, author_id: str):
         try:
             author = self.author_repository.find_by_id(author_id)
-            links = []
-            nodes = author.co_authors
-            # Recorre los coautores y las relaciones
-            for co_author in author.co_authors:
-                rel = author.co_authors.relationship(co_author)
-                collab_strength = rel.collab_strength
+            nodes = list(author.co_authors.all()) if hasattr(author.co_authors, 'all') else list(author.co_authors)
 
-                link = {
-                    'source': int(author.scopus_id),
-                    'target': int(co_author.scopus_id),
-                    'collabStrength': float(collab_strength)
-                }
-                links.append(link)
+            # Recogemos los IDs del autor principal y todos sus coautores
+            all_scopus_ids = [str(author.scopus_id)] + [str(c.scopus_id) for c in nodes]
+            auth_list_str = ', '.join([f'"{sid}"' for sid in all_scopus_ids])
+
+            # Consulta Cypher para obtener TODAS las aristas de coautoría entre cualquier par de nodos en la red (Densidad de red)
+            query_links = f"""
+                WITH [{auth_list_str}] as authList
+                MATCH (au1:Author)-[r:CO_AUTHORED]-(au2:Author)
+                WHERE au1.scopus_id IN authList AND au2.scopus_id IN authList AND au1.scopus_id > au2.scopus_id
+                RETURN collect({{
+                    source: au1.scopus_id, 
+                    target: au2.scopus_id, 
+                    collabStrength: toFloat(r.collab_strength)
+                }}) as links
+            """
+            result, _ = db.cypher_query(query_links)
+            links = []
+            if result and result[0] and result[0][0]:
+                for item in result[0][0]:
+                    links.append({
+                        'source': int(item['source']),
+                        'target': int(item['target']),
+                        'collabStrength': float(item['collabStrength'])
+                    })
 
             return nodes, links
         except DoesNotExist as e:
