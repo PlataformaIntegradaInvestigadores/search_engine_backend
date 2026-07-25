@@ -312,8 +312,31 @@ class ArticleService(ArticleRepository):
     def find_most_relevant_articles_by_topic(self, topic: str):
         try:
             m = Model("article")
-            # Devuelve un Series con scopus_id como index y score como valor
-            return m.get_most_relevant_docs_by_topic_v2(topic, None)
+            # Esto devuelve solo IDs y scores
+            df = m.get_most_relevant_docs_by_topic_v2(topic, None)
+            
+            # Necesitamos obtener la información completa de cada artículo
+            article_list = []
+            for scopus_id, score in df.items():
+                try:
+                    # Obtener el artículo completo de Neo4j
+                    article = self.find_by_id(str(scopus_id))
+                    if article:
+                        # Convertir a diccionario y agregar el score
+                        article_dict = {
+                            'scopus_id': article.scopus_id,
+                            'title': article.title,
+                            'publication_date': article.publication_date,
+                            'author_count': article.author_count,
+                            'affiliation_count': article.affiliation_count,
+                            'relevance': float(score)
+                        }
+                        article_list.append(article_dict)
+                except Exception as e:
+                    print(f"Error processing article {scopus_id}: {e}")
+                    continue
+
+            return article_list
         except Exception as e:
             raise Exception(f"Error finding most relevant articles by topic: {e}")
     

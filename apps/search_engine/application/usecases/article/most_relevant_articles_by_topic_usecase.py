@@ -12,4 +12,4 @@ class MostRelevantArticlesUseCase:
         df = self.article_repository.find_most_relevant_articles_by_topic(topic)
         years = self.article_repository.find_years_by_articles(df.index.to_list())
 
-        return df, years
+        return df.index.to_list(), years
