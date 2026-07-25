@@ -254,6 +254,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+USE_ML_MODELS_SERVICE = os.environ.get('USE_ML_MODELS_SERVICE', 'False') == 'True'
+ML_MODELS_BASE_URL = os.environ.get('ML_MODELS_BASE_URL', 'http://ms-ml-models:8000')
+ML_MODELS_TIMEOUT_SECONDS = float(os.environ.get('ML_MODELS_TIMEOUT_SECONDS', '120'))
+SCOPUS_MEDALLION_DB_NAME = os.environ.get('SCOPUS_MEDALLION_DB_NAME', 'ETL_Centinela_refactor')
+SCOPUS_USE_INSTTOKEN = os.environ.get('SCOPUS_USE_INSTTOKEN', 'False') == 'True'
+SCOPUS_USE_AUTHTOKEN = os.environ.get('SCOPUS_USE_AUTHTOKEN', 'False') == 'True'
+SCOPUS_EXTRACTION_DEFAULT_MAX_PAGES = int(os.environ.get('SCOPUS_EXTRACTION_DEFAULT_MAX_PAGES', '10'))
 # """
 # Django settings for config project.
 #

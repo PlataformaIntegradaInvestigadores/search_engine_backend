@@ -1,14 +1,35 @@
 from typing import List
+import unicodedata
+
 import pandas as pd
 from neomodel import db, Q
 
 from apps.search_engine.domain.entities.author import Author
 from apps.search_engine.domain.repositories.author_repository import AuthorRepository
-from unidecode import unidecode
 from apps.search_engine.application.utils.tfidf import Model
 
 
 class AuthorService(AuthorRepository):
+
+    @staticmethod
+    def _normalize_author_search(value: str) -> str:
+        normalized = unicodedata.normalize("NFKD", value or "")
+        return "".join(character for character in normalized if not unicodedata.combining(character)).lower()
+
+    @staticmethod
+    def _normalized_cypher(property_name: str) -> str:
+        expression = f"toLower(coalesce({property_name}, ''))"
+        for accented, plain in (
+            ("á", "a"),
+            ("é", "e"),
+            ("í", "i"),
+            ("ó", "o"),
+            ("ú", "u"),
+            ("ü", "u"),
+            ("ñ", "n"),
+        ):
+            expression = f"replace({expression}, '{accented}', '{plain}')"
+        return expression
 
     def authors_no_updated(self) -> List[object]:
         try:
@@ -135,38 +156,51 @@ class AuthorService(AuthorRepository):
             raise Exception(f"Error finding authors by affiliation filter: {e}")
 
     def find_authors_by_query(self, name: str, page_size=1, page=10) -> (List[object], int):
-        custom_name = unidecode(name).strip().lower()
+        custom_name = self._normalize_author_search(name.strip())
         skip = (page - 1) * page_size
-        query = f"""
-                MATCH (au:Author) 
-                WHERE  toLower(au.first_name) CONTAINS '{custom_name}' or 
-                toLower(au.last_name) CONTAINS '{custom_name}' or 
-                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{custom_name}' or
-                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{custom_name}' or  
-                toLower(au.auth_name) CONTAINS '{custom_name}' or 
-                toLower(au.initials) CONTAINS '{custom_name}' or 
-                toLower(au.email) CONTAINS '{custom_name}'or 
-                au.scopus_id CONTAINS '{custom_name}'
+        given_name = self._normalized_cypher("au.given_name")
+        surname = self._normalized_cypher("au.surname")
+        auth_name = self._normalized_cypher("au.authname")
+        initials = self._normalized_cypher("au.initials")
+        predicate = f"""
+                WHERE {given_name} CONTAINS $name
+                   OR {surname} CONTAINS $name
+                   OR ({given_name} + ' ' + {surname}) CONTAINS $name
+                   OR ({surname} + ' ' + {given_name}) CONTAINS $name
+                   OR {auth_name} CONTAINS $name
+                   OR {initials} CONTAINS $name
+                   OR toString(au.authid) CONTAINS $name
+        """
+        count_query = f"""
+                MATCH (au:Author)
+                {predicate}
                 RETURN count(au) as total
         """
-        results, meta = db.cypher_query(query)
+        results, meta = db.cypher_query(count_query, {"name": custom_name})
         total = results[0][0]
         query = f"""
-                MATCH (au:Author) 
-                WHERE  toLower(au.first_name) CONTAINS '{custom_name}' or 
-                toLower(au.last_name) CONTAINS '{custom_name}' or 
-                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{custom_name}' or
-                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{custom_name}' or  
-                toLower(au.auth_name) CONTAINS '{custom_name}' or 
-                toLower(au.initials) CONTAINS '{custom_name}' or 
-                toLower(au.email) CONTAINS '{custom_name}' or 
-                au.scopus_id CONTAINS '{custom_name}'
-                RETURN au
-                ORDER BY au.citation_count DESC
-                SKIP {skip} LIMIT {page_size}
+                MATCH (au:Author)
+                {predicate}
+                OPTIONAL MATCH (au)-[:WROTE]->(article:Article)
+                WITH au,
+                    CASE
+                        WHEN coalesce(toInteger(au.citation_count), 0) > 0
+                        THEN toInteger(au.citation_count)
+                        ELSE sum(coalesce(article.cited_by_count, 0))
+                    END AS citation_count
+                RETURN au, citation_count
+                ORDER BY citation_count DESC, au.authname
+                SKIP $skip LIMIT $page_size
                 """
-        results, meta = db.cypher_query(query)
-        authors = [Author.inflate(row[0]) for row in results]
+        results, meta = db.cypher_query(
+            query,
+            {"name": custom_name, "skip": skip, "page_size": page_size},
+        )
+        authors = []
+        for row in results:
+            author = Author.inflate(row[0])
+            author.citation_count = int(row[1] or 0)
+            authors.append(author)
         return authors, total
 
     def find_all(self, page_size=None, page=None) -> List[Author]:
@@ -181,7 +215,24 @@ class AuthorService(AuthorRepository):
 
     def find_by_id(self, scopus_id) -> Author:
         try:
-            return Author.nodes.get(scopus_id=scopus_id)
+            query = """
+                MATCH (author:Author {authid: $scopus_id})
+                OPTIONAL MATCH (author)-[:WROTE]->(article:Article)
+                RETURN author,
+                    CASE
+                        WHEN coalesce(toInteger(author.citation_count), 0) > 0
+                        THEN toInteger(author.citation_count)
+                        ELSE sum(coalesce(article.cited_by_count, 0))
+                    END AS citation_count
+                LIMIT 1
+            """
+            results, _ = db.cypher_query(query, {"scopus_id": str(scopus_id)})
+            if not results:
+                raise Author.DoesNotExist(f"Author {scopus_id} was not found")
+
+            author = Author.inflate(results[0][0])
+            author.citation_count = int(results[0][1] or 0)
+            return author
         except Exception as e:
             raise Exception(f"Error finding author by id: {e}")
 

@@ -33,13 +33,18 @@ class CoAuthoredService(CoAuthoredRepository):
             """
             result, _ = db.cypher_query(query_links)
             links = []
-            if result and result[0] and result[0][0]:
-                for item in result[0][0]:
-                    links.append({
-                        'source': int(item['source']),
-                        'target': int(item['target']),
-                        'collabStrength': float(item['collabStrength'])
-                    })
+            nodes = author.co_authors
+            # Recorre los coautores y las relaciones
+            for co_author in author.co_authors:
+                rel = author.co_authors.relationship(co_author)
+                collab_strength = rel.collab_strength or rel.shared_pubs or 1
+
+                link = {
+                    'source': int(author.scopus_id),
+                    'target': int(co_author.scopus_id),
+                    'collabStrength': float(collab_strength)
+                }
+                links.append(link)
 
             return nodes, links
         except DoesNotExist as e:

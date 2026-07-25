@@ -157,15 +157,23 @@ class ArticleViewSet(viewsets.ViewSet):
             custom_years = serializer.validated_data.get('years')
 
             most_relevant_articles_usecase = MostRelevantArticlesUseCase(article_repository=self.article_service)
-            df, years = most_relevant_articles_usecase.execute(topic, page, size)
-            df = [str(article) for article in df]
+            scores, years = most_relevant_articles_usecase.execute(topic, page, size)
+            article_ids = [str(article_id) for article_id in scores.index.to_list()]
             
             if custom_type:
-                filtered_articles = self.article_service.find_articles_by_filter_years(custom_type, custom_years, df)
+                filtered_articles = self.article_service.find_articles_by_filter_years(
+                    custom_type,
+                    custom_years,
+                    article_ids,
+                )
                 filtered_ids = [f"{article.scopus_id}" for article in filtered_articles]
                 articles, total_articles = self.article_service.find_articles_by_ids(filtered_ids, page, size)
             else:
-                articles, total_articles = self.article_service.find_articles_by_ids(df, page, size)
+                articles, total_articles = self.article_service.find_articles_by_ids(article_ids, page, size)
+
+            for article in articles:
+                article_id = str(article.get('scopus_id', ''))
+                article['relevance'] = float(scores.get(article_id, 0.0))
 
             # Agregar prints para depuración
             print("Artículos antes de serializar:", articles)

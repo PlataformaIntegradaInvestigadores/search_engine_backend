@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
 import json
+from django.conf import settings
 
 # Load environment variables
 
@@ -34,9 +35,9 @@ class ScopusClient:
                 "Accept": 'application/json'
             }
 
-            if self.x_els_auth_token:
+            if self.x_els_auth_token and settings.SCOPUS_USE_AUTHTOKEN:
                 headers["X-ELS-Authtoken"] = self.x_els_auth_token
-            if self.x_els_ins_token:
+            if self.x_els_ins_token and settings.SCOPUS_USE_INSTTOKEN:
                 headers["X-ELS-Insttoken"] = self.x_els_ins_token
 
             session = requests.Session()

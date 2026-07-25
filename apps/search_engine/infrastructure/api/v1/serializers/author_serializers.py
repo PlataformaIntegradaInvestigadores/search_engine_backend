@@ -14,7 +14,7 @@ class AuthorSerializer(serializers.Serializer):
     co_authors = serializers.SerializerMethodField()
     topics = serializers.SerializerMethodField()
     citation_count = serializers.IntegerField()
-    current_affiliation = serializers.CharField()
+    current_affiliation = serializers.SerializerMethodField()
 
     def get_affiliations(self, obj):
         return [affiliation.name for affiliation in obj.affiliations.all()]
@@ -29,6 +29,12 @@ class AuthorSerializer(serializers.Serializer):
     def get_topics(self, obj):
         return [topic.name for topic in obj.topics.all()]
 
+    def get_current_affiliation(self, obj):
+        if obj.current_affiliation:
+            return obj.current_affiliation
+        affiliations = obj.affiliations.all()
+        return affiliations[0].name if affiliations else None
+
 
 class RetrieveAuthorSerializer(serializers.Serializer):
     scopus_id = serializers.CharField()
@@ -36,7 +42,7 @@ class RetrieveAuthorSerializer(serializers.Serializer):
     affiliations = serializers.SerializerMethodField()
     articles = serializers.SerializerMethodField()
     topics = serializers.SerializerMethodField()
-    current_affiliation = serializers.CharField()
+    current_affiliation = serializers.SerializerMethodField()
     citation_count = serializers.IntegerField()
     updated = serializers.BooleanField()
 
@@ -54,6 +60,12 @@ class RetrieveAuthorSerializer(serializers.Serializer):
     def get_topics(self, obj):
         topics = [topic.name for topic in obj.topics.all()]
         return len(topics)
+
+    def get_current_affiliation(self, obj):
+        if obj.current_affiliation:
+            return obj.current_affiliation
+        affiliations = obj.affiliations.all()
+        return affiliations[0].name if affiliations else None
 
 
 class MostRelevantAuthorsRequestSerializer(serializers.Serializer):

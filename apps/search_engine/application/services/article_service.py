@@ -235,8 +235,11 @@
 
 from typing import List, Tuple
 
+from django.conf import settings
 from neomodel import db, Q
+import pandas as pd
 
+from apps.scopus_integration.infrastructure.clients.ml_models_client import MLModelsClient
 from apps.search_engine.application.utils.tfidf import Model
 from apps.search_engine.domain.entities.article import Article
 from apps.search_engine.domain.repositories.article_repository import ArticleRepository
@@ -245,7 +248,7 @@ from apps.search_engine.domain.repositories.article_repository import ArticleRep
 class ArticleService(ArticleRepository):
     def find_articles_by_author(self, author_id: str) -> List[object]:
         try:
-            query = "MATCH (a:Article)-[:WROTE]-(au:Author) WHERE au.scopus_id = $author_id RETURN a"
+            query = "MATCH (a:Article)-[:WROTE]-(au:Author) WHERE au.authid = $author_id RETURN a"
             results, meta = db.cypher_query(query, {"author_id": author_id})
             articles = [Article.inflate(row[0]) for row in results]
             return articles
@@ -311,32 +314,21 @@ class ArticleService(ArticleRepository):
     # En article_service.py
     def find_most_relevant_articles_by_topic(self, topic: str):
         try:
-            m = Model("article")
-            # Esto devuelve solo IDs y scores
-            df = m.get_most_relevant_docs_by_topic_v2(topic, None)
-            
-            # Necesitamos obtener la información completa de cada artículo
-            article_list = []
-            for scopus_id, score in df.items():
-                try:
-                    # Obtener el artículo completo de Neo4j
-                    article = self.find_by_id(str(scopus_id))
-                    if article:
-                        # Convertir a diccionario y agregar el score
-                        article_dict = {
-                            'scopus_id': article.scopus_id,
-                            'title': article.title,
-                            'publication_date': article.publication_date,
-                            'author_count': article.author_count,
-                            'affiliation_count': article.affiliation_count,
-                            'relevance': float(score)
-                        }
-                        article_list.append(article_dict)
-                except Exception as e:
-                    print(f"Error processing article {scopus_id}: {e}")
-                    continue
+            if settings.USE_ML_MODELS_SERVICE:
+                response = MLModelsClient().search_tfidf(
+                    query=topic,
+                    version="v10.0",
+                    top_k=100,
+                )
+                return pd.Series(
+                    {
+                        str(item["doc_id"]): float(item.get("score", 0.0))
+                        for item in response.get("results", [])
+                    },
+                    dtype=float,
+                )
 
-            return article_list
+            return Model("article").get_most_relevant_docs_by_topic_v2(topic, None)
         except Exception as e:
             raise Exception(f"Error finding most relevant articles by topic: {e}")
     
@@ -421,7 +413,21 @@ class ArticleService(ArticleRepository):
 
     def find_by_id(self, article_id) -> Article | None:
         try:
-            article = Article.nodes.get_or_none(scopus_id=article_id)
+            query = """
+                MATCH (article:Article {scopus_id: $article_id})
+                OPTIONAL MATCH (author:Author)-[:WROTE]->(article)
+                WITH article, count(DISTINCT author) AS author_count
+                OPTIONAL MATCH (article)-[:BELONGS_TO]->(affiliation:Affiliation)
+                RETURN article, author_count, count(DISTINCT affiliation) AS affiliation_count
+                LIMIT 1
+            """
+            results, _ = db.cypher_query(query, {"article_id": str(article_id)})
+            if not results:
+                return None
+
+            article = Article.inflate(results[0][0])
+            article.author_count = int(results[0][1] or 0)
+            article.affiliation_count = int(results[0][2] or 0)
             return article
         except Exception as e:
             raise Exception(f"Error finding article by id: {e}")
@@ -430,8 +436,11 @@ class ArticleService(ArticleRepository):
         try:
             query = (
                 "MATCH (a:Article {scopus_id: $article_id}) "
-                "OPTIONAL MATCH (a)-[:WROTE]-(au:Author) "
-                "RETURN collect(DISTINCT {scopusId: au.scopus_id, name: au.auth_name})"
+                "OPTIONAL MATCH (au:Author)-[:WROTE]->(a) "
+                "RETURN collect(DISTINCT {"
+                "scopusId: au.authid, "
+                "name: coalesce(au.authname, au.given_name + ' ' + au.surname)"
+                "})"
             )
             results, meta = db.cypher_query(query, {'article_id': article_id})
             authors = [row[0] for row in results]

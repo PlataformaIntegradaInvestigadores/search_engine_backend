@@ -1,4 +1,5 @@
 from drf_spectacular.utils import extend_schema
+from django.conf import settings
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -9,6 +10,7 @@ from apps.dashboards.domain.entities.country_acumulated import CountryAcumulated
 from apps.dashboards.domain.entities.country_topics import CountryTopics
 from apps.scopus_integration.application.services.model_corpus_observer_service import ModelCorpusObserverService
 from apps.scopus_integration.application.services.search_scopus_service import RetrieveScopusData
+from apps.scopus_integration.infrastructure.clients.ml_models_client import MLModelsClient
 from apps.search_engine.application.services.affiliation_service import AffiliationService
 from apps.search_engine.application.services.article_service import ArticleService
 from apps.search_engine.application.services.author_service import AuthorService
@@ -22,6 +24,7 @@ class DashboardInformationViewSet(viewsets.ViewSet):
     topic_service = TopicService()
     retrieve_scopus_data = RetrieveScopusData()
     model_corpus_observer = ModelCorpusObserverService()
+    ml_models_client = MLModelsClient()
 
     @extend_schema(
         summary='Get the total number of authors',
@@ -62,8 +65,13 @@ class DashboardInformationViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['get'], url_path='tfidf_model_corpus')
     def tfidf_model_corpus(self, request):
         try:
-            model_exists = self.model_corpus_observer.verify_model_path_exists()
-            corpus_exists = self.model_corpus_observer.verify_corpus_path_exists()
+            if settings.USE_ML_MODELS_SERVICE:
+                tfidf_status = self.ml_models_client.models().get("tfidf", {})
+                model_exists = bool(tfidf_status.get("model_exists"))
+                corpus_exists = bool(tfidf_status.get("corpus_exists"))
+            else:
+                model_exists = self.model_corpus_observer.verify_model_path_exists()
+                corpus_exists = self.model_corpus_observer.verify_corpus_path_exists()
             return Response({'model': model_exists, 'corpus': corpus_exists}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

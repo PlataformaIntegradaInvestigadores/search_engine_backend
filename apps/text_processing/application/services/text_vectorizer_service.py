@@ -8,6 +8,9 @@ from deep_translator import GoogleTranslator
 import langdetect
 import os
 from nltk.corpus import stopwords
+from django.conf import settings
+
+from apps.scopus_integration.infrastructure.clients.ml_models_client import MLModelsClient
 
 logger = logging.getLogger(__name__)
 
@@ -23,9 +26,12 @@ class TextVectorizerService:
     
     def __init__(self):
         if not self._initialized:
+            self.use_remote_service = settings.USE_ML_MODELS_SERVICE
+            self.ml_client = MLModelsClient() if self.use_remote_service else None
             BASE_DIR = 'resources/'
             self.scibert_model_path = os.path.join(BASE_DIR, 'models', 'scibert_scivocab_uncased')
-            self.initialize_components()
+            if not self.use_remote_service:
+                self.initialize_components()
             self.__class__._initialized = True
     
     def initialize_components(self):
@@ -124,6 +130,18 @@ class TextVectorizerService:
             Dict containing vector, metadata, and processing info
         """
         try:
+            if self.use_remote_service and self.ml_client:
+                try:
+                    return self.ml_client.vectorize(
+                        text,
+                        translate_to_english=translate_to_english,
+                        clean_text=clean_text,
+                    )
+                except Exception as exc:
+                    logger.warning("ML models service unavailable, falling back to local vectorizer: %s", exc)
+                    self.initialize_components()
+                    self.use_remote_service = False
+
             logger.info("Starting text vectorization")
             logger.info(f"Original text: '{text[:100]}...'")
             

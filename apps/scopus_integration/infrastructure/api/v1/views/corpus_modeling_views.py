@@ -1,21 +1,8 @@
-import pandas as pd
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from sklearn.feature_extraction.text import TfidfVectorizer
-
-from apps.scopus_integration.application.services.corpus_generation_service import CorpusService
-from apps.scopus_integration.application.usecases.generate_corpus_usecase import GenerateCorpusUseCase
-from unidecode import unidecode
-import nltk
-from string import punctuation
-from nltk.corpus import stopwords
-from textblob import TextBlob
-import json
-import pickle
-
-nltk.download('stopwords')
+from django.conf import settings
 
 
 class GenerateCorpusView(APIView):
@@ -25,6 +12,36 @@ class GenerateCorpusView(APIView):
     )
     def post(self, request):
         try:
+            if settings.USE_ML_MODELS_SERVICE:
+                from apps.scopus_integration.medallion.pipeline import ScopusMedallionPipeline
+
+                pipeline = ScopusMedallionPipeline()
+                silver_result = pipeline.run_silver()
+                gold_result = pipeline.run_gold()
+                documents = pipeline.get_gold_ml_documents()
+                return Response(
+                    {
+                        'success': True,
+                        'total': len(documents),
+                        'source': 'gold_ml_features',
+                        'silver': silver_result,
+                        'gold': gold_result,
+                    },
+                    status=status.HTTP_200_OK,
+                )
+
+            import pandas as pd
+            from sklearn.feature_extraction.text import TfidfVectorizer
+            from unidecode import unidecode
+            import nltk
+            from string import punctuation
+            from nltk.corpus import stopwords
+
+            from apps.scopus_integration.application.services.corpus_generation_service import CorpusService
+            from apps.scopus_integration.application.usecases.generate_corpus_usecase import GenerateCorpusUseCase
+
+            nltk.download('stopwords')
+
             corpus_path = 'resources/corpus/'
             modelo = 'tf-idf'
             version = 'v10.0'

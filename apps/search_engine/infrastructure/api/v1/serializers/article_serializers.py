@@ -13,6 +13,7 @@ class ArticleSerializer(serializers.Serializer):
     affiliations = serializers.SerializerMethodField()
     topics = serializers.SerializerMethodField()
     scopus_id = serializers.CharField()
+    citations = serializers.SerializerMethodField()
 
     def get_affiliation_count(self, obj):
         return len(obj.affiliations.all())
@@ -22,6 +23,9 @@ class ArticleSerializer(serializers.Serializer):
 
     def get_topics(self, obj):
         return [topic.name for topic in obj.topics.all()]
+
+    def get_citations(self, obj):
+        return int(obj.cited_by_count or 0)
 
 
 class ArticlesByAuthorSerializer(serializers.Serializer):

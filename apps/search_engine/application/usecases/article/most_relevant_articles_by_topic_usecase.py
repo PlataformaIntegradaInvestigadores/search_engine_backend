@@ -9,7 +9,7 @@ class MostRelevantArticlesUseCase:
         self.article_repository = article_repository
 
     def execute(self, topic: str, page: int, size: int):
-        df = self.article_repository.find_most_relevant_articles_by_topic(topic)
-        years = self.article_repository.find_years_by_articles(df.index.to_list())
+        scores = self.article_repository.find_most_relevant_articles_by_topic(topic)
+        years = self.article_repository.find_years_by_articles(scores.index.to_list())
 
-        return df.index.to_list(), years
+        return scores, years

@@ -1,7 +1,7 @@
 import time
 
 from django_neomodel import DjangoNode
-from neomodel import StringProperty, RelationshipTo, Relationship, IntegerProperty, UniqueIdProperty, \
+from neomodel import StringProperty, RelationshipTo, Relationship, IntegerProperty, \
     BooleanProperty, db, StructuredRel
 
 from apps.search_engine.domain.entities.affiliation import Affiliation
@@ -17,16 +17,16 @@ class Relevant(StructuredRel):
 
 
 class Author(DjangoNode):
-    scopus_id = UniqueIdProperty()
-    first_name = StringProperty()
-    last_name = StringProperty()
-    auth_name = StringProperty()
+    scopus_id = StringProperty(required=True, unique_index=True, db_property="authid")
+    first_name = StringProperty(db_property="given_name")
+    last_name = StringProperty(db_property="surname")
+    auth_name = StringProperty(db_property="authname")
     initials = StringProperty()
     citation_count = IntegerProperty(default=0)
     current_affiliation = StringProperty()
     affiliations = RelationshipTo('apps.search_engine.domain.entities.affiliation.Affiliation', 'AFFILIATED_WITH')
     articles = RelationshipTo('apps.search_engine.domain.entities.article.Article', 'WROTE', model=Relevant)
-    co_authors = Relationship('Author', 'CO_AUTHORED', model=CoAuthored)
+    co_authors = Relationship('Author', 'COAUTHORED', model=CoAuthored)
     topics = RelationshipTo('apps.search_engine.domain.entities.topic.Topic', 'EXPERT_IN')
     updated = BooleanProperty(default=False)
 
@@ -58,12 +58,11 @@ class Author(DjangoNode):
         return author
 
     @staticmethod
-    def validate_scopus_id(scopus_id) -> int or None:
+    def validate_scopus_id(scopus_id) -> str or None:
         if scopus_id:
             try:
-                scopus_id = int(scopus_id.split(":")[1])
-                return scopus_id
-            except ValueError:
+                return str(scopus_id).split(":")[-1]
+            except (TypeError, ValueError):
                 return None
         else:
             return None
