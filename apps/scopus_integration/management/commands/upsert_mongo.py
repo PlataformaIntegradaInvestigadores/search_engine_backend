@@ -62,9 +62,9 @@ class Command(BaseCommand):
                 self._ensure_indexes(db)
 
             with neo4j_driver.session() as session:
-                self._etl_authors(session, db, dry_run)
-                self._etl_affiliations(session, db, dry_run)
-                self._etl_country(session, db, dry_run)
+                authors_data = self._etl_authors(session, db, dry_run)
+                affiliations_data = self._etl_affiliations(session, db, dry_run)
+                self._etl_country(session, db, dry_run, authors_data, affiliations_data)
                 self._etl_provinces(session, db, dry_run)
 
         except Exception as exc:
@@ -174,11 +174,11 @@ class Command(BaseCommand):
             rows = result.data()
         except Exception as exc:
             self.stdout.write(self.style.ERROR(f'[Autores] Error en consulta Neo4j: {exc}'))
-            return
+            return []
 
         if not rows:
             self.stdout.write('[Autores] Sin datos en Neo4j.')
-            return
+            return []
 
         au_ids, ar_ids, pub_dates, topics = [], [], [], []
         for r in rows:
@@ -260,6 +260,7 @@ class Command(BaseCommand):
                 ))
 
         self._bulk_write_all(db, ops, dry_run, label='Autores')
+        return authors_data
 
     # ------------------------------------------------------------------
     # ETL: Afiliaciones
@@ -280,11 +281,11 @@ class Command(BaseCommand):
             rows = result.data()
         except Exception as exc:
             self.stdout.write(self.style.ERROR(f'[Afiliaciones] Error en consulta Neo4j: {exc}'))
-            return
+            return []
 
         if not rows:
             self.stdout.write('[Afiliaciones] Sin datos en Neo4j.')
-            return
+            return []
 
         af_ids, af_names, ar_ids, pub_dates, topics = [], [], [], [], []
         for r in rows:
@@ -373,12 +374,13 @@ class Command(BaseCommand):
                     ))
 
         self._bulk_write_all(db, ops, dry_run, label='Afiliaciones')
+        return affiliations_data
 
     # ------------------------------------------------------------------
     # ETL: País (Ecuador)
     # ------------------------------------------------------------------
 
-    def _etl_country(self, session, db, dry_run):
+    def _etl_country(self, session, db, dry_run, authors_data, affiliations_data):
         self.stdout.write('[País] Consultando Neo4j...')
         try:
             art_result = session.run("""
@@ -389,27 +391,6 @@ class Command(BaseCommand):
                        t.name AS topic
             """)
             art_rows = art_result.data()
-
-            auth_result = session.run("""
-                MATCH (au:Author)-[:WROTE]->(ar:Article)
-                OPTIONAL MATCH (ar)-[:USES]->(t:Topic)
-                RETURN au.scopus_id AS au_id,
-                       ar.scopus_id AS ar_id,
-                       ar.publication_date AS pub_date,
-                       t.name AS topic
-            """)
-            auth_rows = auth_result.data()
-
-            af_result = session.run("""
-                MATCH (ar:Article)-[:BELONGS_TO]->(af:Affiliation)
-                OPTIONAL MATCH (ar)-[:USES]->(t:Topic)
-                RETURN af.scopus_id AS af_id,
-                       af.name      AS af_name,
-                       ar.scopus_id AS ar_id,
-                       ar.publication_date AS pub_date,
-                       t.name AS topic
-            """)
-            af_rows = af_result.data()
         except Exception as exc:
             self.stdout.write(self.style.ERROR(f'[País] Error en consulta Neo4j: {exc}'))
             return
@@ -438,39 +419,17 @@ class Command(BaseCommand):
 
         articles_topics = get_articles_topics_info(countries)
 
-        # ── Autores por año ───────────────────────────────────────────
-        au_ids_c, ar_ids_c, pd_c, tp_c = [], [], [], []
-        for r in auth_rows:
-            if r['pub_date'] is None:
-                continue
-            au_ids_c.append(r['au_id'])
-            ar_ids_c.append(r['ar_id'])
-            pd_c.append(r['pub_date'])
-            tp_c.append(r['topic'])
-
-        years_c = extract_year(pd_c)
-        authors_raw = count_articles_per_year_author(au_ids_c, ar_ids_c, years_c, tp_c)
+        # ── Autores por año (reusa lo ya calculado en _etl_authors — misma
+        #    consulta Cypher, evita un segundo escaneo completo del grafo) ──
         authors_list = [{'scopus_id': a['idScopus'],
                          'years': [{'year': y['year'], 'num_articles': y['numArticles']} for y in a['years']],
-                         'total_articles': a['totalArticles']} for a in authors_raw]
+                         'total_articles': a['totalArticles']} for a in authors_data]
         authors_info = get_authors_info(authors_list)
 
-        # ── Afiliaciones por año ──────────────────────────────────────
-        af_ids_c, af_names_c, ar_ids_c2, pd_c2, tp_c2 = [], [], [], [], []
-        for r in af_rows:
-            if r['pub_date'] is None:
-                continue
-            af_ids_c.append(r['af_id'])
-            af_names_c.append(r['af_name'])
-            ar_ids_c2.append(r['ar_id'])
-            pd_c2.append(r['pub_date'])
-            tp_c2.append(r['topic'])
-
-        years_c2 = extract_year(pd_c2)
-        aff_raw = count_articles_per_year_affiliation(af_ids_c, af_names_c, ar_ids_c2, years_c2, tp_c2)
+        # ── Afiliaciones por año (reusa lo ya calculado en _etl_affiliations) ──
         aff_list = [{'id_affiliation': a['idScopus'],
                      'years': [{'year': y['year'], 'num_articles': y['numArticles']} for y in a['years']]}
-                    for a in aff_raw]
+                    for a in affiliations_data]
         affiliations_info = get_affiliations_info(aff_list)
 
         ops = {
