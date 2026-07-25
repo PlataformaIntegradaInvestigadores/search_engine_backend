@@ -1,11 +1,11 @@
 import time
 
 from django_neomodel import DjangoNode
-from neomodel import StringProperty, UniqueIdProperty
+from neomodel import StringProperty
 
 
 class Affiliation(DjangoNode):
-    scopus_id = UniqueIdProperty()
+    scopus_id = StringProperty(required=True, unique_index=True, db_property="afid")
     name = StringProperty(unique_index=True)
     city = StringProperty()
     country = StringProperty()

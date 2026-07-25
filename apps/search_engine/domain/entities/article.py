@@ -2,7 +2,7 @@ import logging
 import time
 
 from django_neomodel import DjangoNode
-from neomodel import StringProperty, RelationshipTo, IntegerProperty, UniqueIdProperty, db
+from neomodel import StringProperty, RelationshipTo, IntegerProperty, db
 
 from apps.search_engine.domain.entities.author import Author
 from apps.search_engine.domain.entities.affiliation import Affiliation
@@ -12,11 +12,12 @@ logger = logging.getLogger('django')
 
 
 class Article(DjangoNode):
-    scopus_id = UniqueIdProperty()
+    scopus_id = StringProperty(required=True, unique_index=True, db_property="scopus_id")
     title = StringProperty()
     abstract = StringProperty()
     doi = StringProperty()
     publication_date = StringProperty()
+    cited_by_count = IntegerProperty(default=0, db_property="cited_by_count")
     author_count = IntegerProperty()
     affiliation_count = IntegerProperty()
     corpus = StringProperty()

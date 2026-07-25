@@ -47,11 +47,14 @@ def find_province(city_name):
 
 def process_affiliation_name(af_cities, ar_scopus_ids, ar_publication_dates, topics):
     processed_data = []
+    province_by_city = {}
 
     for af_city, ar_scopus_id, year, topic in zip(af_cities, ar_scopus_ids, ar_publication_dates, topics):
         if af_city is None:
             continue
-        province_id, province_name = find_province(af_city)
+        if af_city not in province_by_city:
+            province_by_city[af_city] = find_province(af_city)
+        province_id, province_name = province_by_city[af_city]
         processed_data.append({
             "province_id": province_id,
             "province_name": province_name,

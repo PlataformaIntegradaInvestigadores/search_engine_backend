@@ -59,28 +59,28 @@ class PopulateService(PopulateRepository):
     def get_provinces_dict(self):
         query = """
             MATCH (ar:Article)-[b:BELONGS_TO]->(af:Affiliation)
-            OPTIONAL MATCH (ar)-[u:USES]->(t:Topic)
-            RETURN af.scopus_id, af.name, af.city, ar.scopus_id, ar.publication_date, t.name
+            WHERE af.city IS NOT NULL
+            WITH DISTINCT af, ar
+            RETURN af.afid, af.name, af.city, ar.scopus_id, ar.publication_date
         """
         results, meta = db.cypher_query(query)
 
-        af_scopus_ids = []
-        af_names = []
         af_cities = []
         ar_scopus_ids = []
         ar_publication_dates = []
-        topics = []
 
         for result in results:
-            af_scopus_ids.append(result[0])
-            af_names.append(result[1])
             af_cities.append(result[2])
             ar_scopus_ids.append(result[3])
             ar_publication_dates.append(result[4])
-            topics.append(result[5] if result[5] is not None else " ")
 
         years = extract_year(ar_publication_dates)
-        provinces = process_affiliation_name(af_cities, ar_scopus_ids, years, topics)
+        provinces = process_affiliation_name(
+            af_cities,
+            ar_scopus_ids,
+            years,
+            [" "] * len(ar_scopus_ids),
+        )
         provinces_data = count_province(provinces)
 
         provinces_list = []
@@ -89,22 +89,11 @@ class PopulateService(PopulateRepository):
             years = [{"year": year_info['year'], "num_articles": year_info['numArticles']} for year_info in
                      province_data['years']]
 
-            topics_list = []
-            for topic_data in province_data['topics']:
-                num_articles_per_year = [{"year": year_info['year'], "num_articles": year_info['numArticles']}
-                                         for year_info in topic_data['topic_years']]
-                topic = {
-                    "topic_name": topic_data['topic'],
-                    "num_articles_per_year": num_articles_per_year,
-                    "total_topic_articles": topic_data['totalTopicArticles']
-                }
-                topics_list.append(topic)
-
             province_dict = {
                 "id_province": province_data["id_provincia"],
                 "province_name": province_data["provincia"],
                 "years": years,
-                "topics": topics_list,
+                "topics": [],
                 "total_articles": province_data["num_articles"]
             }
 
@@ -191,7 +180,7 @@ class PopulateService(PopulateRepository):
         query = """
                     MATCH (au:Author)-[w:WROTE]->(ar:Article)
                     OPTIONAL MATCH (ar)-[u:USES]->(t:Topic)
-                    RETURN au.scopus_id, ar.scopus_id, ar.publication_date, t.name
+                    RETURN au.authid, ar.scopus_id, ar.publication_date, t.name
                     """
         results, meta = db.cypher_query(query)
 
@@ -389,7 +378,7 @@ class PopulateService(PopulateRepository):
         query = """
                 MATCH (au:Author)-[w:WROTE]->(ar:Article)
                 OPTIONAL MATCH (ar)-[u:USES]->(t:Topic)
-                RETURN au.scopus_id, ar.scopus_id, ar.publication_date, t.name
+                RETURN au.authid, ar.scopus_id, ar.publication_date, t.name
                 """
         results, meta = db.cypher_query(query)
 
@@ -440,7 +429,7 @@ class PopulateService(PopulateRepository):
         query = """
                 MATCH (ar:Article)-[b:BELONGS_TO]->(af:Affiliation)
                 OPTIONAL MATCH (ar)-[u:USES]->(t:Topic)
-                RETURN af.scopus_id, af.name, ar.scopus_id, ar.publication_date, t.name
+                RETURN af.afid, af.name, ar.scopus_id, ar.publication_date, t.name
             """
         results, meta = db.cypher_query(query)
 
@@ -674,7 +663,7 @@ class PopulateService(PopulateRepository):
         query = """
                             MATCH (ar:Article)-[b:BELONGS_TO]->(af:Affiliation)
                             OPTIONAL MATCH (ar)-[u:USES]->(t:Topic)
-                            RETURN af.scopus_id, af.name, ar.scopus_id, ar.publication_date, t.name
+                            RETURN af.afid, af.name, ar.scopus_id, ar.publication_date, t.name
                         """
 
     def get_affiliations_topics_dict(self):
@@ -684,7 +673,7 @@ class PopulateService(PopulateRepository):
         query = """
                     MATCH (ar:Article)-[b:BELONGS_TO]->(af:Affiliation)
                     OPTIONAL MATCH (ar)-[u:USES]->(t:Topic)
-                    RETURN af.scopus_id, af.name, ar.scopus_id, ar.publication_date, t.name
+                    RETURN af.afid, af.name, ar.scopus_id, ar.publication_date, t.name
                 """
         results, meta = db.cypher_query(query)
 

@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 
 from common.custom_request import CustomRequest
+from django.conf import settings
 
 load_dotenv()
 
@@ -12,28 +13,20 @@ class RetrieveScopusData:
     HEADERS = {
         "Accept": "application/json",
         "X-ELS-APIKey": os.environ.get("X_ELS_APIKEY"),
-        "X-ELS-Insttoken": os.environ.get("X_ELS_INSTTOKEN"),
     }
+    if os.environ.get("X_ELS_INSTTOKEN") and settings.SCOPUS_USE_INSTTOKEN:
+        HEADERS["X-ELS-Insttoken"] = os.environ.get("X_ELS_INSTTOKEN")
 
     def __init__(self):
         self.custom_request = CustomRequest(self.BASE_URL, self.HEADERS)
 
-    def retrieve_data(self)-> dict:
+    def retrieve_data(self) -> dict:
         endpoint = ""
         params = {
             "query": "AFFIL(AFFILCOUNTRY(Ecuador))",
-            "count": 25,
-            "view": "COMPLETE",
-            "field": "dc:identifier,doi,dc:title,coverDate,dc:description,authkeywords,afid,affilname,"
-                     "affiliation-city,affiliation-country,authid,authname,given-name,surname,initials",
-            "cursor": "*"
+            "count": 1,
         }
-
-        try:
-            response = self.custom_request.do_get(endpoint, params)
-            return response
-        except Exception as e:
-            print(f"Error: {e}")
+        return self.custom_request.do_get(endpoint, params)
 
     def get_total_articles_from_scopus(self):
         try:
