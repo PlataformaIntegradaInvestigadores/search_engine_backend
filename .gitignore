@@ -1,60 +1,26 @@
-# =========================
-# Environment variables
-# =========================
+# Archivos de entorno y configuración
 .env
-.env.*
-.env_produccion*
-!.env.template
 
-# =========================
-# Python
-# =========================
+# Archivos y carpetas de IDE/Editor
+.idea/
+.vscode/
+
+# Archivos generados por Python
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
 
-# Virtual environments
-venv/
-.venv/
-env/
+# Archivos de modelos
+resources/*/*.pkl
 
-# =========================
-# Logs
-# =========================
-centinela_logs/
-*.log
-*.log.*
-
-# =========================
-# Databases
-# =========================
+# Bases de datos locales
 db.sqlite3
-*.sqlite3
 neo4j_db/
 mongo_db/
-seed_data/
 
-# =========================
-# ML Models / Serialized objects
-# =========================
-resources/*/*.pkl
-*.joblib
-hf_cache/
+# Archivos de logs
+centinela_logs/debug.log
+*.log
+centinela_logs/*.log*
 
-# =========================
-# IDE / Editor
-# =========================
-.vscode/
-.idea/
-*.swp
-
-# =========================
-# OS files
-# =========================
-.DS_Store
-Thumbs.db
-
-# =========================
-# Docker
-# =========================
-*.pid
+# Entorno virtual
+venv/

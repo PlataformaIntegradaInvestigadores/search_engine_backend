@@ -9,7 +9,6 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 
 from apps.search_engine.application.services.article_service import ArticleService
-from apps.search_engine.application.services.llm_search_service import LLMSearchService
 from apps.search_engine.application.usecases.article.article_by_id_usecase import ArticleByIdUseCase
 from apps.search_engine.application.usecases.article.list_all_articles_usecase import ListAllArticlesUseCase
 from apps.search_engine.application.usecases.article.most_relevant_articles_by_topic_usecase import \
@@ -148,79 +147,34 @@ class ArticleViewSet(viewsets.ViewSet):
     #         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     @action(detail=False, methods=['post'], url_path='most-relevant-articles-by-topic')
     def most_relevant_articles_by_topic(self, request, *args, **kwargs):
-        def matches_years(publication_date, years):
-            if not publication_date:
-                return False
-            date_str = str(publication_date)
-            return any(str(year) in date_str for year in years)
-
         try:
             serializer = MostRelevantArticlesRequestSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             topic = serializer.validated_data.get('query')
             page = int(serializer.validated_data.get('page'))
             size = int(serializer.validated_data.get('size'))
+            custom_type = serializer.validated_data.get('type')
             custom_years = serializer.validated_data.get('years')
 
-            try:
-                top_k = min(max(size * page * 2, 50), 200)
-                results = self.llm_search_service.search(topic, top_k)
-
-                articles = [
-                    {
-                        'title': result['title'],
-                        'author_count': result['author_count'],
-                        'affiliation_count': result['affiliation_count'],
-                        'publication_date': result['publication_date'],
-                        'scopus_id': result['article_id'],
-                        'relevance': float(result['relevance_score']),
-                        'authors': result['authors'],
-                        'affiliations': result['affiliations']
-                    }
-                    for result in results
-                ]
-
-                if custom_years:
-                    articles = [
-                        article for article in articles
-                        if matches_years(article.get('publication_date'), custom_years)
-                    ]
-
-                total_articles = len(articles)
-                start = (page - 1) * size
-                end = start + size
-                paged_articles = articles[start:end]
-                article_serializer = MostRelevantArticleResponseSerializer(paged_articles, many=True)
-                years_data = [
-                    int(str(article.get('publication_date')).split('-')[0])
-                    for article in articles
-                    if article.get('publication_date')
-                ]
-
-                return Response(
-                    {'data': article_serializer.data, 'years': set(years_data), 'total': total_articles},
-                    status=status.HTTP_200_OK)
-
-            except Exception as llm_error:
-                logger.warning(f"LLM search failed, falling back to TF-IDF: {llm_error}")
-
             most_relevant_articles_usecase = MostRelevantArticlesUseCase(article_repository=self.article_service)
-            df_series, years = most_relevant_articles_usecase.execute(topic, page, size)
-            relevance_map = {str(key): float(value) for key, value in df_series.to_dict().items()}
-            df = [str(article_id) for article_id in df_series.index.to_list()]
-
-            if custom_years:
-                filtered_articles = self.article_service.find_articles_by_filter_years('include', custom_years, df)
+            df, years = most_relevant_articles_usecase.execute(topic, page, size)
+            df = [str(article) for article in df]
+            
+            if custom_type:
+                filtered_articles = self.article_service.find_articles_by_filter_years(custom_type, custom_years, df)
                 filtered_ids = [f"{article.scopus_id}" for article in filtered_articles]
                 articles, total_articles = self.article_service.find_articles_by_ids(filtered_ids, page, size)
             else:
                 articles, total_articles = self.article_service.find_articles_by_ids(df, page, size)
 
-            for article in articles:
-                scopus_id = str(article.get("scopus_id"))
-                article["relevance"] = float(relevance_map.get(scopus_id, 0.0))
-
+            # Agregar prints para depuración
+            print("Artículos antes de serializar:", articles)
+            
             article_serializer = MostRelevantArticleResponseSerializer(articles, many=True)
+            
+            # Agregar prints para depuración
+            print("Datos serializados:", article_serializer.data)
+            
             years_data = [int(year.split("-")[0]) for year in years]
             return Response(
                 {'data': article_serializer.data, 'years': set(years_data), 'total': total_articles},
