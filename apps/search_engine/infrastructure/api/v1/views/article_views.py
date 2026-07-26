@@ -157,30 +157,38 @@ class ArticleViewSet(viewsets.ViewSet):
             custom_years = serializer.validated_data.get('years')
 
             most_relevant_articles_usecase = MostRelevantArticlesUseCase(article_repository=self.article_service)
-            df, years = most_relevant_articles_usecase.execute(topic, page, size)
-            df = [str(article) for article in df]
+            ranked_articles, years = most_relevant_articles_usecase.execute(topic, page, size)
+            article_ids = [article['scopus_id'] for article in ranked_articles]
+            relevance_by_id = {
+                article['scopus_id']: article['relevance']
+                for article in ranked_articles
+            }
             
             if custom_type:
-                filtered_articles = self.article_service.find_articles_by_filter_years(custom_type, custom_years, df)
+                filtered_articles = self.article_service.find_articles_by_filter_years(
+                    custom_type,
+                    custom_years,
+                    article_ids,
+                )
                 filtered_ids = [f"{article.scopus_id}" for article in filtered_articles]
                 articles, total_articles = self.article_service.find_articles_by_ids(filtered_ids, page, size)
             else:
-                articles, total_articles = self.article_service.find_articles_by_ids(df, page, size)
+                articles, total_articles = self.article_service.find_articles_by_ids(article_ids, page, size)
 
             # Agregar prints para depuración
-            print("Artículos antes de serializar:", articles)
+            for article in articles:
+                article['relevance'] = relevance_by_id.get(str(article['scopus_id']), 0.0)
             
             article_serializer = MostRelevantArticleResponseSerializer(articles, many=True)
             
             # Agregar prints para depuración
-            print("Datos serializados:", article_serializer.data)
             
             years_data = [int(year.split("-")[0]) for year in years]
             return Response(
                 {'data': article_serializer.data, 'years': set(years_data), 'total': total_articles},
                 status=status.HTTP_200_OK)
         except Exception as e:
-            print(f"Error en most_relevant_articles_by_topic: {str(e)}")  # Agregar print para depuración
+            logger.exception("Error en most_relevant_articles_by_topic")
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
     
