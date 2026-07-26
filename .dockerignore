@@ -26,10 +26,11 @@ __pycache__/
 .coverage
 htmlcov/
 
-# Bases de datos locales
+# Bases de datos locales y caché de modelos
 db.sqlite3
 neo4j_db/
 mongo_db/
+hf_cache/
 
 # Entorno virtual
 venv/

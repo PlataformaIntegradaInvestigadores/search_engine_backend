@@ -261,7 +261,7 @@ class ArticleService(ArticleRepository):
         except Exception as e:
             raise ValueError(f"Error finding total articles: {e}")
         
-    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> Tuple[List[object], int]:
+    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10, order_by_date: bool = True) -> Tuple[List[object], int]:
         try:
             skip = (page - 1) * page_size
             # Asegúrate de que los IDs estén en el formato correcto
@@ -273,6 +273,7 @@ class ArticleService(ArticleRepository):
             total_articles = total_results[0][0]
 
             # Obtener artículos con toda su información
+            order_clause = "ORDER BY a.publication_date DESC" if order_by_date else ""
             query = (f"""
                 MATCH (a:Article) 
                 WHERE a.scopus_id IN {ids_integer} 
@@ -283,7 +284,7 @@ class ArticleService(ArticleRepository):
                     count(DISTINCT aff) as affiliation_count,
                     collect(DISTINCT au.auth_name) as authors,
                     collect(DISTINCT aff.name) as affiliations
-                ORDER BY a.publication_date DESC 
+                {order_clause}
                 SKIP {skip} LIMIT {page_size}
             """)
             
@@ -312,31 +313,8 @@ class ArticleService(ArticleRepository):
     def find_most_relevant_articles_by_topic(self, topic: str):
         try:
             m = Model("article")
-            # Esto devuelve solo IDs y scores
-            df = m.get_most_relevant_docs_by_topic_v2(topic, None)
-            
-            # Necesitamos obtener la información completa de cada artículo
-            article_list = []
-            for scopus_id, score in df.items():
-                try:
-                    # Obtener el artículo completo de Neo4j
-                    article = self.find_by_id(str(scopus_id))
-                    if article:
-                        # Convertir a diccionario y agregar el score
-                        article_dict = {
-                            'scopus_id': article.scopus_id,
-                            'title': article.title,
-                            'publication_date': article.publication_date,
-                            'author_count': article.author_count,
-                            'affiliation_count': article.affiliation_count,
-                            'relevance': float(score)
-                        }
-                        article_list.append(article_dict)
-                except Exception as e:
-                    print(f"Error processing article {scopus_id}: {e}")
-                    continue
-
-            return article_list
+            # Devuelve un Series/DataFrame con scopus_id y score sin hacer N+1 queries a la BD
+            return m.get_most_relevant_docs_by_topic_v2(topic, None)
         except Exception as e:
             raise Exception(f"Error finding most relevant articles by topic: {e}")
     
