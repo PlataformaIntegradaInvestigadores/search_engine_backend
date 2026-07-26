@@ -67,4 +67,10 @@ Este proyecto Django implementa un motor de búsqueda para la plataforma Centine
 - Para acceder a la consola de MongoDB, puedes utilizar el siguiente comando:
   ```bash
     docker exec -it <nombre_del_contenedor> mongo -u your_username -p your_password --authenticationDatabase your_db_name
+  ```
 - Las credenciales de Centinela son las que se usarán para acceder al panel de administrador de Centinela. No existen credenciales por defecto.
+
+## Arquitectura y Optimización de Búsqueda (Notas para Desarrolladores)
+1. **Modelos TF-IDF vs. LLM:** El buscador por tópicos (`MostRelevantArticlesUseCase`) lee las palabras clave y su relevancia desde el archivo físico `resources/models/tf-idf/model-v10.0.pkl`. **Por favor no reemplazar ni sobreescribir este archivo por modelos de prueba locales acotados**, ya que esto limita el catálogo que ven los usuarios en producción a los IDs presentes en dicho archivo. El modelo oficial debe contener la totalidad del vocabulario y los artículos históricos de Neo4j.
+2. **Rendimiento en Base de Datos:** En `ArticleRepository`, evitar el uso de ordenamientos cronológicos (`ORDER BY publication_date DESC`) cuando se buscan artículos por relevancia matemática (TF-IDF/Embeddings), de lo contrario Neo4j truncará los resultados relegando la literatura fundamental histórica en favor de artículos recientes. Así mismo, evitar consultas N+1 en bucles sobre `find_articles_by_ids`.
+3. **Optimización de Memoria (Gunicorn):** Las librerías de NLP (`spacy`, `KeyBERT`) se encuentran cacheadas bajo el patrón Singleton en `tfidf.py`. En producción, la imagen de Docker precarga el modelo durante el build y utiliza preloading en Gunicorn para compartir memoria entre workers.
