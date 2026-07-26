@@ -15,6 +15,7 @@ COPY . .
 RUN chown -R appuser:appuser /app
 
 USER appuser
+RUN python -c "from keybert import KeyBERT; KeyBERT()"
 
 EXPOSE 8001
 
