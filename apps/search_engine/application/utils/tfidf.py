@@ -20,13 +20,27 @@ class Model:
     non_words = list(punctuation) + ['¿', '¡', '...', '..']
     stop_words += non_words
 
+    _nlp = None
+    _kw_model = None
+
+    @classmethod
+    def get_nlp(cls):
+        if cls._nlp is None:
+            cls._nlp = spacy.load("en_core_web_sm")
+        return cls._nlp
+
+    @classmethod
+    def get_kw_model(cls):
+        if cls._kw_model is None:
+            cls._kw_model = KeyBERT()
+        return cls._kw_model
+
     def __init__(self, type):
         self.type = type
         self.base_path = 'resources/'
         self.model = self.load_model(type)
-        self.nlp = spacy.load("en_core_web_sm")
-        self.kw_model = KeyBERT()
-        self.scibert_model = SentenceTransformer('allenai/scibert_scivocab_uncased')
+        self.nlp = self.get_nlp()
+        self.kw_model = self.get_kw_model()
         self.translator = GoogleTranslator(source='auto', target='en')
     
     def load_model(self, model_type: str):

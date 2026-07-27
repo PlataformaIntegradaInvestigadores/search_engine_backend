@@ -27,6 +27,17 @@ class ArticleViewSet(viewsets.ViewSet):
 
     # Inject the service
     article_service = ArticleService()
+    _llm_search_service = None
+
+    @property
+    def llm_search_service(self):
+        # Instanciacion perezosa: LLMSearchService carga modelos SciBERT/KeyBERT
+        # pesados. Si esto se hace a nivel de clase (import time), cualquier
+        # test que cargue el urlconf completo (via Django test client) crashea
+        # aunque no toque este endpoint.
+        if ArticleViewSet._llm_search_service is None:
+            ArticleViewSet._llm_search_service = LLMSearchService()
+        return ArticleViewSet._llm_search_service
 
     @extend_schema(
         description="List all articles",
@@ -146,30 +157,50 @@ class ArticleViewSet(viewsets.ViewSet):
             custom_years = serializer.validated_data.get('years')
 
             most_relevant_articles_usecase = MostRelevantArticlesUseCase(article_repository=self.article_service)
-            df, years = most_relevant_articles_usecase.execute(topic, page, size)
-            df = [str(article) for article in df]
+            ranked_articles, years = most_relevant_articles_usecase.execute(topic, page, size)
+            article_ids = [article['scopus_id'] for article in ranked_articles]
+            relevance_by_id = {
+                article['scopus_id']: article['relevance']
+                for article in ranked_articles
+            }
             
-            if custom_type:
-                filtered_articles = self.article_service.find_articles_by_filter_years(custom_type, custom_years, df)
-                filtered_ids = [f"{article.scopus_id}" for article in filtered_articles]
-                articles, total_articles = self.article_service.find_articles_by_ids(filtered_ids, page, size)
+            if custom_years:
+                filter_type = custom_type or 'include'
+                filtered_articles = self.article_service.find_articles_by_filter_years(
+                    filter_type,
+                    custom_years,
+                    article_ids,
+                )
+                filtered_ids_set = {str(article.scopus_id) for article in filtered_articles}
+                target_ids = [str(aid) for aid in article_ids if str(aid) in filtered_ids_set]
             else:
-                articles, total_articles = self.article_service.find_articles_by_ids(df, page, size)
+                target_ids = [str(aid) for aid in article_ids]
 
-            # Agregar prints para depuración
-            print("Artículos antes de serializar:", articles)
+            if target_ids:
+                matching_articles, _ = self.article_service.find_articles_by_ids(target_ids, 1, len(target_ids), order_by_date=False)
+            else:
+                matching_articles = []
+
+            for article in matching_articles:
+                article['relevance'] = relevance_by_id.get(str(article['scopus_id']), 0.0)
             
-            article_serializer = MostRelevantArticleResponseSerializer(articles, many=True)
+            matching_articles.sort(key=lambda x: x.get('relevance', 0.0), reverse=True)
+            
+            total_articles = len(matching_articles)
+            start = (page - 1) * size
+            end = start + size
+            paged_articles = matching_articles[start:end]
+            
+            article_serializer = MostRelevantArticleResponseSerializer(paged_articles, many=True)
             
             # Agregar prints para depuración
-            print("Datos serializados:", article_serializer.data)
             
             years_data = [int(year.split("-")[0]) for year in years]
             return Response(
                 {'data': article_serializer.data, 'years': set(years_data), 'total': total_articles},
                 status=status.HTTP_200_OK)
         except Exception as e:
-            print(f"Error en most_relevant_articles_by_topic: {str(e)}")  # Agregar print para depuración
+            logger.exception("Error en most_relevant_articles_by_topic")
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
     

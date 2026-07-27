@@ -28,7 +28,7 @@ class ArticleRepository(ABC):
         pass
 
     @abstractmethod
-    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10) -> Tuple[List[object], int]:
+    def find_articles_by_ids(self, ids: List[str], page: int = 1, page_size: int = 10, order_by_date: bool = True) -> Tuple[List[object], int]:
         pass
 
     @abstractmethod

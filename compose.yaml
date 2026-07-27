@@ -20,9 +20,14 @@ services:
       - MONGO_DB_PORT=${MONGO_DB_PORT}
       - ADMIN_CENTINELA=${ADMIN_CENTINELA}
       - PASSWORD_CENTINELA=${PASSWORD_CENTINELA}
+    # depends_on:
+    #   - mongo
+    #   - neo4j
     depends_on:
-      - mongo
-      - neo4j
+      neo4j:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
     links:
       - "neo4j:neo4j"
       - "mongo:mongo"
@@ -45,6 +50,12 @@ services:
       - ./neo4j_db/logs:/logs
       - ./neo4j_db/import:/var/lib/neo4j/import
       - ./neo4j_db/plugins:/plugins
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/localhost/7687"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
 
   mongo:
     container_name: mongo
@@ -57,6 +68,12 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DB_PASSWORD}
     volumes:
       - ./mongo_db/data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh mongo:27017/db --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
 
 networks:
   default:

@@ -6,8 +6,18 @@ from drf_spectacular.utils import extend_schema
 from apps.search_engine.application.services.llm_search_service import LLMSearchService
 
 class LLMSearchViewSet(viewsets.ViewSet):
-    llm_search_service = LLMSearchService()
-    
+    _llm_search_service = None
+
+    @property
+    def llm_search_service(self):
+        # Instanciacion perezosa: LLMSearchService carga modelos SciBERT/KeyBERT
+        # pesados. Si esto se hace a nivel de clase (import time), cualquier
+        # test que cargue el urlconf completo (via Django test client) crashea
+        # aunque no toque este endpoint.
+        if LLMSearchViewSet._llm_search_service is None:
+            LLMSearchViewSet._llm_search_service = LLMSearchService()
+        return LLMSearchViewSet._llm_search_service
+
     @extend_schema(
         summary='Search using LLM',
         description='Search articles using LLM-based semantic search',

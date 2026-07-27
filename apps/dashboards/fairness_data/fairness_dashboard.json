@@ -1,0 +1,502 @@
+{
+  "meta": {
+    "generated": "2026-06-22",
+    "proyecto": "Centinela - Mitigacion de sesgos",
+    "thresholds": {
+      "di_min": 0.8,
+      "spd": [
+        -0.1,
+        0.1
+      ],
+      "util_max_drop": 0.05
+    }
+  },
+  "baseline": [
+    {
+      "Atributo": "Genero",
+      "Metrica": "SPD",
+      "Valor": "-0.0103",
+      "Ideal": "0",
+      "Umbral": "[-0.1, 0.1]",
+      "Estado": "Aceptable"
+    },
+    {
+      "Atributo": "Genero",
+      "Metrica": "DI",
+      "Valor": "0.9863",
+      "Ideal": "1.0",
+      "Umbral": ">= 0.8",
+      "Estado": "Cumple"
+    },
+    {
+      "Atributo": "Genero",
+      "Metrica": "Equal Opp. Diff",
+      "Valor": "0.0000",
+      "Ideal": "0",
+      "Umbral": "[-0.1, 0.1]",
+      "Estado": "Aceptable"
+    },
+    {
+      "Atributo": "Genero",
+      "Metrica": "Avg Odds Diff",
+      "Valor": "0.0000",
+      "Ideal": "0",
+      "Umbral": "[-0.1, 0.1]",
+      "Estado": "Aceptable"
+    },
+    {
+      "Atributo": "Institucion",
+      "Metrica": "Gini (articulos)",
+      "Valor": "0.8936",
+      "Ideal": "0",
+      "Umbral": "< 0.5",
+      "Estado": "Alta desigualdad"
+    },
+    {
+      "Atributo": "Institucion",
+      "Metrica": "SPD (predicciones)",
+      "Valor": "-0.2992",
+      "Ideal": "0",
+      "Umbral": "[-0.1, 0.1]",
+      "Estado": "Sesgo"
+    },
+    {
+      "Atributo": "Institucion",
+      "Metrica": "DI (predicciones)",
+      "Valor": "0.6224",
+      "Ideal": "1.0",
+      "Umbral": ">= 0.8",
+      "Estado": "No cumple"
+    },
+    {
+      "Atributo": "Geografia",
+      "Metrica": "Gini (por ciudad)",
+      "Valor": "0.9710",
+      "Ideal": "0",
+      "Umbral": "< 0.5",
+      "Estado": "Extrema desigualdad"
+    },
+    {
+      "Atributo": "Geografia",
+      "Metrica": "Concentracion top 3",
+      "Valor": "55.7%",
+      "Ideal": "<33%",
+      "Umbral": "< 50%",
+      "Estado": "Alta"
+    },
+    {
+      "Atributo": "Area tematica",
+      "Metrica": "Gini",
+      "Valor": "0.5815",
+      "Ideal": "0",
+      "Umbral": "< 0.5",
+      "Estado": "Moderada"
+    },
+    {
+      "Atributo": "Area tematica",
+      "Metrica": "Entropia normalizada",
+      "Valor": "0.8960",
+      "Ideal": "1.0",
+      "Umbral": "> 0.8",
+      "Estado": "Diversa"
+    },
+    {
+      "Atributo": "Citaciones",
+      "Metrica": "Gini",
+      "Valor": "0.7336",
+      "Ideal": "0",
+      "Umbral": "< 0.5",
+      "Estado": "Alta desigualdad"
+    },
+    {
+      "Atributo": "Citaciones",
+      "Metrica": "Top 10% acumula",
+      "Valor": "69.0%",
+      "Ideal": "10%",
+      "Umbral": "< 50%",
+      "Estado": "Efecto Matthew"
+    }
+  ],
+  "shap": [
+    {
+      "feature": "publication_count",
+      "pct": 76.62
+    },
+    {
+      "feature": "distinct_authors",
+      "pct": 10.95
+    },
+    {
+      "feature": "year",
+      "pct": 9.94
+    },
+    {
+      "feature": "affiliation_encoded",
+      "pct": 2.49
+    }
+  ],
+  "model_mitigation": {
+    "baseline": {
+      "SPD": -0.183363,
+      "DI": 0.763156,
+      "accuracy": 0.999759,
+      "MAE": 0.1927485062617235,
+      "RMSE": 4.095693
+    },
+    "reweighing": {
+      "SPD": -0.183116,
+      "DI": 0.763475,
+      "accuracy": 1.0,
+      "resultado": "Sin mejora significativa"
+    },
+    "threshold_adj": {
+      "SPD": -0.060859,
+      "DI": 0.921391,
+      "accuracy": 0.880482,
+      "alpha": 0.3
+    },
+    "alpha_optimo": 0.3,
+    "alpha_sweep": [
+      {
+        "alpha": 0.0,
+        "SPD": -0.18336288533558087,
+        "DI": 0.763156273108208,
+        "accuracy": 0.9997590361445783,
+        "caida_util": 0.0,
+        "tasa_pequena": 55.741298986023565,
+        "spd_ok": false,
+        "di_ok": false
+      },
+      {
+        "alpha": 0.1,
+        "SPD": -0.14269243919311103,
+        "DI": 0.8156889327088982,
+        "accuracy": 0.96,
+        "caida_util": 3.98,
+        "tasa_pequena": 60.20827624006577,
+        "spd_ok": false,
+        "di_ok": true
+      },
+      {
+        "alpha": 0.2,
+        "SPD": -0.10177550549826264,
+        "DI": 0.8685399720647441,
+        "accuracy": 0.92,
+        "caida_util": 7.98,
+        "tasa_pequena": 64.64784872567827,
+        "spd_ok": false,
+        "di_ok": true
+      },
+      {
+        "alpha": 0.30000000000000004,
+        "SPD": -0.06085857180341425,
+        "DI": 0.9213910114205899,
+        "accuracy": 0.88,
+        "caida_util": 11.98,
+        "tasa_pequena": 69.00520690600165,
+        "spd_ok": true,
+        "di_ok": true
+      },
+      {
+        "alpha": 0.4,
+        "SPD": -0.02018812566094441,
+        "DI": 0.9739236710212801,
+        "accuracy": 0.8402409638554217,
+        "caida_util": 15.96,
+        "tasa_pequena": 73.33516031789532,
+        "spd_ok": true,
+        "di_ok": true
+      },
+      {
+        "alpha": 0.5,
+        "SPD": 0.020728808033903978,
+        "DI": 1.0267747103771259,
+        "accuracy": 0.8007228915662651,
+        "caida_util": 19.91,
+        "tasa_pequena": 77.88435187722663,
+        "spd_ok": true,
+        "di_ok": true
+      },
+      {
+        "alpha": 0.6000000000000001,
+        "SPD": 0.06164574172875237,
+        "DI": 1.0796257497329718,
+        "accuracy": 0.7602409638554217,
+        "caida_util": 23.96,
+        "tasa_pequena": 82.07728144697177,
+        "spd_ok": true,
+        "di_ok": true
+      },
+      {
+        "alpha": 0.7000000000000001,
+        "SPD": 0.10231618787122221,
+        "DI": 1.132158409333662,
+        "accuracy": 0.7204819277108434,
+        "caida_util": 27.93,
+        "tasa_pequena": 86.59906823787338,
+        "spd_ok": false,
+        "di_ok": true
+      },
+      {
+        "alpha": 0.8,
+        "SPD": 0.1432331215660706,
+        "DI": 1.185009448689508,
+        "accuracy": 0.6804819277108434,
+        "caida_util": 31.94,
+        "tasa_pequena": 91.06604549191559,
+        "spd_ok": false,
+        "di_ok": true
+      },
+      {
+        "alpha": 0.9,
+        "SPD": 0.184150055260919,
+        "DI": 1.2378604880453536,
+        "accuracy": 0.6409638554216868,
+        "caida_util": 35.89,
+        "tasa_pequena": 95.47821320909839,
+        "spd_ok": false,
+        "di_ok": false
+      },
+      {
+        "alpha": 1.0,
+        "SPD": 0.22506698895576738,
+        "DI": 1.2907115274011995,
+        "accuracy": 0.6009638554216867,
+        "caida_util": 39.89,
+        "tasa_pequena": 99.91778569471089,
+        "spd_ok": false,
+        "di_ok": false
+      }
+    ]
+  },
+  "search_mitigation": {
+    "lambda_optimo": 0.7,
+    "lambda_sweep": [
+      {
+        "lambda": 0.0,
+        "n_areas": 29.0,
+        "gini": 0.3028985691573926,
+        "ndcg": 1.0,
+        "score": 0.9999999996734298,
+        "caida_ndcg": 0.0
+      },
+      {
+        "lambda": 0.1,
+        "n_areas": 29.2,
+        "gini": 0.2993019305019305,
+        "ndcg": 0.9989591366652516,
+        "score": 1.007017516879401,
+        "caida_ndcg": 0.1
+      },
+      {
+        "lambda": 0.2,
+        "n_areas": 29.8,
+        "gini": 0.29581657219973,
+        "ndcg": 0.9963964663792052,
+        "score": 1.0298985994336836,
+        "caida_ndcg": 0.36
+      },
+      {
+        "lambda": 0.3,
+        "n_areas": 30.0,
+        "gini": 0.2930965721997301,
+        "ndcg": 0.9939371292535252,
+        "score": 1.032283803961889,
+        "caida_ndcg": 0.61
+      },
+      {
+        "lambda": 0.4,
+        "n_areas": 30.4,
+        "gini": 0.2887643938675518,
+        "ndcg": 0.9883302510407695,
+        "score": 1.0348067439740032,
+        "caida_ndcg": 1.17
+      },
+      {
+        "lambda": 0.5,
+        "n_areas": 30.8,
+        "gini": 0.2832555139755141,
+        "ndcg": 0.9806818475195896,
+        "score": 1.030662670729577,
+        "caida_ndcg": 1.93
+      },
+      {
+        "lambda": 0.6,
+        "n_areas": 32.0,
+        "gini": 0.2699761305703282,
+        "ndcg": 0.9674302626458297,
+        "score": 1.0498869436741112,
+        "caida_ndcg": 3.26
+      },
+      {
+        "lambda": 0.7,
+        "n_areas": 33.6,
+        "gini": 0.2545120435497345,
+        "ndcg": 0.945322067022855,
+        "score": 1.061021498628737,
+        "caida_ndcg": 5.47
+      },
+      {
+        "lambda": 0.8,
+        "n_areas": 35.8,
+        "gini": 0.2209861429420254,
+        "ndcg": 0.899989942527905,
+        "score": 1.0275636229165328,
+        "caida_ndcg": 10.0
+      },
+      {
+        "lambda": 0.9,
+        "n_areas": 40.0,
+        "gini": 0.1555009782520818,
+        "ndcg": 0.834960067797401,
+        "score": 1.0339454317837975,
+        "caida_ndcg": 16.5
+      },
+      {
+        "lambda": 1.0,
+        "n_areas": 48.2,
+        "gini": 0.0323123067408781,
+        "ndcg": 0.6937871233787037,
+        "score": 0.9999999999947916,
+        "caida_ndcg": 30.62
+      }
+    ],
+    "comparison": [
+      {
+        "query": "machine learning",
+        "areas_base": 25,
+        "areas_xquad": 30,
+        "gini_base": 0.3295999999999999,
+        "gini_xquad": 0.3026666666666666,
+        "top_pct_base": 12.0,
+        "top_pct_xquad": 12.0,
+        "ndcg": 0.9418338051007916
+      },
+      {
+        "query": "covid pandemic",
+        "areas_base": 37,
+        "areas_xquad": 42,
+        "gini_base": 0.201081081081081,
+        "gini_xquad": 0.1361904761904762,
+        "top_pct_base": 6.0,
+        "top_pct_xquad": 6.0,
+        "ndcg": 0.913705665920884
+      },
+      {
+        "query": "education learning",
+        "areas_base": 25,
+        "areas_xquad": 31,
+        "gini_base": 0.3344,
+        "gini_xquad": 0.2864516129032257,
+        "top_pct_base": 12.0,
+        "top_pct_xquad": 10.0,
+        "ndcg": 0.9469533501550336
+      },
+      {
+        "query": "climate change",
+        "areas_base": 34,
+        "areas_xquad": 38,
+        "gini_base": 0.2694117647058824,
+        "gini_xquad": 0.2094736842105262,
+        "top_pct_base": 12.0,
+        "top_pct_xquad": 10.0,
+        "ndcg": 0.960355047691631
+      },
+      {
+        "query": "neural network deep learning",
+        "areas_base": 24,
+        "areas_xquad": 27,
+        "gini_base": 0.3799999999999999,
+        "gini_xquad": 0.3377777777777777,
+        "top_pct_base": 16.0,
+        "top_pct_xquad": 10.0,
+        "ndcg": 0.9637624662459356
+      }
+    ]
+  },
+  "impact": [
+    {
+      "Componente": "Modelo predictivo",
+      "Estrategia": "Reweighing (pre-proc.)",
+      "Equidad pre": "DI=0.763 / SPD=-0.183",
+      "Equidad post": "DI=0.763 / SPD=-0.183",
+      "Delta equidad": "+0.0% DI",
+      "Utilidad": "acc 1.000->1.000 (+0.0%)"
+    },
+    {
+      "Componente": "Modelo predictivo",
+      "Estrategia": "Ajuste umbrales alpha=0.3 (post-proc.)",
+      "Equidad pre": "DI=0.763 / SPD=-0.183",
+      "Equidad post": "DI=0.921 / SPD=-0.061",
+      "Delta equidad": "+20.7% DI",
+      "Utilidad": "acc 1.000->0.880 (-11.9%)"
+    },
+    {
+      "Componente": "Motor de busqueda",
+      "Estrategia": "xQUAD lambda=0.7 (re-ranking)",
+      "Equidad pre": "areas=29.0 / Gini=0.303",
+      "Equidad post": "areas=33.6 / Gini=0.255",
+      "Delta equidad": "+15.9% areas",
+      "Utilidad": "NDCG 1.000->0.945 (-5.5%)"
+    }
+  ],
+  "verdict": [
+    {
+      "Componente": "Modelo",
+      "Estrategia": "Reweighing (pre-proc.)",
+      "DI": "0.763 (NO)",
+      "SPD": "-0.183 (NO)",
+      "Caida util": "-0.0% (CUMPLE)",
+      "Veredicto": "No mitiga"
+    },
+    {
+      "Componente": "Modelo",
+      "Estrategia": "Umbrales alpha=0.3 (post-proc.)",
+      "DI": "0.921 (CUMPLE)",
+      "SPD": "-0.061 (CUMPLE)",
+      "Caida util": "11.9% (NO)",
+      "Veredicto": "Cumple equidad / degrada utilidad"
+    },
+    {
+      "Componente": "Buscador",
+      "Estrategia": "xQUAD lambda=0.7",
+      "DI": "-",
+      "SPD": "-",
+      "Caida util": "5.5% NDCG (NO)",
+      "Veredicto": "Diversifica (+15.9% areas); NDCG en el limite"
+    }
+  ],
+  "selection": {
+    "modelo_predictivo": {
+      "estrategia": "Ajuste de umbrales (post-procesamiento)",
+      "parametro": "alpha=0.3",
+      "cumple_equidad": true,
+      "cumple_utilidad": false,
+      "equidad": "DI 0.763->0.921 (CUMPLE), SPD -0.183->-0.061 (CUMPLE)",
+      "utilidad": "accuracy 1.000->0.880 (caida 11.9%, excede el umbral del 5%)",
+      "robustez": "Minimo alpha que entra a la ventana de equidad [0.3,0.6]; menor costo de utilidad en la zona valida",
+      "efecto_servicio": "Tasa de seleccion de instituciones pequenas 55.7% -> 69.0% (+13.3 pp)",
+      "decision": "Seleccionada con trade-off documentado: la ganancia de equidad y de servicio a instituciones pequenas justifica la caida de utilidad. Si se exige estrictamente <=5%, alpha=0.2 es la alternativa de menor costo.",
+      "alternativa": "alpha=0.2 (DI 0.869 CUMPLE, SPD -0.102 al limite, caida ~8%)"
+    },
+    "motor_busqueda": {
+      "estrategia": "xQUAD (re-ranking por diversificacion)",
+      "parametro": "lambda=0.7",
+      "cumple_equidad": true,
+      "cumple_utilidad": false,
+      "equidad": "areas 29.0->33.6 (+15.9%), Gini 0.303->0.255",
+      "utilidad": "NDCG 1.000->0.945 (caida 5.5%, justo en el limite del 5%)",
+      "robustez": "Score combinado plano en lambda 0.6-0.7; eleccion no fragil",
+      "decision": "lambda=0.7 maximiza la diversificacion; por quedar al limite de utilidad se reporta lambda=0.6 como punto conservador dentro del umbral.",
+      "alternativa": "lambda=0.6 (areas 32.0, NDCG 0.967, caida 3.3%)"
+    },
+    "umbrales": {
+      "DI_min": 0.8,
+      "SPD": [
+        -0.1,
+        0.1
+      ],
+      "util_max_drop": 0.05
+    }
+  }
+}
