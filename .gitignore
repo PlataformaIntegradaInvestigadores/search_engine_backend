@@ -24,3 +24,8 @@ centinela_logs/*.log*
 
 # Entorno virtual
 venv/
+
+# Caché de modelos y variables de entorno locales
+hf_cache/
+.env_produccion
+.env*
