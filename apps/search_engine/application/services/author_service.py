@@ -134,39 +134,59 @@ class AuthorService(AuthorRepository):
         except Exception as e:
             raise Exception(f"Error finding authors by affiliation filter: {e}")
 
+    def _build_diacritic_regex(self, text: str) -> str:
+        mapping = {
+            'a': '[aáäâãà]', 'e': '[eéëêè]',
+            'i': '[iíïîì]', 'o': '[oóöôõò]',
+            'u': '[uúüûù]'
+        }
+        regex_str = ""
+        base_text = unidecode(text).strip().lower()
+        for char in base_text:
+            if char in mapping:
+                regex_str += mapping[char]
+            else:
+                if char in '.^$*+?()[{\\|':
+                    regex_str += '\\' + char
+                else:
+                    regex_str += char
+        return f"(?i).*{regex_str}.*"
+
     def find_authors_by_query(self, name: str, page_size=1, page=10) -> (List[object], int):
-        custom_name = unidecode(name).strip().lower()
+        custom_name = self._build_diacritic_regex(name)
         skip = (page - 1) * page_size
-        query = f"""
+        
+        query_count = f"""
                 MATCH (au:Author) 
-                WHERE  toLower(au.first_name) CONTAINS '{custom_name}' or 
-                toLower(au.last_name) CONTAINS '{custom_name}' or 
-                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{custom_name}' or
-                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{custom_name}' or  
-                toLower(au.auth_name) CONTAINS '{custom_name}' or 
-                toLower(au.initials) CONTAINS '{custom_name}' or 
-                toLower(au.email) CONTAINS '{custom_name}'or 
-                au.scopus_id CONTAINS '{custom_name}'
+                WHERE  au.first_name =~ '{custom_name}' or 
+                au.last_name =~ '{custom_name}' or 
+                (au.first_name + " " + au.last_name) =~ '{custom_name}' or
+                (au.last_name + " " + au.first_name) =~ '{custom_name}' or  
+                au.auth_name =~ '{custom_name}' or 
+                au.initials =~ '{custom_name}' or 
+                au.email =~ '{custom_name}' or 
+                au.scopus_id =~ '{custom_name}'
                 RETURN count(au) as total
         """
-        results, meta = db.cypher_query(query)
-        total = results[0][0]
-        query = f"""
+        results_count, meta = db.cypher_query(query_count)
+        total = results_count[0][0]
+        
+        query_fetch = f"""
                 MATCH (au:Author) 
-                WHERE  toLower(au.first_name) CONTAINS '{custom_name}' or 
-                toLower(au.last_name) CONTAINS '{custom_name}' or 
-                toLower(au.first_name) + " " + toLower(au.last_name) CONTAINS '{custom_name}' or
-                toLower(au.last_name) + " " + toLower(au.first_name) CONTAINS '{custom_name}' or  
-                toLower(au.auth_name) CONTAINS '{custom_name}' or 
-                toLower(au.initials) CONTAINS '{custom_name}' or 
-                toLower(au.email) CONTAINS '{custom_name}' or 
-                au.scopus_id CONTAINS '{custom_name}'
+                WHERE  au.first_name =~ '{custom_name}' or 
+                au.last_name =~ '{custom_name}' or 
+                (au.first_name + " " + au.last_name) =~ '{custom_name}' or
+                (au.last_name + " " + au.first_name) =~ '{custom_name}' or  
+                au.auth_name =~ '{custom_name}' or 
+                au.initials =~ '{custom_name}' or 
+                au.email =~ '{custom_name}' or 
+                au.scopus_id =~ '{custom_name}'
                 RETURN au
                 ORDER BY au.citation_count DESC
                 SKIP {skip} LIMIT {page_size}
                 """
-        results, meta = db.cypher_query(query)
-        authors = [Author.inflate(row[0]) for row in results]
+        results_fetch, meta = db.cypher_query(query_fetch)
+        authors = [Author.inflate(row[0]) for row in results_fetch]
         return authors, total
 
     def find_all(self, page_size=None, page=None) -> List[Author]:
