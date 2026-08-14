@@ -2,9 +2,9 @@ name: CI — search_engine_backend
 
 on:
   push:
-    branches: [dev-Marlow]
+    branches: [develop]
   pull_request:
-    branches: [dev-Marlow, main]
+    branches: [develop, main]
 
 env:
   NEO4J_USERNAME: neo4j
@@ -20,6 +20,19 @@ env:
   DEBUG: "True"
 
 jobs:
+  branch-name:
+    name: Validar nombre de rama
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Verificar prefijo (feature/*, hotfix/*, chore/*)
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          case "$BRANCH" in
+            feature/*|hotfix/*|chore/*) echo "OK: $BRANCH"; exit 0 ;;
+            *) echo "Rama '$BRANCH' no cumple convención (feature/*, hotfix/*, chore/*)"; exit 1 ;;
+          esac
+
   # ── Unitarios ──────────────────────────────────────────────────────────────
   test-unit:
     name: Pruebas unitarias
@@ -115,7 +128,7 @@ jobs:
     name: Build imagen Docker
     runs-on: ubuntu-latest
     needs: test-integration
-    if: github.ref == 'refs/heads/dev-Marlow' || github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - name: Build imagen
@@ -128,13 +141,13 @@ jobs:
     name: Deploy a servidor staging
     runs-on: [self-hosted, staging]
     needs: test-integration
-    if: github.ref == 'refs/heads/dev-Marlow'
+    if: github.ref == 'refs/heads/develop'
     steps:
       - name: Actualizar codigo
         run: |
           cd /opt/centinela/search_engine_backend
-          git fetch origin dev-Marlow
-          git reset --hard origin/dev-Marlow
+          git fetch origin develop
+          git reset --hard origin/develop
 
       - name: Reconstruir contenedor
         run: |
