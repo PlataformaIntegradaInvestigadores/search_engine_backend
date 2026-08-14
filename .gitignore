@@ -29,3 +29,6 @@ venv/
 hf_cache/
 .env_produccion
 .env*
+
+# Agent configuration (local only, not committed)
+AGENTS.md
