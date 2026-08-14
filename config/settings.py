@@ -25,7 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ROTATED-SECRET-KEY'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-bcxlgJx4w_PJ2ZU_7fFDLCJI-YRIsu_wynL_Yd62euGaQ77hEmcoBDbnL_JWFee2BEY',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') == 'True'
