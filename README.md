@@ -17,8 +17,8 @@ Este proyecto Django implementa un motor de búsqueda para la plataforma Centine
 2. Accede al directorio del proyecto:
    ```bash
    cd search_engine_backend
-3. Renombra el archivo `.env.template` a `.env`. Completa las variables de entorno con los valores correspondientes. 
-   Las API keys de Elsevier necesarias para la extracción de datos son: `ELSEVIER_API_KEY` y `ELSEVIER_INST_KEY`.
+3. Renombra el archivo `.env.example` a `.env`. Completa las variables de entorno con los valores correspondientes. 
+   Las API keys de Elsevier necesarias para la extracción de datos son: `X_ELS_APIKEY` y `X_ELS_INSTTOKEN`.
    Para las bases de datos puedes utilizar tus propias credenciales. Con Docker Compose, la estructura de el
    archivo `.env` es la siguiente:
    ```bash
@@ -46,12 +46,22 @@ Este proyecto Django implementa un motor de búsqueda para la plataforma Centine
 
 4. Construye las imágenes y levanta los contenedores:
    ```bash
-   docker-compose up --build
-5. Accede a la URL `http://localhost:8000/` para verificar que el servidor está corriendo correctamente.
-6. Para detener los contenedores, ejecuta:
+   docker compose up --build
+   ```
+5. (Opcional) Bootstrap con datos semilla:
    ```bash
-   docker-compose down
-7. Para acceder a la consola de Django y hacer las migraciones de Neomodel, ejecuta:
+   bash scripts/bootstrap.sh
+   ```
+   > El seed data **no está versionado** en este repo. Antes de correr el bootstrap,
+   > coloca `seed_data/backup.json` (dump de Mongo) y `seed_data/centinela_db/` (datos de
+   > Neo4j) obtenidos de la fuente institucional. Para pruebas básicas puedes levantar sin
+   > seed y usar el catálogo vacío. Requiere `git-lfs` para los modelos (`resources/models/`).
+6. Accede a la URL `http://localhost:8001/` para verificar que el servidor está corriendo correctamente.
+7. Para detener los contenedores, ejecuta:
+   ```bash
+   docker compose down
+   ```
+8. Para acceder a la consola de Django y hacer las migraciones de Neomodel, ejecuta:
    ```bash
     docker exec -it <nombre_del_contenedor> bash
     python manage.py install_labels
