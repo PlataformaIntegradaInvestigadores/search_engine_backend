@@ -5,9 +5,11 @@ class AuthorRetrieval:
     """Una author en Scopus."""
 
     # variables estáticas
-    _url_base = u'https://api.elsevier.com/content/author/author_id/'
+    _url_base = "https://api.elsevier.com/content/author/author_id/"
 
-    def __init__(self, url=None, response_list=False, author_id=None, view=None, field=None):
+    def __init__(
+        self, url=None, response_list=False, author_id=None, view=None, field=None
+    ):
         """Inicializa un author dado la URL
         del author o author ID."""
         self.result = None
@@ -18,19 +20,20 @@ class AuthorRetrieval:
         elif author_id and not url:
             self.url = self._url_base + author_id
             if view:
-                self.url = self.url + '&view=' + view
+                self.url = self.url + "&view=" + view
             if field:
-                self.url = self.url + '&field=' + field
+                self.url = self.url + "&field=" + field
         elif not url and not author_id:
-            raise ValueError('You must specify either the URL or the ID.')
+            raise ValueError("You must specify either the URL or the ID.")
         else:
-            raise ValueError(
-                'You must specify either the URL or the ID, not both.')
+            raise ValueError("You must specify either the URL or the ID, not both.")
 
     def retrieve(self, client: ScopusClient = None):
         api_response = client.exec_request(self.url)
         if self.response_list:
-            self.result = api_response['author-retrieval-response-list']['author-retrieval-response']
+            self.result = api_response["author-retrieval-response-list"][
+                "author-retrieval-response"
+            ]
         else:
-            self.result = api_response['author-retrieval-response']
+            self.result = api_response["author-retrieval-response"]
         # TODO filtrar respuesta
